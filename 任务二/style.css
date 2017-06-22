@@ -1,0 +1,18 @@
+body
+{
+	margin: 0;
+}
+#World
+{
+	width: 800px;
+	height: 600px;
+	border:10px solid black;
+	position: relative;
+}
+.Snake
+{
+	width: 20px;
+	height: 20px;
+	background-color: red;
+	position: absolute;
+}

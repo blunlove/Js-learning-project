@@ -6,5 +6,32 @@
     </script>
 </head>
 <body>
+    <div id="World">
+        <div class="Snake" id="Head">
+        </div>
+    </div>
+    <script>
+        var beginPositionX=Math.ceil((Math.random()*39))*20;
+        var beginPositionY=Math.ceil((Math.random()*29))*20;
+        $(".Snake").css({'left':beginPositionX ,'top':beginPositionY});
+        $(document).keydown(function(event){
+            if(event.keyCode == 37&& beginPositionX>1){
+                beginPositionX=beginPositionX-20;
+                $(".Snake").css({'left':(beginPositionX)});
+            }//left
+            if(event.keyCode == 38){
+                beginPositionY=beginPositionY-20;
+                $(".Snake").css({'top':(beginPositionY)});
+            }//up
+            if(event.keyCode == 39){
+                beginPositionX=beginPositionX+20;
+                $(".Snake").css({'left':(beginPositionX)});
+            }//right
+            if(event.keyCode == 40){
+                beginPositionY=beginPositionY+20;
+                $(".Snake").css({'top':(beginPositionY)});
+            }//down
+        });
+    </script>
 </body>
 </html>
