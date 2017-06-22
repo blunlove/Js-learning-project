@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="jquery-3.2.1.min.js">
+    </script>
+    <script> 
+        $(document).ready(function(){
+            $("#erWeima").hide();
+            $("#weiXin").mouseover(function(){
+                $("#erWeima").stop(false,false).fadeIn(250);
+            });
+            $("#weiXin").mouseout(function(){
+                $("#erWeima").stop(false,false).fadeOut(250);
+            });
+            $("#back").click(function() {
+                $("body").animate({scrollTop:0}, 500);
+            });
+        });
+        var lastScroll = 0;
+        var isAnim = false;
+        var isShow = true;
+        $(document).scroll(function() {
+            var currentScroll= $(document).scrollTop();
+            var scrollOffset = currentScroll - lastScroll;
+            lastScroll = currentScroll;
+            if(scrollOffset > 0 && isShow){
+                if (!isAnim) {
+                    isAnim = true;
+                    $(".top").animate({'top':'-50px'},250, function(){
+                        isAnim = false;
+                        isShow = false;
+                    });
+                }
+            } else if(scrollOffset < 0 && !isShow){
+                if (!isAnim) {
+                    isAnim = true;
+                    $(".top").animate({'top':'0px'},250, function() {
+                        isAnim = false;
+                        isShow = true;
+                    });
+                }
+            }
+        });
+    </script> 
+</head>
+<body>
+    <img src="weixin.jpg" id="weiXin">
+    <img src="erweima.png" id="erWeima">
+    <img src="top.png" id="back">
+    <div class="top">
+        <div class='button' id='caiDan'><b>菜单</b></div>
+        <div class='button' id='beiBao'><b>背包</b></div>
+        <div class='button' id='jiNeng'><b>技能</b></div>
+        <div class='button' id='shuXing'><b>属性</b></div>
+    </div>
+    <div id='text'>持有一半的梦尚未回还<br/>许三生缘定的千万羁绊<br/>一条殊途<br>绝不回转<br/>你眼中倒映的星河烂漫<br/>是不曾见过的世外梦幻<br/>万水千山<br/>你陪我看<br/>为你闯出的前方<br/>贯穿世界的消亡<br/>将弱小的自己藏匿抹杀<br/>可所有你说的话<br/>全部都被遗忘<br/>轮转<br/>你的手穿透我这整个胸膛<br/>记忆与爱填满这一颗心脏<br/>前生所有未能说过的话<br/>在你心中无法撼动的他<br>所有为你而行的空幻梦想<br/>都不及最后与你许下的愿望<br/>在树下<br/></div>
+</body>
+</html>
