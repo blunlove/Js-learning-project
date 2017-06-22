@@ -11,26 +11,76 @@
         </div>
     </div>
     <script>
-        var beginPositionX=parseInt((Math.random()*39))*20;
-        var beginPositionY=parseInt((Math.random()*29))*20;
-        $(".Snake").css({'left':beginPositionX ,'top':beginPositionY});
+        var Speed=100;
+        function Running(x,y){
+            if(direction == 37 && x>=0){
+                newX=x-1;
+                newY=y;
+                lastPositionX=x;
+                $(".Snake").delay(Speed).animate({'left': (newX*20)},0,function(){
+                    Running(newX,newY);
+                });
+            }
+            else if(direction == 38 && y>=0){
+                newX=x;
+                newY=y-1;
+                lastPositionY=y;
+                $(".Snake").delay(Speed).animate({'top': (newY*20)},0,function(){
+                    Running(newX,newY);
+                });
+            }
+            else if(direction == 39 && x<=39){
+                newX=x+1;
+                newY=y;
+                lastPositionX=x;
+                $(".Snake").delay(Speed).animate({'left': (newX*20)},0,function(){
+                    Running(newX,newY);
+                });
+            }
+            else if(direction == 40 && y<=29){
+                newX=x;
+                newY=y+1;
+                lastPositionY=y;
+                $(".Snake").delay(Speed).animate({'top': (newY*20)},0,function(){
+                    Running(newX,newY);
+                });
+            }
+            else {
+                $(".Snake").css({"left":lastPositionX*20,"top":lastPositionY*20});
+                alert("Game Over...");
+                isRunning=false;
+                beginPositionX=parseInt((Math.random()*39));
+                beginPositionY=parseInt((Math.random()*29));
+                $(".Snake").css({"left":beginPositionX*20,"top":beginPositionY*20});
+            }
+        }
+        var beginPositionX=parseInt((Math.random()*39));
+        var beginPositionY=parseInt((Math.random()*29));
+        var lastPositionX=beginPositionX;
+        var lastPositionY=beginPositionY;
+        var isRunning=false;
+        var direction;
+        //var lastRunning=false;
+        $(".Snake").css({'left':beginPositionX*20 ,'top':beginPositionY*20});
         $(document).keydown(function(event){
-            if(event.keyCode == 37 && beginPositionX>0){
-                beginPositionX=beginPositionX-20;
-                $(".Snake").css({'left':(beginPositionX)});
-            }//left
-            if(event.keyCode == 38 && beginPositionY>0){
-                beginPositionY=beginPositionY-20;
-                $(".Snake").css({'top':(beginPositionY)});
-            }//up
-            if(event.keyCode == 39 && beginPositionX<780){
-                beginPositionX=beginPositionX+20;
-                $(".Snake").css({'left':(beginPositionX)});
-            }//right
-            if(event.keyCode == 40 && beginPositionY<580){
-                beginPositionY=beginPositionY+20;
-                $(".Snake").css({'top':(beginPositionY)});
-            }//down
+            direction=event.keyCode;
+            if(!isRunning){
+                isRunning=true;
+                Running(beginPositionX,beginPositionY);
+            }
+            //left
+            //if(event.keyCode == 38 && beginPositionY>0){
+               // beginPositionY=beginPositionY;
+                //$(".Snake").css({'top':(beginPositionY)});
+            //}//up
+            //if(event.keyCode == 39 && beginPositionX<780){
+                //beginPositionX=beginPositionX;
+                //$(".Snake").css({'left':(beginPositionX)});
+            //}//right
+            //if(event.keyCode == 40 && beginPositionY<580){
+                //beginPositionY=beginPositionY;
+                //$(".Snake").css({'top':(beginPositionY)});
+            //}//down
         });
     </script>
 </body>
