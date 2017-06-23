@@ -25,21 +25,13 @@ $(document).keydown(function(event){
     }
 });
 function Running () {
-    /*if(Snake.lastPositionX[1]==0 || Snake.lastPositionX[1]==Snake.maxX || Snake.lastPositionY[1]==0||Snake.lastPositionY[1]==Snake.maxY){
-        //$(".Snake").css({'left':(Snake.lastPositionX[1])*Snake.size,'top':(Snake.lastPositionY[1])*Snake.size});
-        alert("Game Over...");
-        rest();
-        return;
-    }*/
     if (Snake.direction==1) {
         Snake.lastDirection=Snake.direction;
         Snake.lastPositionX[1]=Snake.lastPositionX[0];
         Snake.lastPositionX[0]=Snake.lastPositionX[0]-1;
         $(".Snake").css({'left':(Snake.lastPositionX[0])*Snake.size});
         if(Snake.lastPositionX[1]==0){
-            alert("Game Over...");
-            rest();
-            return;
+            GameOver ();
         }
     }
     if (Snake.direction==3) {
@@ -47,9 +39,7 @@ function Running () {
         Snake.lastPositionX[0]=Snake.lastPositionX[0]+1;
         $(".Snake").css({'left':(Snake.lastPositionX[0])*Snake.size});
         if(Snake.lastPositionX[1]==Snake.maxX){
-            alert("Game Over...");
-            rest();
-            return;
+            GameOver();
         }
     }
     if (Snake.direction==2) {
@@ -57,9 +47,7 @@ function Running () {
         Snake.lastPositionY[0]=Snake.lastPositionY[0]-1;
         $(".Snake").css({'top':(Snake.lastPositionY[0])*Snake.size});
         if(Snake.lastPositionY[1]==0){
-            alert("Game Over...");
-            rest();
-            return;
+            GameOver();
         }
     }
     if (Snake.direction==4) {
@@ -67,9 +55,7 @@ function Running () {
         Snake.lastPositionY[0]=Snake.lastPositionY[0]+1;
         $(".Snake").css({'top':(Snake.lastPositionY[0])*Snake.size});
         if(Snake.lastPositionY[1]==Snake.maxY){
-            alert("Game Over...");
-            rest();
-            return;
+            GameOver();
         }
     }
 }
