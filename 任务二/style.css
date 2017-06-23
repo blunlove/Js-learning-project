@@ -17,3 +17,14 @@ body
 	background-color: green;
 	position: absolute;
 }
+#theScore
+{
+	width: 50px;
+	height: 30px;
+	text-align: center;
+    line-height: 30px;
+    font-size:30px;
+    font-family:"楷体";
+	border:5px solid black;
+	position: absolute;
+}

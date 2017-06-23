@@ -1,14 +1,15 @@
 Snake=new Object();
-//Snake.Speed=100;
 Snake.size=20;
 $(".Snake").css({'width':Snake.size,'height':Snake.size});
 Snake.maxX=worldSizeX/Snake.size-1;
 Snake.maxY=worldSizeY/Snake.size-1;
-Snake.lastPositionX=new Array();
-Snake.lastPositionY=new Array();
 function rest() {
+    Snake.length=1;
+    //$("#theScore").text(Snake.length);
     Snake.direction=0;
     Snake.lastDirection=0;
+    Snake.lastPositionX=new Array();
+    Snake.lastPositionY=new Array();
     Snake.lastPositionX[0]=parseInt((Math.random()*Snake.maxX));
     Snake.lastPositionY[0]=parseInt((Math.random()*Snake.maxY));
     Snake.lastPositionX[1]=Snake.lastPositionX[0];
@@ -16,6 +17,9 @@ function rest() {
     $(".Snake").css({'width':Snake.size,'height':Snake.size});
     $(".Snake").css({'left':(Snake.lastPositionX[0]*Snake.size),'top':(Snake.lastPositionY[0]*Snake.size)});
 }
+/*function Grow () {
+
+}*/
 $(document).keydown(function(event){
     if (event.keyCode==37) {
         if (Snake.direction==3) {return;}

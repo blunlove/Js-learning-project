@@ -8,5 +8,7 @@ function foodRest () {
 function toEat(){
 	if(Snake.lastPositionX[0]==Food.beginPositionX && Snake.lastPositionY[0]==Food.beginPositionY){
 		foodRest();
+		Snake.length++;
+		$("#theScore").text(Snake.length);
 	}
 }

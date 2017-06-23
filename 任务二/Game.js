@@ -6,10 +6,11 @@ function reflash () {
 var start =setInterval(reflash,frameTime);*/
 foodRest();
 rest();
+$("#theScore").text(Snake.length);
 var speed=100;
 var running =setInterval(Running,speed);
 function GameOver () {
-    alert("Game Over...");
-    rest();
-    foodRest ();
+	alert("Game Over...");
+	rest();
+	foodRest ();
 }
