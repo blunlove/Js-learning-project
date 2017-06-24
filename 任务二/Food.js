@@ -2,17 +2,20 @@
 怎么定义类看下snake.js的注释
 我觉得食物只要有一个在指定位置展示的方法就可以了
 */
-/*
-function Food(){
-	this.size=20;
-	this.x;
-	this.y;
-	this.color=green;
-	this.element=$('div');
-	this.element.css({"background-color":this.color,"width":this.size,"height":this.size});
-	this.element.css({"left":this.x*this.size,"top":this.y*this.size});
-}
 
+function Food(){
+	_this=this;
+	_this.color='green';
+	_this.element=$('<div>');
+	_this.element.css({'position': 'absolute','background-color':_this.color,'width':foodSize,'height':foodSize});
+	$("#World").append(_this.element);
+	_this.rest=function(){
+		_this.x=parseInt((Math.random()*maxX));
+		_this.y=parseInt((Math.random()*maxY));
+		_this.element.css({"left":_this.x*foodSize,"top":_this.y*foodSize});
+	}
+}
+/*
 $(".Food").css({'width':Snake.size,'height':Snake.size});
 function foodRest () {
 	Food.beginPositionX=parseInt((Math.random()*Snake.maxX));
