@@ -31,20 +31,17 @@ function start(){
 }
 var running=setInterval(start,speed);
 $(document).keydown(function(event){
+	event.preventDefault();
 	if (event.keyCode==37) {
-		event.preventDefault();
         snake.turnLeft();//left
     }
     if (event.keyCode==38) {
-    	event.preventDefault();
         snake.turnUp();//top
     }
     if (event.keyCode==39) {
-    	event.preventDefault();
         snake.turnRight();;//right
     }
     if (event.keyCode==40) {
-    	event.preventDefault();
         snake.turnDown();//down
     }
 });
