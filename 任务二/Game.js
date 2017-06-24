@@ -21,11 +21,9 @@ function start(){
 	}
 	if(!snake.isAlive){
 		clearInterval(running);
-		for (var i = 0; i <snake.length; i++) {
-                snake.bodyElement[i].remove();
-            }
 		alert("Game Over...");
 		$("#theScore").text("0");
+		snake.removeBody();
 		snake.rest();
 		food.rest();
 		running=setInterval(start,speed);

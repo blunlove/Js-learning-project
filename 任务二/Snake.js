@@ -47,10 +47,7 @@ function Snake(){
         _this.lastY[0]=_this.y;
         _this.x=_this.x+_this.speedX;
         _this.y=_this.y+_this.speedY;
-        if(_this.x<0||_this.x>maxX||_this.y<0||_this.y>maxY){
-            _this.isAlive=false;
-            return;
-        }
+        _this.bumpBody();
         _this.element.css({"left":_this.x*snakeSize,"top":_this.y*snakeSize});
         for (var i = 0; i < _this.length; i++) {
             _this.bodyElement[i].css({'left':_this.lastX[i]*snakeSize,'top':_this.lastY[i]*snakeSize});
@@ -69,5 +66,22 @@ function Snake(){
         _this.bodyElement[_this.length-1].css({'position': 'absolute','background-color':_this.color,'width':snakeSize,'height':snakeSize});
         _this.bodyElement[_this.length-1].css({'left':_this.lastX[_this,length]*snakeSize,'top':_this.lastY[_this,length]*snakeSize});
         $(".Snake").append(_this.bodyElement[_this.length-1]);
+    }
+    _this.removeBody=function(){
+        for (var i = 0; i <_this.length; i++) {
+            _this.bodyElement[i].remove();
+        }
+    }
+    _this.bumpBody=function(){
+        if(_this.x<0||_this.x>maxX||_this.y<0||_this.y>maxY){
+            _this.isAlive=false;
+            return;
+        }
+        for (var i = 4; i <= _this.length; i++) {
+            if(_this.x==_this.lastX[i] && _this.y==_this.lastY[i]){
+                _this.isAlive=false;
+                return;
+            }
+        }
     }
 }
