@@ -58,24 +58,58 @@ function Snake() {
 */
 
 
-Snake=new Object();
-Snake.size=20;
-$(".Snake").css({'width':Snake.size,'height':Snake.size});
-Snake.maxX=worldSizeX/Snake.size-1; //maxX不应该是蛇的属性吧 
-Snake.maxY=worldSizeY/Snake.size-1; //maxY也不应该作为蛇的属性吧，这种在移动的时候直接作为值判断更合适吧
-function rest() {
-    Snake.length=1;
-    //$("#theScore").text(Snake.length);
-    Snake.direction=0;
-    Snake.lastDirection=0;
-    Snake.lastPositionX=new Array();
-    Snake.lastPositionY=new Array();
-    Snake.lastPositionX[0]=parseInt((Math.random()*Snake.maxX));
-    Snake.lastPositionY[0]=parseInt((Math.random()*Snake.maxY));
-    Snake.lastPositionX[1]=Snake.lastPositionX[0];
-    Snake.lastPositionY[1]=Snake.lastPositionY[0];
-    $(".Snake").css({'width':Snake.size,'height':Snake.size});
-    $(".Snake").css({'left':(Snake.lastPositionX[0]*Snake.size),'top':(Snake.lastPositionY[0]*Snake.size)});
+function Snake(){
+    this.color='red';
+    this.element = $('<div></div>');
+    this.element.css({'position': 'absolute','background-color':this.color,'width':snakeSize,'height':snakeSize});
+    $("#World").append(this.element);
+    this.rest=function(){
+        this.length=1;
+        this.x=parseInt((Math.random()*maxX));
+        this.y=parseInt((Math.random()*maxY));
+        this.speedY=0;
+        this.speedX=0;
+        this.isAlive=true;
+        this.lastX=new Array();
+        this.lastY=new Array();
+        this.element.css({"left":this.x*snakeSize,"top":this.y*snakeSize});
+    }
+    this.turnLeft=function(){
+        if(this.speedX==1){return;}
+        this.speedX=-1;
+        this.speedY=0;
+    }
+    this.turnRight=function(){
+        if(this.speedX==-1){return;}
+        this.speedX=1;
+        this.speedY=0;
+    }
+    this.turnUp=function(){
+        if(this.speedY==1){return;}
+        this.speedX=0;
+        this.speedY=-1;
+    }
+    this.turnDown=function(){
+        if(this.speedY==-1){return;}
+        this.speedX=0;
+        this.speedY=1;
+    }
+    this.upDate=function(){
+        this.x=this.x+this.speedX;
+        this.y=this.y+this.speedY;
+        this.element.css({"left":this.x*snakeSize,"top":this.y*snakeSize});
+        if(this.x<0||this.x>maxX||this.y<0||this.y>maxY){
+            this.isAlive=false;
+            return;
+        }
+    }
+    this.eat=function(x,y){
+        if(this.x==x && this.y==y){
+            this.length++;
+            return true;
+        }
+        else return false;
+    }
 }
 /*function Grow () {
 
@@ -83,26 +117,9 @@ function rest() {
 
 /*
  我觉得蛇内部不应该监听键盘，这个是游戏逻辑，但是蛇会移动，所以蛇有转向方法。参考上面
-*/
-$(document).keydown(function(event){
-    if (event.keyCode==37) {
-        if (Snake.direction==3) {return;}
-        Snake.direction = 1;//left
-    }
-    if (event.keyCode==38) {
-        if (Snake.direction==4) {return;}
-        Snake.direction = 2;//top
-    }
-    if (event.keyCode==39) {
-        if (Snake.direction==1) {return;}
-        Snake.direction = 3;//right
-    }
-    if (event.keyCode==40) {
-        if (Snake.direction==2) {return;}
-        Snake.direction = 4;//down
-    }
-});
-function Running () {
+ */
+/*
+ function Running () {
     if (Snake.direction==1) {
         Snake.lastDirection=Snake.direction;
         Snake.lastPositionX[1]=Snake.lastPositionX[0];
@@ -136,8 +153,10 @@ function Running () {
             GameOver();
         }
     }
-    toEat(); /* 你跑的时候就要吃东西吗？？这东西可不是蛇做的事情，你放到game.js处理吃东西的逻辑是不是
+}*/
+    /*
+    你跑的时候就要吃东西吗？？这东西可不是蛇做的事情，你放到game.js处理吃东西的逻辑是不是
     更合适，因为在那里，他是知道蛇跟食物的。（万一我要让你吃另外一种食物或者别的呢，对蛇来说只有一个eat
     方法，因为吃是蛇的本事，吃什么传进来，比如这里你可以直接传食物的x、y坐标，这样蛇的吃方法就只判断是否
-    等于自己的坐标，如果是则返回true,否则false。然后game.js根据这个来决定刷新food位置） *／
-}
+    等于自己的坐标，如果是则返回true,否则false。然后game.js根据这个来决定刷新food位置
+    */

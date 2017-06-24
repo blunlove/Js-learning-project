@@ -8,18 +8,11 @@
 <body>
     <div id="World">
         <!-- 这里为什么既要取一个class 又取一个id 既然是唯一的东西id就够了吧-->
-        <div class="Food" id="Apple"></div>
-        <div class="Snake" id="Head"></div>
+        
         
     </div>
     <div id="theScore"></div>
-
     <script>
-        //这段和world重复了
-        var worldSizeX=800;
-        var worldSizeY=600;
-        $("#World").css({'width':worldSizeX,'height': worldSizeY});
-        $("#theScore").css({'left':(worldSizeX/2-25),'top':(worldSizeY+50)});
     </script>
     <script language="JavaScript" src="Snake.js"></script> 
     <script language="JavaScript" src="Food.js"></script> 

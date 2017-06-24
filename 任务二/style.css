@@ -7,16 +7,6 @@ body
 	border:10px solid black;
 	position: relative;
 }
-.Snake
-{
-	background-color: red;
-	position: absolute;
-}
-.Food
-{
-	background-color: green;
-	position: absolute;
-}
 #theScore
 {
 	width: 50px;

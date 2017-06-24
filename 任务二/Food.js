@@ -2,7 +2,17 @@
 怎么定义类看下snake.js的注释
 我觉得食物只要有一个在指定位置展示的方法就可以了
 */
-Food=new Object();
+/*
+function Food(){
+	this.size=20;
+	this.x;
+	this.y;
+	this.color=green;
+	this.element=$('div');
+	this.element.css({"background-color":this.color,"width":this.size,"height":this.size});
+	this.element.css({"left":this.x*this.size,"top":this.y*this.size});
+}
+
 $(".Food").css({'width':Snake.size,'height':Snake.size});
 function foodRest () {
 	Food.beginPositionX=parseInt((Math.random()*Snake.maxX));
@@ -17,3 +27,4 @@ function toEat(){
 		$("#theScore").text(Snake.length);
 	}
 }
+*/
