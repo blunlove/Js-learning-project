@@ -16,6 +16,7 @@ function start(){
 	snake.upDate();
 	if(snake.eat(food.x,food.y)){
 		$("#theScore").text(snake.length);
+		snake.Grow();
 		food.rest();
 	}
 	if(!snake.isAlive){
@@ -42,3 +43,5 @@ $(document).keydown(function(event){
         snake.turnDown();//down
     }
 });
+//var id="#body"+1
+//alert(id);

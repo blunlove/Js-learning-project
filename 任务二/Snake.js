@@ -1,9 +1,9 @@
 function Snake(){
     var _this=this;
     _this.color='red';
-    _this.element = $('<div>');
+    _this.element = $("<div id='Head'>");
     _this.element.css({'position': 'absolute','background-color':_this.color,'width':snakeSize,'height':snakeSize});
-    $("#World").append(_this.element);
+    $(".Snake").append(_this.element);
     _this.rest=function(){
         _this.length=0;
         _this.x=parseInt((Math.random()*maxX));
@@ -13,6 +13,7 @@ function Snake(){
         _this.isAlive=true;
         _this.lastX=new Array();
         _this.lastY=new Array();
+        _this.bodyElement=new Array();
         _this.element.css({"left":_this.x*snakeSize,"top":_this.y*snakeSize});
     }
     _this.turnLeft=function(){
@@ -36,6 +37,14 @@ function Snake(){
         _this.speedY=1;
     }
     _this.upDate=function(){
+        if(_this.length>0) {
+            for (var i = 0; i < _this.length; i++) {
+                _this.lastX[_this.length-i]=_this.lastX[_this.length-i-1];
+                _this.lastY[_this.length-i]=_this.lastY[_this.length-i-1];
+            }
+        }
+        _this.lastX[0]=_this.x;
+        _this.lastY[0]=_this.y;
         _this.x=_this.x+_this.speedX;
         _this.y=_this.y+_this.speedY;
         if(_this.x<0||_this.x>maxX||_this.y<0||_this.y>maxY){
@@ -43,6 +52,9 @@ function Snake(){
             return;
         }
         _this.element.css({"left":_this.x*snakeSize,"top":_this.y*snakeSize});
+        for (var i = 0; i < _this.length; i++) {
+            _this.bodyElement[i].css({'left':_this.lastX[i]*snakeSize,'top':_this.lastY[i]*snakeSize});
+        }
     }
     _this.eat=function(x,y){
         if(_this.x==x && _this.y==y){
@@ -51,7 +63,11 @@ function Snake(){
         }
         else return false;
     }
+    _this.Grow=function() {
+        var id ="body"+_this.length;
+        _this.bodyElement[_this.length-1] = $("<div id=id>");
+        _this.bodyElement[_this.length-1].css({'position': 'absolute','background-color':_this.color,'width':snakeSize,'height':snakeSize});
+        _this.bodyElement[_this.length-1].css({'left':_this.lastX[_this,length]*snakeSize,'top':_this.lastY[_this,length]*snakeSize});
+        $(".Snake").append(_this.bodyElement[_this.length-1]);
+    }
 }
-/*function Grow () {
-
-}*/
