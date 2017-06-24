@@ -2,9 +2,9 @@ function Snake(){
     var _this=this;
     _this.color='red';
     _this.bodycolor='rgb(150,0,0)';
-    _this.element = $("<div id='Head'>");
+    _this.element = $("<div>");
     _this.element.css({'position': 'absolute','background-color':_this.color,'width':snakeSize,'height':snakeSize});
-    $(".Snake").append(_this.element);
+    $("#World").append(_this.element);
     _this.rest=function(){
         _this.length=0;
         _this.x=parseInt((Math.random()*maxX));
@@ -62,11 +62,10 @@ function Snake(){
         else return false;
     }
     _this.Grow=function() {
-        var id ="body"+_this.length;
-        _this.bodyElement[_this.length-1] = $("<div id=id>");
+        _this.bodyElement[_this.length-1] = $("<div>");
         _this.bodyElement[_this.length-1].css({'position': 'absolute','background-color':_this.bodycolor,'width':snakeSize,'height':snakeSize});
         _this.bodyElement[_this.length-1].css({'left':_this.lastX[_this,length]*snakeSize,'top':_this.lastY[_this,length]*snakeSize});
-        $(".Snake").append(_this.bodyElement[_this.length-1]);
+        $("#World").append(_this.bodyElement[_this.length-1]);
     }
     _this.removeBody=function(){
         for (var i = 0; i <_this.length; i++) {

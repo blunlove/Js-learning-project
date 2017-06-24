@@ -3,7 +3,7 @@ function Food(){
 	_this.color='green';
 	_this.element=$('<div>');
 	_this.element.css({'position': 'absolute','background-color':_this.color,'width':foodSize,'height':foodSize});
-	$(".Food").append(_this.element);
+	$("#World").append(_this.element);
 	_this.rest=function(){
 		_this.x=parseInt((Math.random()*maxX));
 		_this.y=parseInt((Math.random()*maxY));

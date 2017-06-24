@@ -45,5 +45,3 @@ $(document).keydown(function(event){
         snake.turnDown();//down
     }
 });
-//var id="#body"+1
-//alert(id);
