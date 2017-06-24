@@ -1,10 +1,16 @@
-function Snake(){
+function Snake(parent){
+    /* 不想你跟外面的东西有强关联的关系，所以在构造函数传进来他应该添加到哪个元素下面，是不是更灵活，而且这个
+    文件是不是可以拖出去给别的项目用，你的别的蛇的项目？你抽象的越好，你这个类就越强大，强大到以后你随意的组合你写过的类就好了
+    不过这个类还不够纯净，我看你还直接引用了maxX和sankeSize。仔细想想如果你有个_this.width以及_this.height，通过外面传进来，
+    你是不是可以实现长方形的蛇？？而且别的类也不用局限自己一定要定义一个叫做snakeSzie的变量，他取任何名字都可以，只要他传给你，
+    完成这些替换，这个类就足够的面对对象了，好好感受一下。
+    */
     var _this=this;
     _this.color='red';
     _this.bodycolor='rgb(150,0,0)';
     _this.element = $("<div>");
     _this.element.css({'position': 'absolute','background-color':_this.color,'width':snakeSize,'height':snakeSize});
-    $("#World").append(_this.element);
+    $(parent).append(_this.element);
     _this.rest=function(){
         _this.length=0;
         _this.x=parseInt((Math.random()*maxX));
@@ -37,7 +43,7 @@ function Snake(){
         _this.speedX=0;
         _this.speedY=1;
     }
-    _this.upDate=function(){
+    _this.update=function(){
         if(_this.length>0) {
             for (var i = 0; i < _this.length; i++) {
                 _this.lastX[_this.length-i]=_this.lastX[_this.length-i-1];

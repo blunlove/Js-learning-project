@@ -1,4 +1,5 @@
-function Food(){
+//这里我就帮你弄了parent，理由以及接下来的改动见Snake.js的注释。
+function Food(parent){
 	_this=this;
 	_this.color='green';
 	_this.element=$('<div>');
