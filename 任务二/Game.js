@@ -21,6 +21,7 @@ function start(){
 	if(!snake.isAlive){
 		clearInterval(running);
 		alert("Game Over...");
+		$("#theScore").text("0");
 		snake.rest();
 		food.rest();
 		running=setInterval(start,speed);
