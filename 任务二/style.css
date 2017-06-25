@@ -6,6 +6,7 @@ body
 {
 	border:10px solid black;
 	position: relative;
+	background: url(background.jpg);
 }
 #theScore
 {
