@@ -12,8 +12,9 @@ theWorld.css({'width':worldSizeX,'height': worldSizeY});
 theScore.css({'left':(worldSizeX/2-25),'top':(worldSizeY+50)}).text("0");
 var snake=new Snake(theWorld,snakeSize,snakeSize,maxX,maxY,theScore);
 var food=new Food(theWorld,foodSize,foodSize,maxX,maxY);
-food.rest();
 snake.rest();
+food.rest();
+if (food.x==snake.x&&food.y==snake.y)food.rest();
 function start(){
 	if (tempKey==37) {
         snake.turnLeft();//left
@@ -30,6 +31,14 @@ function start(){
     snake.update();
     if(snake.eat(food.x,food.y)){
     	food.rest();
+    	if(food.x==snake.x&&food.y==snake.y){
+    		food.rest();
+    	}
+    	for (var i = 0; i < snake.length; i++) {
+    		if(food.x==snake.lastX[i]&&food.y==snake.lastY[i]){
+    			food.rest();
+    		}
+    	}
     }
     if(!snake.isAlive){
     	alert("Game Over...");
