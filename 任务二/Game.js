@@ -1,9 +1,10 @@
-var frame = 2;
-var speed = 1000/frame;
 var worldSizeX =800;
 var worldSizeY=600;
 var snakeSize=20;
 var foodSize=20;
+var beginFramr=2;
+var frame = beginFramr;
+var speed = 1000/frame;
 var maxX=worldSizeX/snakeSize-1;
 var maxY=worldSizeY/snakeSize-1;
 var theWorld=$("#World");
@@ -53,7 +54,7 @@ function start(){
         snake.rest();
         food.rest();
         clearInterval(running);
-        frame=2;
+        frame=beginFramr;
         speed=1000/frame;
         running= setInterval(start,speed);
         tempKey=null;
