@@ -54,20 +54,3 @@ $(document).keydown(function(event){
 	event.preventDefault();
 	tempKey=event.keyCode;
 });
-/*
-$(document).keydown(function(event){
-	event.preventDefault();
-	if (event.keyCode==37) {
-        snake.turnLeft();//left
-    }
-    if (event.keyCode==38) {
-        snake.turnUp();//top
-    }
-    if (event.keyCode==39) {
-        snake.turnRight();;//right
-    }
-    if (event.keyCode==40) {
-        snake.turnDown();//down
-    }
-});
-*/
