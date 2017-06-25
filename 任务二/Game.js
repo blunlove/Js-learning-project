@@ -5,10 +5,12 @@ var snakeSize=20;
 var foodSize=20;
 var maxX=worldSizeX/snakeSize-1;
 var maxY=worldSizeY/snakeSize-1;
-$("#World").css({'width':worldSizeX,'height': worldSizeY});
-$("#theScore").css({'left':(worldSizeX/2-25),'top':(worldSizeY+50)}).text("0");
-var snake=new Snake($("#World"),snakeSize,snakeSize,maxX,maxY,$("#theScore"));
-var food=new Food($("#World"),foodSize,foodSize,maxX,maxY);
+var theWorld=$("#World");
+var theScore=$("#theScore");
+theWorld.css({'width':worldSizeX,'height': worldSizeY});
+theScore.css({'left':(worldSizeX/2-25),'top':(worldSizeY+50)}).text("0");
+var snake=new Snake(theWorld,snakeSize,snakeSize,maxX,maxY,theScore);
+var food=new Food(theWorld,foodSize,foodSize,maxX,maxY);
 food.rest();
 snake.rest();
 function start(){
