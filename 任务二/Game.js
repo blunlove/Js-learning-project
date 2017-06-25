@@ -52,6 +52,10 @@ function start(){
         snake.removeBody();
         snake.rest();
         food.rest();
+        clearInterval(running);
+        frame=2;
+        speed=1000/frame;
+        running= setInterval(start,speed);
         tempKey=null;
     }
 }
