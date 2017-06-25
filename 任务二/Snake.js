@@ -78,7 +78,7 @@ function Snake(parent,w,h,mX,mY){
             _this.isAlive=false;
             return;
         }
-        for (var i = 4; i <= _this.length; i++) {
+        for (var i = 3; i < _this.length; i++) {
             if(_this.x==_this.lastX[i] && _this.y==_this.lastY[i]){
                 _this.isAlive=false;
                 return;
