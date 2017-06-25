@@ -1,13 +1,13 @@
 //这里我就帮你弄了parent，理由以及接下来的改动见Snake.js的注释。
-function Food(parent){
+function Food(parent,w,h){
 	_this=this;
 	_this.color='green';
 	_this.element=$('<div>');
-	_this.element.css({'position': 'absolute','background-color':_this.color,'width':foodSize,'height':foodSize});
-	$("#World").append(_this.element);
+	_this.element.css({'position': 'absolute','background-color':_this.color,'width':w,'height':h});
+	$(parent).append(_this.element);
 	_this.rest=function(){
 		_this.x=parseInt((Math.random()*maxX));
 		_this.y=parseInt((Math.random()*maxY));
-		_this.element.css({"left":_this.x*foodSize,"top":_this.y*foodSize});
+		_this.element.css({"left":_this.x*w,"top":_this.y*h});
 	}
 }
