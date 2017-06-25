@@ -7,6 +7,7 @@ var maxX=worldSizeX/snakeSize-1;
 var maxY=worldSizeY/snakeSize-1;
 var theWorld=$("#World");
 var theScore=$("#theScore");
+var tempKey;
 theWorld.css({'width':worldSizeX,'height': worldSizeY});
 theScore.css({'left':(worldSizeX/2-25),'top':(worldSizeY+50)}).text("0");
 var snake=new Snake(theWorld,snakeSize,snakeSize,maxX,maxY,theScore);
@@ -14,15 +15,37 @@ var food=new Food(theWorld,foodSize,foodSize,maxX,maxY);
 food.rest();
 snake.rest();
 function start(){
-	snake.update();
-	if(snake.eat(food.x,food.y)){
-		food.rest();
-	}
-	if(!snake.isAlive){
-		food.rest();
-	}
+	if (tempKey==37) {
+        snake.turnLeft();//left
+    }
+    if (tempKey==38) {
+        snake.turnUp();//top
+    }
+    if (tempKey==39) {
+        snake.turnRight();;//right
+    }
+    if (tempKey==40) {
+        snake.turnDown();//down
+    }
+    snake.update();
+    if(snake.eat(food.x,food.y)){
+    	food.rest();
+    }
+    if(!snake.isAlive){
+    	alert("Game Over...");
+    	theScore.text("0");
+    	snake.removeBody();
+    	snake.rest();
+    	food.rest();
+    	tempKey=null;
+    }
 }
 setInterval(start,speed);
+$(document).keydown(function(event){
+	event.preventDefault();
+	tempKey=event.keyCode;
+});
+/*
 $(document).keydown(function(event){
 	event.preventDefault();
 	if (event.keyCode==37) {
@@ -38,3 +61,4 @@ $(document).keydown(function(event){
         snake.turnDown();//down
     }
 });
+*/

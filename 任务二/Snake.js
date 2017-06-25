@@ -58,7 +58,7 @@ function Snake(parent,w,h,mX,mY,score){
         if(_this.x==x && _this.y==y){
             _this.length++;
             _this.Grow();
-            $(score).text(snake.length);
+            score.text(snake.length);
             return true;
         }
         else return false;
@@ -67,7 +67,7 @@ function Snake(parent,w,h,mX,mY,score){
         _this.bodyElement[_this.length-1] = $("<div>");
         _this.bodyElement[_this.length-1].css({'position': 'absolute','background-color':_this.bodycolor,'width':h,'height':h});
         _this.bodyElement[_this.length-1].css({'left':_this.lastX[_this,length]*w,'top':_this.lastY[_this,length]*h});
-        $("#World").append(_this.bodyElement[_this.length-1]);
+        $(parent).append(_this.bodyElement[_this.length-1]);
     }
     _this.removeBody=function(){
         for (var i = 0; i <_this.length; i++) {
@@ -77,17 +77,13 @@ function Snake(parent,w,h,mX,mY,score){
     _this.bumpBody=function(){
         if(_this.x<0||_this.x>mX||_this.y<0||_this.y>mY){
             _this.isAlive=false;
+            return;
         }
         for (var i = 4; i <= _this.length; i++) {
             if(_this.x==_this.lastX[i] && _this.y==_this.lastY[i]){
                 _this.isAlive=false;
+                return;
             }
-        }
-        if(!_this.isAlive){
-            alert("Game Over...");
-            $(score).text("0");
-            _this.removeBody();
-            _this.rest();
         }
     }
 }
