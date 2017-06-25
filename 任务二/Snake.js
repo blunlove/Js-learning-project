@@ -1,4 +1,4 @@
-function Snake(parent,w,h,mX,mY,score){
+function Snake(parent,w,h,mX,mY){
     var _this=this;
     _this.color='red';
     _this.bodycolor='rgb(150,0,0)';
@@ -58,7 +58,6 @@ function Snake(parent,w,h,mX,mY,score){
         if(_this.x==x && _this.y==y){
             _this.length++;
             _this.Grow();
-            score.text(snake.length);
             return true;
         }
         else return false;
