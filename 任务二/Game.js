@@ -1,5 +1,5 @@
 function gameStart(){
-    var worldSizeX = ($("body").width()-30);
+    var worldSizeX = (($("body").width())*0.9-30);
     var worldSizeY = worldSizeX*0.75;
     var snakeSize = worldSizeX/40;
     var foodSize = worldSizeX/40;
@@ -12,7 +12,7 @@ function gameStart(){
     var tempKey;
     var tempKey2;
 
-    theWorld.css({'width' : worldSizeX,'height' : worldSizeY});
+    theWorld.css({'width' : worldSizeX,'height' : worldSizeY,'margin': '0 auto'});
     theScore.css({'left' : (worldSizeX/2-50), 'top' : (worldSizeY+30)}).text("0");
     var snake=new Snake(theWorld,'red','rgb(150,0,0)', snakeSize, snakeSize, maxX, maxY);
     var snake2=new Snake(theWorld, 'blue', 'blue', snakeSize, snakeSize, maxX, maxY);
@@ -127,7 +127,7 @@ function gameStart(){
 
     //根据窗口大小调整世界的比例
     $(window).resize(function(){
-        var worldSizeX = ($("body").width()-30);
+        var worldSizeX = (($("body").width())*0.9-30);
         var worldSizeY = worldSizeX*0.75;
         var snakeSize = worldSizeX/40;
         var foodSize = worldSizeX/40;
