@@ -82,4 +82,12 @@ function Snake(parent,color,bodycolor,w,h,mX,mY){
             }
         }
     }
+    this.updateSize=function(_w,_h){
+        w=_w;
+        h=_h;
+        this.element.css({'width':w,'height':h});
+        for (var i = 0; i <this.length; i++) {
+            this.bodyElement[i].css({'width':w,'height':h});
+        }
+    }
 }

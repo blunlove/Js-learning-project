@@ -7,4 +7,9 @@ function Food(parent,color,w,h,mX,mY){
 		this.y=parseInt((Math.random()*mY));
 		this.element.css({"left":this.x*w,"top":this.y*h});
 	}
+	this.updateSize=function(_w,_h){
+        w=_w;
+        h=_h;
+        this.element.css({"left":this.x*w,"top":this.y*h,'width':w,'height':h});
+    }
 }

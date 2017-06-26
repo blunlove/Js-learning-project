@@ -1,8 +1,8 @@
 function gameStart(){
-    var worldSizeX = 800;
-    var worldSizeY = 600;
-    var snakeSize = 20;
-    var foodSize = 20;
+    var worldSizeX = ($("body").width()-30);
+    var worldSizeY = worldSizeX*0.75;
+    var snakeSize = worldSizeX/40;
+    var foodSize = worldSizeX/40;
     var frame = 100;
     var speed = 1000 / frame;
     var maxX = worldSizeX / snakeSize - 1;
@@ -17,9 +17,8 @@ function gameStart(){
     var snake=new Snake(theWorld,'red','rgb(150,0,0)', snakeSize, snakeSize, maxX, maxY);
     var snake2=new Snake(theWorld, 'blue', 'blue', snakeSize, snakeSize, maxX, maxY);
 
+    //蛇的初始帧数和刷新率
     var snakeBaseFrame=2;
-     // 初始速度 500ms 移动一次
-    //var foodAcc = 20; // 吃一个食物缩短20ms移动间隔
     var s1Frame = snakeBaseFrame;
     var s2Frame = snakeBaseFrame;
     var s1Speed = 1000/s1Frame;
@@ -32,6 +31,8 @@ function gameStart(){
     var food=new Food(theWorld, 'green', foodSize, foodSize, maxX, maxY);
     snake.rest();
     snake2.rest();
+
+    //食物刷新
     function foodRest(){
         food.rest();
         while ((food.x == snake.x && food.y == snake.y ) || (food.x == snake2.x && food.y == snake2.y)) food.rest();
@@ -98,6 +99,8 @@ function gameStart(){
             }
         }
     }
+
+    //结束游戏并重置蛇的属性
     function gameOver() {
         alert("Game Over...");
         tempKey = null;
@@ -113,10 +116,25 @@ function gameStart(){
         s1Speed = 1000/s1Frame;
         s2Speed = 1000/s2Frame;
     }
+
+    //世界刷新计时器
     setInterval(start, speed);
     $(document).keydown(function(event) {
         event.preventDefault();
         tempKey = event.keyCode;
         tempKey2 = event.keyCode;
+    });
+
+    //根据窗口大小调整世界的比例
+    $(window).resize(function(){
+        var worldSizeX = ($("body").width()-30);
+        var worldSizeY = worldSizeX*0.75;
+        var snakeSize = worldSizeX/40;
+        var foodSize = worldSizeX/40;
+        theWorld.css({'width' : worldSizeX,'height' : worldSizeY});
+        theScore.css({'left' : (worldSizeX/2-50), 'top' : (worldSizeY+30)})
+        snake.updateSize(snakeSize,snakeSize);
+        snake2.updateSize(snakeSize,snakeSize);
+        food.updateSize(snakeSize,snakeSize);
     });
 }
