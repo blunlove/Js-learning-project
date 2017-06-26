@@ -29,10 +29,11 @@ function gameStart(){
     var food=new Food(theWorld, 'green', foodSize, foodSize, maxX, maxY);
     snake.rest();
     snake2.rest();
-    food.rest();
-    while (food.x != snake.x && food.y != snake.y 
-        && food.x != snake2.x && food.y != snake2.y) food.rest();
-
+    function foodRest(){
+        food.rest();
+        while ((food.x == snake.x && food.y == snake.y ) || (food.x == snake2.x && food.y == snake2.y)) food.rest();
+    }
+    foodRest();
     function start(){
         switch (tempKey) {
             case 37:
@@ -70,8 +71,7 @@ function gameStart(){
             snake.update();
             if(snake.eat(food.x, food.y)) {
                 theScore.text(snake.length * 100);
-                food.rest();
-                while (food.x != snake.x && food.y != snake.y) food.rest();
+                foodRest();
                 s1Speed = s1Speed - foodAcc;
             }
             if(!snake.isAlive) {
@@ -85,8 +85,7 @@ function gameStart(){
             if(snake2.eat(food.x,food.y)) {
                 theScore.text(snake2.length * 100);
                 food.rest();
-                while (food.x != snake2.x && food2.y != snake2.y) food.rest();
-                s2Speed = s2Speed - foodAcc;
+                foodRest();
             }
             if(!snake.isAlive) {
                 gameOver();
@@ -103,7 +102,7 @@ function gameStart(){
         snake.rest();
         snake2.removeBody();
         snake2.rest();
-        food.rest();
+        foodRest();
     }
 
     setInterval(start, speed);
