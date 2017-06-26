@@ -86,6 +86,7 @@ function Snake(parent,color,bodycolor,w,h,mX,mY){
         _this.y=_this.y+_this.directionY;
     }
     _this.rest=function(){
+        _this.removeBody();
         _this.length=0;
         _this.tempKey=null;
         _this.x=parseInt((Math.random()*mX));
@@ -97,7 +98,6 @@ function Snake(parent,color,bodycolor,w,h,mX,mY){
         _this.isAlive=true;
         _this.lastX=new Array();
         _this.lastY=new Array();
-        _this.removeBody();
         _this.bodyElement=new Array();
         _this.element.css({"left":_this.x*w,"top":_this.y*h});
         clearInterval(_this.running);
