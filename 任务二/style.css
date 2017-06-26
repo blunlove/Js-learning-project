@@ -10,12 +10,13 @@ body
 }
 #theScore
 {
-	width: 50px;
-	height: 30px;
+	width: 100px;
+	height: 40px;
 	text-align: center;
-    line-height: 30px;
+    line-height: 40px;
     font-size:30px;
     font-family:"楷体";
 	border:5px solid black;
 	position: absolute;
+	background: url(background_score.jpg);
 }

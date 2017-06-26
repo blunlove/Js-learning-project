@@ -12,7 +12,7 @@ function gameStart(){
     var theScore=$("#theScore");
     var tempKey;
     theWorld.css({'width':worldSizeX,'height': worldSizeY});
-    theScore.css({'left':(worldSizeX/2-25),'top':(worldSizeY+50)}).text("0");
+    theScore.css({'left':(worldSizeX/2-50),'top':(worldSizeY+30)}).text("0");
     var snake=new Snake(theWorld,'red','rgb(150,0,0)',snakeSize,snakeSize,maxX,maxY);
     snake.rest();
     var food=new Food(theWorld,'green',foodSize,foodSize,maxX,maxY);
@@ -33,7 +33,7 @@ function gameStart(){
         }
         snake.update();
         if(snake.eat(food.x,food.y)){
-            theScore.text(snake.length);
+            theScore.text(snake.length*100);
             clearInterval(running);
             frame=frame+0.5;
             speed=1000/frame;
