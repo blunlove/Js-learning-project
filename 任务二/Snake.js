@@ -85,9 +85,9 @@ function Snake(parent,color,bodycolor,w,h,mX,mY){
     this.updateSize=function(_w,_h){
         w=_w;
         h=_h;
-        this.element.css({'width':w,'height':h});
+        this.element.css({'width':w,'height':h,"left":this.x*w,"top":this.y*h});
         for (var i = 0; i <this.length; i++) {
-            this.bodyElement[i].css({'width':w,'height':h});
+            this.bodyElement[i].css({'width':w,'height':h,'left':this.lastX[i]*w,'top':this.lastY[i]*h});
         }
     }
 }
