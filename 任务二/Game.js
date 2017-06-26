@@ -15,13 +15,12 @@ function gameStart(){
     var player1=new Snake(theWorld,'red','rgb(150,0,0)',snakeSize,snakeSize,maxX,maxY);
     var player2=new Snake(theWorld,'rgb(150,0,0)','red',snakeSize,snakeSize,maxX,maxY);
     var food=new Food(theWorld,'green',foodSize,foodSize,maxX,maxY);
-    food.rest();
     function snakeRest(){                //贪吃蛇刷新
         player1.rest();
         player2.rest();
     }
     snakeRest();
-    /*function foodRest(p1,p2){
+    function foodRest(p1,p2){            //食物刷新
         food.rest();
         while (true) {
             if(food.x!=p1.x&&food.y!=p1.y&&food.x!=p2.x&&food.y!=p2.y){
@@ -31,9 +30,9 @@ function gameStart(){
                 food.rest();
             }
         }
-    }*/
-    //foodRest(player1,player2);
-    function start(){                     //世界刷新
+    }
+    foodRest(player1,player2);
+    function start(){                    //世界刷新
         function snakeStart(snake){
             snake.element.css({"left":snake.x*snakeSize,"top":snake.y*snakeSize});
             for (var i = 0; i < snake.length; i++) {
@@ -41,8 +40,8 @@ function gameStart(){
             }
             if(snake.eat(food.x,food.y)){
                 score=score+100;
-                theScore.text(score*100);
-                //foodRest(player1,player2);
+                theScore.text(score);
+                foodRest(player1,player2);
                 food.rest();
             }
             snake.bumpBody();
@@ -51,10 +50,12 @@ function gameStart(){
                 score=0;
                 theScore.text(score);
                 snakeRest();
-                //foodRest(player1,player2);
+                foodRest(player1,player2);
                 food.rest();
             }
         }
+        snakeStart(player1);             //开始更新player1的位置
+        snakeStart(player2);             //开始更新player2的位置
     }
     var running= setInterval(start,speed);
     $(document).keydown(function(event){
