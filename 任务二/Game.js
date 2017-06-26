@@ -17,10 +17,13 @@ function gameStart(){
     var snake=new Snake(theWorld,'red','rgb(150,0,0)', snakeSize, snakeSize, maxX, maxY);
     var snake2=new Snake(theWorld, 'blue', 'blue', snakeSize, snakeSize, maxX, maxY);
 
-    var snakeBaseSpeed = 500; // 初始速度 500ms 移动一次
-    var foodAcc = 20; // 吃一个食物缩短20ms移动间隔
-    var s1Speed = snakeBaseSpeed;
-    var s2Speed = snakeBaseSpeed;
+    var snakeBaseFrame=2;
+    var snakeBaseSpeed = 1000/snakeFrame; // 初始速度 500ms 移动一次
+    //var foodAcc = 20; // 吃一个食物缩短20ms移动间隔
+    var s1Frame = snakeBaseFrame;
+    var s2Frame = snakeBaseFrame;
+    var s1Speed = snakeBaseSpeed/snakeBaseFrame;
+    var s2Speed = snakeBaseSpeed/snakeBaseFrame;
 
     //用于记录时间间隔
     var lastS1Update = 0;
@@ -72,7 +75,8 @@ function gameStart(){
             if(snake.eat(food.x, food.y)) {
                 theScore.text(snake.length * 100);
                 foodRest();
-                s1Speed = s1Speed - foodAcc;
+                s1Frame = s1Frame+0.5;
+                s1Speed = s1Speed/s1Frame;
             }
             if(!snake.isAlive) {
                 gameOver();
@@ -86,6 +90,8 @@ function gameStart(){
                 theScore.text(snake2.length * 100);
                 food.rest();
                 foodRest();
+                s2Frame = s2Frame+0.5;
+                s2Speed = s2Speed/s2Frame;
             }
             if(!snake.isAlive) {
                 gameOver();
