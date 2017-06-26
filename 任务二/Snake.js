@@ -1,5 +1,4 @@
 function Snake(parent,color,bodycolor,w,h,mX,mY){
-    //var this=this;
     this.element = $("<div>");
     this.element.css({'position': 'absolute','background-color':color,'width':w,'height':h});
     $(parent).append(this.element);

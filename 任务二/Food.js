@@ -1,5 +1,4 @@
 function Food(parent,color,w,h,mX,mY){
-	//this=this;
 	this.element=$('<div>');
 	this.element.css({'position': 'absolute','background-color':color,'width':w,'height':h});
 	$(parent).append(this.element);
