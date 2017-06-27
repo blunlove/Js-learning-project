@@ -61,46 +61,12 @@ function Snake(parent,color,bodycolor,w,h,mX,mY){
             }
         }
     }
-    _this.update=function(){
-        if (_this.tempKey==37) {
-            _this.turnLeft();//left
+    _this.updateSize=function(_w,_h){
+        w=_w;
+        h=_h;
+        this.element.css({'width':w,'height':h,"left":this.x*w,"top":this.y*h});
+        for (var i = 0; i <this.length; i++) {
+            this.bodyElement[i].css({'width':w,'height':h,'left':this.lastX[i]*w,'top':this.lastY[i]*h});
         }
-        if (_this.tempKey==38) {
-            _this.turnUp();//top
-        }
-        if (_this.tempKey==39) {
-            _this.turnRight();;//right
-        }
-        if (_this.tempKey==40) {
-            _this.turnDown();//down
-        }
-        if(_this.length>0) {
-            for (var i = 0; i < _this.length; i++) {
-                _this.lastX[_this.length-i]=_this.lastX[_this.length-i-1];
-                _this.lastY[_this.length-i]=_this.lastY[_this.length-i-1];
-            }
-        }
-        _this.lastX[0]=_this.x;
-        _this.lastY[0]=_this.y;
-        _this.x=_this.x+_this.directionX;
-        _this.y=_this.y+_this.directionY;
-    }
-    _this.rest=function(){
-        _this.removeBody();
-        _this.length=0;
-        _this.tempKey=null;
-        _this.x=parseInt((Math.random()*mX));
-        _this.y=parseInt((Math.random()*mY));
-        _this.directionY=0;
-        _this.directionX=0;
-        _this.frame=_this.beginframe;
-        _this.speed=1000/_this.frame;
-        _this.isAlive=true;
-        _this.lastX=new Array();
-        _this.lastY=new Array();
-        _this.bodyElement=new Array();
-        _this.element.css({"left":_this.x*w,"top":_this.y*h});
-        clearInterval(_this.running);
-        _this.running=setInterval(_this.update,_this.speed);
     }
 }
