@@ -10,7 +10,7 @@ body
 	position: relative;
 	background: url(background.jpg);
 }
-#theScore
+.Score
 {
 	width: 100px;
 	height: 40px;
@@ -21,4 +21,11 @@ body
 	border:5px solid black;
 	position: absolute;
 	background: url(background_score.jpg);
+}
+.p
+{
+	position: absolute;
+	font-size:30px;
+	color: red;
+    font-family:"楷体";
 }
