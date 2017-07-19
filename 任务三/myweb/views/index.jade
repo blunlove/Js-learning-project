@@ -1,5 +1,14 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  #signIn
+    #userName.message
+      | 用户名:
+      input#name(type="text")
+    #passWord.message
+      | 密  码:
+      input#psw(type="password")
+    br
+    #button
+      button#signin.button 登录
+      button#register.button 注册
