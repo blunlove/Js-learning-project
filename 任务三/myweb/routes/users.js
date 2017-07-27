@@ -7,10 +7,10 @@ var userSQL = require('../db/Usersql');
 
 var pool = mysql.createPool(dbConfig.mysql);
 
-router.get('/addUser', function(req, res, next){
+router.post('/addUser', function(req, res, next){
     pool.getConnection(function(err, connection){
-        let param = req.query || req.params;
-        connection.query(userSQL.insert, [param.uid,param.name,param.password], function(err, result){
+        //let param = req.query || req.params;
+        connection.query(userSQL.insert, [req.body.userName,req.body.passWord], function(err, result){
             if (result) {
             	res.json({code:'200',msg:'添加成功'});
             }else {
@@ -20,11 +20,11 @@ router.get('/addUser', function(req, res, next){
         });
     });
 });
-
+/*
 router.get('/deleteUser', function(req, res, next){
     pool.getConnection(function(err, connection){
         let param = req.query || req.params;
-        connection.query(userSQL.delete, [param.uid], function(err, result){
+        connection.query(userSQL.delete, [param.name], function(err, result){
             if(result.affectedRows){
             	res.json({code:'200',msg:'删除成功'});
             }else {
@@ -33,8 +33,8 @@ router.get('/deleteUser', function(req, res, next){
             connection.release();
         });
     });
-});
-
+});*/
+/*
 router.get('/updateUser', function(req, res, next){
     pool.getConnection(function(err, connection){
         let param = req.query || req.params;
@@ -62,19 +62,22 @@ router.get('/queryAllUser', function(req, res, next){
         });
     });
 });
-
+*/
 router.post('/checkUser', function(req, res, next){
     pool.getConnection(function(err, connection){
         connection.query(userSQL.queryAll, function(err, result){
             for(users in result){
             	if(result[users].userName==req.body.userName){
             		if(result[users].passWord==req.body.passWord){
-            			console.log('登录成功');
+                        res.json({islogin:'success' ,msg:'登录成功'});
+                        return;
             		}else {
-            			res.json('密码错误');
+            			res.json({islogin:'fail' ,msg:'密码错误'});
+                        return;
             		}
             	}else{
-            		res.json('用户名不存在');
+            		res.json({islogin:'fail' ,msg:'用户名错误'});
+                    return;
             	}
             }
             connection.release();
