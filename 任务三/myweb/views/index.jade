@@ -1,6 +1,7 @@
 extends layout
 
 block content
+  #result
   #signIn
     #userName.message
       | 用户名:
@@ -10,5 +11,6 @@ block content
       input#psw(type="password")
     br
     #button
-      button#signin.button 登录
+      button#signin.button(onclick='check()') 登录
       button#register.button 注册
+  script(src='/javascripts/checkuser.js')

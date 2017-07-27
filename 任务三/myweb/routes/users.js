@@ -10,7 +10,7 @@ var pool = mysql.createPool(dbConfig.mysql);
 router.get('/addUser', function(req, res, next){
     pool.getConnection(function(err, connection){
         let param = req.query || req.params;
-        connection.query(userSQL.insert, [param.uid,param.name], function(err, result){
+        connection.query(userSQL.insert, [param.uid,param.name,param.password], function(err, result){
             if (result) {
             	res.json({code:'200',msg:'添加成功'});
             }else {
@@ -57,6 +57,25 @@ router.get('/queryAllUser', function(req, res, next){
             	res.json(result);
             }else {
             	res.json({code:'-200',msg:'操作失败'});
+            }
+            connection.release();
+        });
+    });
+});
+
+router.post('/checkUser', function(req, res, next){
+    pool.getConnection(function(err, connection){
+        connection.query(userSQL.queryAll, function(err, result){
+            for(users in result){
+            	if(result[users].userName==req.body.userName){
+            		if(result[users].passWord==req.body.passWord){
+            			res.json("ok");
+            		}else {
+            			console.log('密码错误');
+            		}
+            	}else{
+            		console.log('用户名不存在');
+            	}
             }
             connection.release();
         });
