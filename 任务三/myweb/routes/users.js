@@ -9,7 +9,6 @@ var pool = mysql.createPool(dbConfig.mysql);
 
 router.post('/addUser', function(req, res, next){
     pool.getConnection(function(err, connection){
-        //let param = req.query || req.params;
         connection.query(userSQL.insert, [req.body.userName,req.body.passWord], function(err, result){
             if (result) {
             	res.json({code:'200',msg:'添加成功'});
@@ -20,7 +19,7 @@ router.post('/addUser', function(req, res, next){
         });
     });
 });
-/*
+
 router.get('/deleteUser', function(req, res, next){
     pool.getConnection(function(err, connection){
         let param = req.query || req.params;
@@ -33,7 +32,7 @@ router.get('/deleteUser', function(req, res, next){
             connection.release();
         });
     });
-});*/
+});
 /*
 router.get('/updateUser', function(req, res, next){
     pool.getConnection(function(err, connection){
