@@ -69,12 +69,12 @@ router.post('/checkUser', function(req, res, next){
             for(users in result){
             	if(result[users].userName==req.body.userName){
             		if(result[users].passWord==req.body.passWord){
-            			res.json("ok");
+            			console.log('登录成功');
             		}else {
-            			console.log('密码错误');
+            			res.json('密码错误');
             		}
             	}else{
-            		console.log('用户名不存在');
+            		res.json('用户名不存在');
             	}
             }
             connection.release();

@@ -8,5 +8,8 @@ function check(){
 		alert('密码不能为空');
 		return;
 	}
-	$.post('/users/checkUser',{'userName':userName,'passWord':passWord});
+	$.post('/users/checkUser',{'userName':userName,'passWord':passWord},function(res){
+		alert(res);
+		$('.text').val("");
+	});
 }
