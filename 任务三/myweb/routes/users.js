@@ -33,35 +33,7 @@ router.get('/deleteUser', function(req, res, next){
         });
     });
 });
-/*
-router.get('/updateUser', function(req, res, next){
-    pool.getConnection(function(err, connection){
-        let param = req.query || req.params;
-        connection.query(userSQL.update,[param.name,param.uid], function(err, result){
-            if(result.affectedRows){
-            	res.json({code:'200',msg:'更新成功'});
-            }else {
-            	res.json({code:'-200',msg:'更新失败，此id不存在'});
-            }
-            connection.release();
-        });
-    });
-});
 
-router.get('/queryAllUser', function(req, res, next){
-    pool.getConnection(function(err, connection){
-        let param = req.query || req.params;
-        connection.query(userSQL.queryAll, function(err, result){
-            if(result){
-            	res.json(result);
-            }else {
-            	res.json({code:'-200',msg:'操作失败'});
-            }
-            connection.release();
-        });
-    });
-});
-*/
 router.post('/checkUser', function(req, res, next){
     pool.getConnection(function(err, connection){
         connection.query(userSQL.queryAll, function(err, result){
@@ -69,16 +41,16 @@ router.post('/checkUser', function(req, res, next){
             	if(result[users].userName==req.body.userName){
             		if(result[users].passWord==req.body.passWord){
                         res.json({islogin:'success' ,msg:'登录成功'});
+                        connection.release();
                         return;
             		}else {
             			res.json({islogin:'fail' ,msg:'密码错误'});
+            			connection.release();
                         return;
             		}
-            	}else{
-            		res.json({islogin:'fail' ,msg:'用户名错误'});
-                    return;
             	}
             }
+            res.json({islogin:'fail' ,msg:'用户名错误'});
             connection.release();
         });
     });

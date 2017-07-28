@@ -5,7 +5,11 @@ var formidable = require('formidable');
 var fs = require('fs');
 //var is = require('is');
 //var os = require('os');
+var mysql = require('mysql');
+var dbConfig = require('../db/DBConfig');
+var userSQL = require('../db/Usersql');
 
+var pool = mysql.createPool(dbConfig.mysql);
 /* GET home page. */
 router.post('/uploadfile',multipart() ,function(req, res, next) {
 	let fileName = req.body.goodsName;
@@ -26,7 +30,13 @@ router.post('/uploadfile',multipart() ,function(req, res, next) {
 			console.log('copy over');
 		});
 	}
-	res.redirect('/login');
+	pool.getConnection(function(err, connection){
+        connection.query(userSQL.insertGoods, [fileName], function(err, result){
+            connection.release();
+        });
+    });
+	res.redirect('/uploadfile');
 });
 
 module.exports = router;
+
