@@ -10,7 +10,7 @@ var pool = mysql.createPool(dbConfig.mysql);
 router.get('/', function(req, res, next) {
 	pool.getConnection(function(err, connection){
 		connection.query(userSQL.queryAllGoods, function(err, result){
-			res.render('login',{good0:result[0].goodsName , good1:result[1].goodsName , good2:result[2].goodsName});
+			res.render('login',{goods:result});
 			connection.release();
 		});
 	});
