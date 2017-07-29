@@ -1,8 +1,10 @@
 extends layout
 
 block content
-  form#uploadForm(method='POST', enctype='multipart/form-data', action='/file/uploadfile')
+  form#uploadForm(method='POST', enctype='multipart/form-data', action='/file/uploadfile' , onsubmit="return checkUpFile(this)")
     | 上传商品名称:
     input#goodsName(type='text',name='goodsName')
     input#pic(type='file',name='pics')
+    input#det(type='file',name='detail')
     input#tosend(type='submit', value='提交')
+  script(src='/javascripts/checkfile.js')

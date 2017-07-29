@@ -16,15 +16,22 @@ router.post('/uploadfile',multipart() ,function(req, res, next) {
 	let fileType = req.files.pics.type;
 	let type;
 	let filePath = req.files.pics.path;
-	let uploadPath;
+	let detailPath = req.files.detail.path;
+	let uploadPath,uploadDetailPath;
 	if(fileName && filePath){
 		if(fileType == 'image/jpeg' || fileType == 'image/pjpeg'){
 			type = '.jpg';
 		}
 		uploadPath ='public/images/goods/'+ fileName + type;
-		console.log(filePath,uploadPath);
+		uploadDetailPath = 'public/images/goods/'+ fileName+"_detail" + type;
 		is = fs.createReadStream(filePath),
 		os = fs.createWriteStream(uploadPath);
+		is.pipe(os);
+		os.on('close',function(){
+			console.log('copy over');
+		});
+		is = fs.createReadStream(detailPath),
+		os = fs.createWriteStream(uploadDetailPath);
 		is.pipe(os);
 		os.on('close',function(){
 			console.log('copy over');
@@ -40,6 +47,11 @@ router.post('/uploadfile',multipart() ,function(req, res, next) {
 
 router.get('/upload', function(req, res, next) {
 	res.render('uploadfile');
+});
+
+router.get('/todetails', function(req, res, next) {
+	let param = req.query || req.params;
+	res.render('details',{goodsname:param.name});
 });
 
 module.exports = router;
