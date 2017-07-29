@@ -1,7 +1,7 @@
 extends layout
 
 block content
-  ul
-  - for(let i =0 ; i<goods.length ; i++){
-    li #{goods[i].goodsName}
-  - }
+  #goods
+    - for(let i =0 ; i<goods.length ; i++){ 
+    img(src="/images/goods/"+goods[i].goodsName+".jpg")
+    - }

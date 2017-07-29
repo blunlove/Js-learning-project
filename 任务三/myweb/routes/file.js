@@ -35,7 +35,11 @@ router.post('/uploadfile',multipart() ,function(req, res, next) {
             connection.release();
         });
     });
-	res.redirect('/uploadfile');
+	res.redirect('/file/upload');
+});
+
+router.get('/upload', function(req, res, next) {
+	res.render('uploadfile');
 });
 
 module.exports = router;
