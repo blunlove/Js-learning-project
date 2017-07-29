@@ -46,3 +46,9 @@ body
     left: calc(50% - 20px);
     position: absolute;
 }
+.goods
+{
+	display:inline-block;
+	height: 256px;
+	width: 256px;
+}

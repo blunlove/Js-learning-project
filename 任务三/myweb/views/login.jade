@@ -2,8 +2,9 @@ extends layout
 
 block content
   #goods
-    - for(let i =0 ; i<goods.length ; i++){ 
-    img(src="/images/goods/"+goods[i].goodsName+".jpg" id=goods[i].goodsName , onclick='toDetails(this)')
+    - for(let i =0 ; i<goods.length ; i++){
+    div.goods
+      img(src="/images/goods/"+goods[i].goodsName+".jpg" id=goods[i].goodsName , onclick='toDetails(this)')
     - }
   button#addfile(onclick='location="/file/upload"') 添加商品
   script(src='/javascripts/goods.js')
