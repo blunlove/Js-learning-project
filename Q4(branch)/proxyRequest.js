@@ -7,7 +7,6 @@ for(i=0;i<words.length/5;i++){
 	let ip = words[i*5]+'.'+words[i*5+1]+'.'+words[i*5+2]+'.'+words[i*5+3];
 	let port = words[i*5+4];
 	proxyIP[i] = [ip,port];
-	//proxyIP[i][1] = words[i*5+4];
 }
 
 var path = 'http://barbarq.com/open/share/c?q=59812b6746735';
@@ -43,7 +42,7 @@ function httpGET(ip,port,p){
 		let sign = getUrlParam('sign',p);
 
 		let redirect = http.request(opt,function(res){
-			p = 'http://www.barbarq.com/open/share/api/getNick?id='+roleId+'&sign'+sign;
+			p = 'http://www.barbarq.com/open/share/api/getNick?id='+roleId+'&sign='+sign;
 			let redirect2 = http.request(opt,function(res){
 				console.log('ok');
 			});
