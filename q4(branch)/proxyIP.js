@@ -1,15 +1,37 @@
-var fs=require("fs");  
+let http = require('http');
+let fs=require("fs");  
 
-var data=fs.readFileSync("ip.txt","utf-8");  
+let data=fs.readFileSync("ip.txt","utf-8");  
+let proxyip=data.split('\r\n');
 
-var regex=/(\d+.\d+.\d+.\d+:)\d+/g;
-var proxyip=data.match(regex);
-
-var ip=new Array();
-var port=new Array();
-for(i=0;i<proxyip.length;i++){
-	ip[i]=proxyip[i].substr(0,(proxyip[i].indexOf(':')-1));
-	port[i]=proxyip[i].substr((proxyip[i].indexOf(':')+1));
+let proxyIP = [];
+for (let i =0 ;i < proxyip.length; i++) {
+	let temp = proxyip[i].substr(7).split(':')
+	proxyIP[i] = [temp[0],temp[1]] ;
 }
 
-//console.log(port);
+var path = 'http://www.baidu.com';
+function httpGET(ip,port,p){
+	let opt = {
+		host:ip,
+		port:port,
+		method:'GET',
+		path:p,
+		headers:{
+			'User-Agent':'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36'
+		}
+	}
+	let req = http.request(opt,function(res){
+		console.log('ok');
+	});
+
+	req.on('error',function(e){
+		console.log('error got :' + e.message);
+	});
+
+	req.end();
+}
+
+for (var i = 0; i <proxyIP.length; i++) {
+	httpGET(proxyIP[i][0],proxyIP[i][1],path);
+}
