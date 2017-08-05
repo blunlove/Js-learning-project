@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 const http = require('http');
 const fs = require('fs');
 
@@ -5,6 +6,15 @@ const regex = /\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}[^\d]+(\d+)/g;
 const regex2 = /<\/td>[^\d]+<td>/g;
 
 const options = {
+=======
+let http = require('http');
+let fs = require('fs');
+
+let regex = /\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}[^\d]+(\d+)/g;
+let regex2 = /<\/td>[^\d]+<td>/g;
+
+let options = {
+>>>>>>> 309dbe20a8fbfa67f7dcf0e66a918777d2c358da
     hostname: 'www.xicidaili.com',
     port: 80,
     path: '/nt/3',
