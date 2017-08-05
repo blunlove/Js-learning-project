@@ -1,70 +1,49 @@
-let http = require('http');  
-  
-let qs = require('querystring');  
-let regex = /(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})[^\d]+(\d+)/g;
+const http = require('http');
+const fs = require('fs');
 
-let options = {  
-    hostname: 'www.xicidaili.com',  
-    port: 80,  
-    path: '/nt/',  
+const regex = /\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}[^\d]+(\d+)/g;
+const regex2 = /<\/td>[^\d]+<td>/g;
+
+const options = {
+    hostname: 'www.xicidaili.com',
+    port: 80,
+    path: '/nt/3',
     method: 'GET'
 };
 
-let s='' ;
-
-function toTXT(str) {
-    var RexStr = /\<|\>|\"|\'|\&|　| /g
-    str = str.replace(RexStr,
-    function (MatchStr) {
-        switch (MatchStr) {
-            case "<":
-                return "&lt;";
-                break;
-            case ">":
-                return "&gt;";
-                break;
-            case "\"":
-                return "&quot;";
-                break;
-            case "'":
-                return "&#39;";
-                break;
-            case "&":
-                return "&amp;";
-                break;
-            case " ":
-                return "&ensp;";
-                break;
-            case "　":
-                return "&emsp;";
-                break;
-            default:
-                break;
-        }
-    }
-    )
-    return str;
+function getIP(){
+    let s='';
+    let req = http.request(options, function (res) {
+        res.setEncoding('utf8');
+        const body = [];
+        res.on('data', function (chunk) {
+            body.push(chunk);
+        });
+        res.on('end', function () {
+            let temp = body.join('').match(regex);
+            for(key in temp){
+                temp[key] = 'http://' + temp[key].replace(regex2,':')+'\r\n';
+                s=s+temp[key];
+            }
+            fs.appendFile("ip3.txt", s, function(err) {
+                if(err) {
+                    return console.log(err);
+                }
+                console.log("The file was saved!");
+            });
+        })
+    });
+    req.on('error', function (e) {
+        console.log('problem with request: ' + e.message);
+    });
+    req.end();
 }
 
-let req = http.request(options, function (res) {
-    res.setEncoding('utf8');
-    res.on('data', function (chunk) {
-        let abc = toTXT(chunk);
-        //console.log('BODY: ' + chunk);
-        let temp = abc.match(regex);
-        console.log(abc);
-        for(d in temp){
-            let ip = d.substring(0,d.indexOf('</td>'));
-            let port = d.substring(d.indexOf('<td>')+4);
-            s = s+'http://'+ip+':'+port;
-            //console.log(d);
-        }
-        //console.log(s);
-    });
-});
-
-req.on('error', function (e) {  
-    console.log('problem with request: ' + e.message);  
-});  
-
-req.end();
+let k=0;
+let time = setInterval(function(){
+	getIP();
+	k++;
+	if(k==20){
+		clearInterval(time);
+	}
+},500);
