@@ -2,19 +2,20 @@ let http = require('http');
 let fs = require("fs");
 
 let data = fs.readFileSync("ip.txt", "utf-8");
-let proxyip = data.split('\r\n');
+let proxies = data.split('\r\n');
 
-let proxyIP = [];
-for (let i = 0; i < proxyip.length; i++) {
-	let temp = proxyip[i].substr(7).split(':')
-	proxyIP[i] = [temp[0], temp[1]];
+let path = 'http://barbarq.com/open/share/c?q=5989228564396';
+
+const getProxy = (proxy) => {
+	let [ip, port] = proxy.substr(7).split(':');
+	return {
+		ip: ip,
+		port: port
+	}
 }
-//console.log(proxyIP);
 
-let path = 'http://barbarq.com/open/share/c?q=598533e70085e';
-
-function httpGET(ip, port, p) {
-	let opt = {
+const getOption = (ip, port, p) => {
+	return {
 		host: ip,
 		port: port,
 		method: 'GET',
@@ -29,45 +30,60 @@ function httpGET(ip, port, p) {
 			'host': 'www.barbarq.com'
 		}
 	}
-	let req = http.request(opt, function (res) {
-		//console.log('ok');
-		p = res.headers.location;
-		if (p != undefined) {
-			let pcut = p.substr(p.indexOf('?'));
-			let redirect = http.request(opt, function (res) {
-				//console.log('ok');
-				p = 'http://www.barbarq.com/open/share/api/getNick' + pcut;
-				//console.log(p);
-				let redirect2 = http.request(opt, function (res) {
-					console.log('ok');
-				});
-
-				redirect2.on('error', function (e) {
-					console.log('problem with request3:' + e.message);
-				});
-
-				redirect2.end();
-			});
-			redirect.on('error', function (e) {
-				console.log('problem with request2:' + e.message);
-			});
-
-			redirect.end();
-		}
-	});
-
-	req.on('error', function (e) {
-		console.log('problem with request1:' + e.message);
-	});
-
-	req.end();
 }
 
-let k = 0;
-let time = setInterval(function () {
-	httpGET(proxyIP[k][0], proxyIP[k][1], path);
-	k++;
-	if (k == 20) {
-		clearInterval(time);
-	}
-}, 250);
+const getconnetion = (ip, port, path) => {
+	let proxy = ip + ':' + port;
+	opt = getOption(ip, port, path);
+	return new Promise((resolve, reject) => {
+		const req = http.get(opt, (res) => {
+			if (res.statusCode < 200 || res.statusCode > 399) {
+				reject(proxy + ' fail, code:' + res.statusCode);
+			}
+			res.on('end', () => resolve(res));
+		});
+		req.on('socket', (socket) => {
+			socket.setTimeout(10000);
+			socket.on('timeout', () => req.abort());
+		});
+		req.on('error', (err) => {
+			if (err.code == 'ECONNRESET') reject(proxy + ' time out');
+			else reject(proxy + ' fail, code:' + err.code);
+		});
+		req.end();
+	});
+};
+
+const toCrawlerIt = (proxy) => {
+	let proxyip = getProxy(proxy);
+	let redirectUrl = '';
+	getconnetion(proxyip.ip, proxyip.port, path)
+		.then((res) => {
+			if (res.statusCode == 302) {
+				redirectUrl = res.headers.location;
+				return getconnetion(proxyip.ip, proxyip.port, redirectUrl);
+			} else Promise.reject('url is invalidate');
+		}).then((res) => {
+			let nameUrl = 'http://www.barbarq.com/open/share/api/getNick' +
+				redirectUrl.substr(redirectUrl.indexOf('?'));
+			return getconnetion(proxyip.ip, proxyip.port, nameUrl);
+		}).then((res) => {
+			console.log('success!!!!!!!!');
+		}).catch((err) => {
+			console.error(err);
+		});
+}
+
+const start = (timeout) => {
+	let k = 0;
+	let begin = setInterval(function () {
+		if (k == proxies.length) {
+			clearInterval(begin);
+		} else {
+			toCrawlerIt(proxies[k]);
+		}
+		k++;
+	}, timeout);
+}
+
+start(500);

@@ -1,32 +1,41 @@
 const http = require('http');
 const fs = require('fs');
 
-const regex = /\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}[^\d]+(\d+)/g;
-const regex2 = /<\/td>[^\d]+<td>/g;
+const regex = /(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})[^\d]+(\d+)/g;
 
-const options = {
-    hostname: 'www.xicidaili.com',
-    port: 80,
-    path: '/nt/3',
-    method: 'GET'
-};
+let hostname = 'www.xicidaili.com';
+let path = '/nt/';
 
-function getIP(){
-    let s='';
-    let req = http.request(options, function (res) {
+const getOptions = (url, p) => {
+    return {
+        hostname: url,
+        port: 80,
+        path: p,
+        method: 'GET'
+    }
+}
+
+const getFileIp = (body) => {
+    let s = '';
+    while (regex.exec(body)) {
+        let temp = 'http://' + RegExp.$1 + ':' + RegExp.$2 + '\r\n';
+        s = s + temp;
+    }
+    return s;
+}
+
+const getIP = (url, p) => {
+    let opt = getOptions(url, p);
+    let req = http.request(opt, function (res) {
         res.setEncoding('utf8');
-        const body = [];
+        let body = [];
         res.on('data', function (chunk) {
             body.push(chunk);
         });
         res.on('end', function () {
-            let temp = body.join('').match(regex);
-            for(key in temp){
-                temp[key] = 'http://' + temp[key].replace(regex2,':')+'\r\n';
-                s=s+temp[key];
-            }
-            fs.appendFile("ip3.txt", s, function(err) {
-                if(err) {
+            body = body.join('');
+            fs.appendFile("ip.txt", getFileIp(body), function (err) {
+                if (err) {
                     return console.log(err);
                 }
                 console.log("The file was saved!");
@@ -39,11 +48,21 @@ function getIP(){
     req.end();
 }
 
-let k=0;
-let time = setInterval(function(){
-	getIP();
-	k++;
-	if(k==20){
-		clearInterval(time);
-	}
-},500);
+const start = (timeout) => {
+    let k = 0;
+    let time = setInterval(function () {
+        let p;
+        if (k == 0) {
+            p = path;
+        } else {
+            p = path + k;
+        }
+        getIP(hostname, p);
+        k++;
+        if (k == 200) {
+            clearInterval(time);
+        }
+    }, timeout);
+}
+
+start(500);
