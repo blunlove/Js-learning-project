@@ -62,7 +62,7 @@ const toCrawlerIt = (proxy) => {
 			if (res.statusCode == 302) {
 				redirectUrl = res.headers.location;
 				return getconnetion(proxyip.ip, proxyip.port, redirectUrl);
-			} else Promise.reject('url is invalidate');
+			} else return Promise.reject('url is invalidate');
 		}).then((res) => {
 			let nameUrl = 'http://www.barbarq.com/open/share/api/getNick' +
 				redirectUrl.substr(redirectUrl.indexOf('?'));
