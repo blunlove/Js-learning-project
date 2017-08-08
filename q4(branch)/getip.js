@@ -34,7 +34,7 @@ const getIP = (url, p) => {
         });
         res.on('end', function () {
             body = body.join('');
-            fs.appendFile("ip.txt", getFileIp(body), function (err) {
+            fs.appendFile("ip2.txt", getFileIp(body), function (err) {
                 if (err) {
                     return console.log(err);
                 }
@@ -59,10 +59,10 @@ const start = (timeout) => {
         }
         getIP(hostname, p);
         k++;
-        if (k == 200) {
+        if (k == 1) {
             clearInterval(time);
         }
     }, timeout);
 }
 
-start(500);
+start(12000);

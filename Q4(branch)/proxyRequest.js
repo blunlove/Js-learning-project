@@ -1,7 +1,7 @@
 let http = require('http');
 let fs = require("fs");
 
-let data = fs.readFileSync("ip.txt", "utf-8");
+let data = fs.readFileSync("aliveIP.txt", "utf-8");
 let proxies = data.split('\r\n');
 
 let path = 'http://barbarq.com/open/share/c?q=5989228564396';
@@ -86,4 +86,4 @@ const start = (timeout) => {
 	}, timeout);
 }
 
-start(500);
+start(5000);
