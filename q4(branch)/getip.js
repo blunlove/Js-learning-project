@@ -49,17 +49,18 @@ const getIP = (url, p) => {
 }
 
 const start = (timeout) => {
-    let k = 0;
+    let k = 1;
     let time = setInterval(function () {
+        console.log('the '+ k +' page');
         let p;
-        if (k == 0) {
+        if (k == 1) {
             p = path;
         } else {
             p = path + k;
         }
         getIP(hostname, p);
         k++;
-        if (k == 1) {
+        if (k == 509) {
             clearInterval(time);
         }
     }, timeout);
