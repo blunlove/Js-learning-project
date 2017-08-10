@@ -83,4 +83,4 @@ const start = (timeout) => {
 	}, timeout);
 }
 
-start(250);
+start(100);
