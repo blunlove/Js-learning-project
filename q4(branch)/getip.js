@@ -48,22 +48,21 @@ const getIP = (url, p) => {
     req.end();
 }
 
-const start = (timeout) => {
-    let k = 1;
-    let time = setInterval(function () {
-        console.log('the '+ k +' page');
-        let p;
-        if (k == 1) {
-            p = path;
-        } else {
-            p = path + k;
-        }
-        getIP(hostname, p);
-        k++;
-        if (k == 509) {
-            clearInterval(time);
-        }
-    }, timeout);
+const start = (startPage) => {
+    let k = startPage;
+    const settime = () => {
+        let timeout = Math.random() * 15000;
+        let time = setTimeout(function () {
+            console.log('the ' + k + ' page');
+            let p = path + k;
+            getIP(hostname, p);
+            k++;
+            if (k != 509) {
+                settime();
+            }
+        }, timeout);
+    }
+    settime();
 }
 
-start(12000);
+start(351);
