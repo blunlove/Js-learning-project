@@ -1,4 +1,4 @@
-function toDetails(good){
-	let goodName=good.id;
-	location="/detail/?name="+goodName;
+function toDetails(good) {
+	let goodName = good.id;
+	location = "/detail/?name=" + goodName;
 }

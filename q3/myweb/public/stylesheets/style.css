@@ -52,3 +52,7 @@ body
 	height: 256px;
 	width: 256px;
 }
+#detail{
+	position: absolute;
+	left: calc(50% - 375px)
+}

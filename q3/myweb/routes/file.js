@@ -13,29 +13,25 @@ let pool = mysql.createPool(dbConfig.mysql);
 
 let goodsUrl = 'public/images/goods/';
 /* GET home page. */
+const savePic = (filePath, uploadPath) => {
+	is = fs.createReadStream(filePath);
+	os = fs.createWriteStream(uploadPath);
+	is.pipe(os);
+	os.on('close', () => {
+		console.log('copy over');
+	});
+}
+
 router.post('/uploadfile', multipart(), (req, res, next) => {
 	let fileName = req.body.goodsName;
-	let fileType = req.files.pics.type;
-	let type;
-	let filePath = req.files.pics.path;
+	let picsPath = req.files.pics.path;
 	let detailPath = req.files.detail.path;
-	let uploadPath, uploadDetailPath;
-	if (fileName && filePath && detailPath) {
-		type = '.jpg';
-		uploadPath = goodsUrl + fileName + type;
-		uploadDetailPath = goodsUrl + fileName + "_detail" + type;
-		is = fs.createReadStream(filePath);
-		os = fs.createWriteStream(uploadPath);
-		is.pipe(os);
-		os.on('close', () => {
-			console.log('copy over');
-		});
-		is = fs.createReadStream(detailPath);
-		os = fs.createWriteStream(uploadDetailPath);
-		is.pipe(os);
-		os.on('close', () => {
-			console.log('copy over');
-		});
+	if (fileName && picsPath && detailPath) {
+		let type = '.jpg';
+		let uploadPicsPath = goodsUrl + fileName + type;
+		let uploadDetailPath = goodsUrl + fileName + "_detail" + type;
+		savePic(picsPath, uploadPicsPath);
+		savePic(detailPath, uploadDetailPath);
 	}
 	pool.getConnection((err, connection) => {
 		connection.query(userSQL.insertGoods, [fileName, uploadPath, uploadDetailPath], function (err, result) {
@@ -47,11 +43,6 @@ router.post('/uploadfile', multipart(), (req, res, next) => {
 
 router.get('/upload', (req, res, next) => {
 	res.render('uploadfile');
-});
-
-router.get('/todetails', (req, res, next) => {
-	let param = req.query || req.params;
-	res.render('details', { goodsname: param.name });
 });
 
 module.exports = router;

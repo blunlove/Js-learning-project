@@ -9,8 +9,9 @@ let pool = mysql.createPool(dbConfig.mysql);
 /* GET home page. */
 router.get('/', (req, res, next) => {
 	pool.getConnection((err, connection) => {
-		connection.query(userSQL.queryGood, (err, result) => {
-			res.render('detail', { goodDetail: result.goodsDetail });
+		let param = req.query || req.params;
+		connection.query(userSQL.queryGood, [param.name], (err, result) => {
+			res.render('detail', { goodDetail: result[0].goodsDetail.substr(6) });
 			connection.release();
 		});
 	});

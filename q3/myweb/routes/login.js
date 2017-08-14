@@ -10,6 +10,10 @@ let pool = mysql.createPool(dbConfig.mysql);
 router.get('/', (req, res, next) => {
 	pool.getConnection((err, connection) => {
 		connection.query(userSQL.queryAllGoods, (err, result) => {
+			for (let i = 0; i < result.length; i++) {
+				result[i].goodsPic = result[i].goodsPic.substr(6);
+				result[i].goodsDetail = result[i].goodsDetail.substr(6);
+			}
 			res.render('login', { goods: result });
 			connection.release();
 		});
