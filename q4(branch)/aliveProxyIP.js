@@ -1,7 +1,7 @@
 let http = require('http');
 let fs = require("fs");
 
-let data = fs.readFileSync("ip.txt", "utf-8");
+let data = fs.readFileSync("ip2.txt", "utf-8");
 let proxies = data.split('\r\n');
 
 let path = 'http://www.baidu.com';
@@ -83,4 +83,4 @@ const start = (timeout) => {
 	}, timeout);
 }
 
-start(100);
+start(30);

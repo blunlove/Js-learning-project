@@ -4,7 +4,7 @@ let fs = require("fs");
 let data = fs.readFileSync("aliveIP.txt", "utf-8");
 let proxies = data.split('\r\n');
 
-let path = 'http://barbarq.com/open/share/c?q=5989228564396';
+let path = 'http://barbarq.com/open/share/c?q=598e4610234fc';
 
 const getProxy = (proxy) => {
 	let [ip, port] = proxy.substr(7).split(':');
@@ -86,4 +86,4 @@ const start = (timeout) => {
 	}, timeout);
 }
 
-start(5000);
+start(50);
