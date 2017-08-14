@@ -5,7 +5,8 @@ var UserSQL =
 	queryAll:'SELECT * FROM User',
 	getUserById:'SELECT * FROM User WHERE uid = ? ',
 
-	insertGoods:'INSERT INTO goods(goodsName) VALUES(?)',
+	insertGoods:'INSERT INTO goods(goodsName,goodsPic,goodsDetail) VALUES(?,?,?)',
 	queryAllGoods:'SELECT * FROM goods',
+	queryGood:'SELECT * FROM goods WHERE goodsName = ?',
 };
 module.exports = UserSQL;

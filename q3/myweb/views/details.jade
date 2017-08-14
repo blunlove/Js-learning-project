@@ -1,6 +1,6 @@
 extends layout
 
 block content
-  - let detailPath="/images/goods/"+goodsname+"_detail.jpg";
+  - let detailPath=goodDetail;
   img#detail(src=detailPath)
   button(onclick='location="/login"') 返回
