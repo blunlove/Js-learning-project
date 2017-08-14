@@ -32,12 +32,12 @@ router.post('/uploadfile', multipart(), (req, res, next) => {
 		let uploadDetailPath = goodsUrl + fileName + "_detail" + type;
 		savePic(picsPath, uploadPicsPath);
 		savePic(detailPath, uploadDetailPath);
-	}
-	pool.getConnection((err, connection) => {
-		connection.query(userSQL.insertGoods, [fileName, uploadPath, uploadDetailPath], function (err, result) {
-			connection.release();
+		pool.getConnection((err, connection) => {
+			connection.query(userSQL.insertGoods, [fileName, uploadPicsPath, uploadDetailPath], function (err, result) {
+				connection.release();
+			});
 		});
-	});
+	}
 	res.redirect('/file/upload');
 });
 
