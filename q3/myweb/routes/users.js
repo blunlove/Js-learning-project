@@ -7,28 +7,22 @@ let userSQL = require('../db/Usersql');
 
 let pool = mysql.createPool(dbConfig.mysql);
 
-router.requireAuthentication = function (req, res, next) {
-    let account = req.cookies["account"];
-    let [userid, lastTime, expires] = [account.userid, account.lastTime, account.expires];
-    if (req.path == "/") {
-        if (Date.now() - lastTime < expires) {
-            console.log(req.cookies.account.userName + " had logined.");
+router.requireAuthentication = (req, res, next) => {
+    if (req.body.islogin || req.body.isregister) {
+        next();
+        return;
+    }
+    if (req.cookies["account"] != null) {
+        if (req.path == "/") {
             res.redirect('/login');
             return;
         }
         next();
         return;
     }
-    if (req.body.islogin) {
+    if(req.path=='/'){
         next();
         return;
-    }
-    if (req.cookies["account"] != null) {
-        if (Date.now() - lastTime < expires) {
-            console.log(req.cookies.account.userName + " had logined.");
-            next();
-            return;
-        }
     }
     console.log("not login, redirect to index");
     res.redirect('/');
@@ -38,9 +32,11 @@ router.post('/addUser', (req, res, next) => {
     pool.getConnection((err, connection) => {
         connection.query(userSQL.insert, [req.body.userName, req.body.passWord], (err, result) => {
             if (result) {
+                res.cookie("account", { userid: result.uid, userName: result.userName });
                 res.json({ code: '200', msg: '注册成功' });
             } else {
-                res.json({ code: '-200', msg: '注册失败' });
+                console.log('fail');
+                res.json({ code: '-200', msg: '用户名已存在' });
             }
             connection.release();
         });
@@ -67,8 +63,7 @@ router.post('/checkUser', (req, res, next) => {
             for (users in result) {
                 if (result[users].userName == req.body.userName) {
                     if (result[users].passWord == req.body.passWord) {
-                        let deadTime = 12000;
-                        res.cookie("account", { userid: result[users].uid, userName: result[users].userName, lastTime: Date.now(), expires: deadTime })
+                        res.cookie("account", { userid: result[users].uid, userName: result[users].userName });
                         res.json({ islogin: 'success', msg: '登录成功' });
                         connection.release();
                         return;
@@ -79,7 +74,7 @@ router.post('/checkUser', (req, res, next) => {
                     }
                 }
             }
-            res.json({ islogin: 'fail', msg: '用户名错误' });
+            res.json({ islogin: 'fail', msg: '用户名不存在' });
             connection.release();
         });
     });

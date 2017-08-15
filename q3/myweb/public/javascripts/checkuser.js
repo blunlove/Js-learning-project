@@ -1,4 +1,4 @@
-function checkSend() {
+const checkSend = () => {
 	let userName = $("#name").val();
 	let passWord = $("#psw").val();
 	if (userName.length == 0) {
@@ -18,7 +18,7 @@ function checkSend() {
 	});
 }
 
-function registerSend() {
+const registerSend = () => {
 	let userName = $("#name").val();
 	let passWord = $("#psw").val();
 	if (userName.length == 0) {
@@ -28,12 +28,12 @@ function registerSend() {
 		alert('密码不能为空');
 		return;
 	}
-	$.post('/users/addUser', { 'userName': userName, 'passWord': passWord }, (res) => {
-		alert(res.msg);
-		$('.text').val("");
+	$.post('/users/addUser', { 'userName': userName, 'passWord': passWord, 'isregister': true }, (res) => {
+		if (res.code == '-200') {
+			alert(res.msg);
+			$('.text').val("");
+		} else {
+			location = '/login';
+		}
 	});
-}
-
-function toSeeCookie() {
-	alert(document.cookie);
 }
