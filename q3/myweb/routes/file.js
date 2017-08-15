@@ -3,8 +3,7 @@ let router = express.Router();
 let multipart = require('connect-multiparty');
 let formidable = require('formidable');
 let fs = require('fs');
-//let is = require('is');
-//let os = require('os');
+
 let mysql = require('mysql');
 let dbConfig = require('../db/DBConfig');
 let userSQL = require('../db/Usersql');

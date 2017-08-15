@@ -8,7 +8,7 @@ function checkSend() {
 		alert('密码不能为空');
 		return;
 	}
-	$.post('/users/checkUser', { 'userName': userName, 'passWord': passWord }, (res) => {
+	$.post('/users/checkUser', { 'userName': userName, 'passWord': passWord, 'islogin': true }, (res) => {
 		if (res.islogin == 'fail') {
 			alert(res.msg);
 			$('.text').val("");
@@ -32,4 +32,8 @@ function registerSend() {
 		alert(res.msg);
 		$('.text').val("");
 	});
+}
+
+function toSeeCookie() {
+	alert(document.cookie);
 }
