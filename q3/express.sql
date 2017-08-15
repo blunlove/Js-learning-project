@@ -25,9 +25,13 @@ DROP TABLE IF EXISTS `goods`;
 CREATE TABLE `goods` (
   `gid` int(11) NOT NULL AUTO_INCREMENT,
   `goodsName` varchar(45) NOT NULL,
+  `goodsPic` varchar(45) NOT NULL,
+  `goodsDetail` varchar(45) NOT NULL,
   PRIMARY KEY (`gid`),
-  UNIQUE KEY `goodsName_UNIQUE` (`goodsName`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+  UNIQUE KEY `goodsName_UNIQUE` (`goodsName`),
+  UNIQUE KEY `goodscol_UNIQUE` (`goodsPic`),
+  UNIQUE KEY `goodscol1_UNIQUE` (`goodsDetail`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -36,7 +40,7 @@ CREATE TABLE `goods` (
 
 LOCK TABLES `goods` WRITE;
 /*!40000 ALTER TABLE `goods` DISABLE KEYS */;
-INSERT INTO `goods` VALUES (1,'802'),(2,'803'),(4,'804'),(3,'805'),(6,'806');
+INSERT INTO `goods` VALUES (1,'鞋子','public/images/goods/鞋子.jpg','public/images/goods/鞋子_detail.jpg'),(2,'背包001','public/images/goods/背包001.jpg','public/images/goods/背包001_detail.jpg'),(3,'背包98757','public/images/goods/背包98757.jpg','public/images/goods/背包98757_detail.jpg');
 /*!40000 ALTER TABLE `goods` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -75,4 +79,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-07-31 14:37:11
+-- Dump completed on 2017-08-15 17:18:48
