@@ -30,14 +30,10 @@ const getUserName = () => {
 }
 getUserName();
 
-const delAllCookie = () => {
-    var myDate = new Date();
-    myDate.setTime(-1000);
-    var data = document.cookie;
-    var dataArray = data.split("; ");
-    for (var i = 0; i < dataArray.length; i++) {
-        var varName = dataArray[i].split("=");
-        document.cookie = varName[0] + "=''; expires=" + myDate.toGMTString();
-    }
+const deleteCookie = () => {
+    let nowDate = new Date();
+    let data = document.cookie;
+    let temp = data.split("=");
+    document.cookie = temp[0] + "=''; expires=" + nowDate.toGMTString();
     location = '/';
 }
