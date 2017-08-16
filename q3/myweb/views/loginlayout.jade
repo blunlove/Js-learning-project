@@ -1,14 +1,11 @@
 doctype html
 html
   head
-    title= 登录
     link(rel='stylesheet', href='/stylesheets/style.css')
     script(src='/javascripts/jquery-3.2.1.min.js')
   body
     #topHeader
       #topLabel
-      #the_message.message
+      #the_message_black.message
         #the_userName.topText 未登录
-        #toExit.topText(onclick='delAllCookie()') 退出
-        script(src='/javascripts/alreadyLoad.js')
     block content

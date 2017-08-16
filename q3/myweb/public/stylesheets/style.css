@@ -1,7 +1,7 @@
 body
 {
-  margin: 0;
-  background-image: url(/images/background.jpg);
+    margin: 0;
+    /* background-image: url(/images/background.jpg); */
 }
 #signIn
 {
@@ -55,4 +55,48 @@ body
 #detail{
 	position: absolute;
 	left: calc(50% - 375px)
+}
+#topLabel
+{
+	height: 48px;
+	width: 100%;
+	background-color: #1b1b1b;
+	opacity: 0.4;
+}
+#topHeader
+{
+	height: 240px;
+	background-image: url(/images/topheader.jpg);
+}
+#the_message{
+	left: 40px;
+	top: 0px;
+	height: 48px;
+	position: absolute;
+	display: inline-block;
+}
+#the_message_black
+{
+	left: 40px;
+	top: 0px;
+	height: 48px;
+	width: 200px;
+	position: absolute;
+	display: inline-block;
+}
+.topText
+{
+	height: 48px;
+	width: 100px; 
+	line-height: 48px;
+	display: inline-block;
+	text-align: center;
+	font-size: 25px;
+	color: #ffffff;
+	cursor:pointer;
+	font-family: "楷体","楷体_GB2312";
+}
+.topText:hover
+{
+	background-color: #000000;
 }

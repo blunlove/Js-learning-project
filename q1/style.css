@@ -10,7 +10,7 @@
     font-size:30px;
     font-family:"楷体";
     color: rgb(255,255,255);
-    fix:absolute;
+    position:absolute;
     text-align: center;
     line-height: 50px;
     cursor:pointer;
