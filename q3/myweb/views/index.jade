@@ -1,7 +1,7 @@
 extends layout
 
 block content
-  #signIn
+  #signIn(onkeypress="if (event.keyCode == 13) {checkSend();}")
     #userName.message
       | 用户名:
       input#name.text(type="text")
