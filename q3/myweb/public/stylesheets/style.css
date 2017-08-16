@@ -34,6 +34,20 @@ body
 {
 	margin: 20px;
 	padding: 20px;
+	border: 3px solid black;
+}
+.goods
+{
+	display:inline-block;
+	height: 256px;
+	width: 256px;
+	margin: 5px;
+	cursor:pointer;
+	border: 6px solid white;
+}
+.goods:hover
+{
+	border-color: lightskyblue;
 }
 #detail
 {
@@ -45,12 +59,6 @@ body
 	top: calc(50% + 100px);
     left: calc(50% - 20px);
     position: absolute;
-}
-.goods
-{
-	display:inline-block;
-	height: 256px;
-	width: 256px;
 }
 #detail{
 	position: absolute;
