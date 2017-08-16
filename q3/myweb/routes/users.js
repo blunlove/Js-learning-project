@@ -13,14 +13,14 @@ router.requireAuthentication = (req, res, next) => {
         return;
     }
     if (req.cookies["account"] != null) {
-        if (req.path == "/") {
+        if (req.path == "/" || req.path == "/register") {
             res.redirect('/login');
             return;
         }
         next();
         return;
     }
-    if(req.path=='/'){
+    if (req.path == '/' || req.path == "/register") {
         next();
         return;
     }

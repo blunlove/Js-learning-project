@@ -39,3 +39,11 @@ const registerSend = () => {
 		}
 	});
 }
+
+const toRegister = () => {
+	location = "/register";
+}
+
+const backLogin = () => {
+	location = "/";
+}

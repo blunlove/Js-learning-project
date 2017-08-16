@@ -6,5 +6,5 @@ block content
     div.goods
       img(src=goods[i].goodsPic , id=goods[i].goodsName , onclick='toDetails(this)')
     - }
-  button#addfile(onclick='location="/file/upload"') 添加商品
+  #addfile.topText(onclick='location="/file/upload"') 添加商品
   script(src='/javascripts/goods.js')

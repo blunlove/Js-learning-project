@@ -1,20 +1,22 @@
 body
 {
-    margin: 0;
-    /* background-image: url(/images/background.jpg); */
+	margin: 0;
+	background-image: url(/images/background.jpg); 
 }
 #signIn
 {
 	padding: 10px;
 	width: 200px;
-	height: 140px;
+	height: 160px;
 	top: calc(50% - 81px);
     left: calc(50% - 111px);
-	background-color: white;
+	background-color: lightgrey;
 	border:1px solid;
     border-radius:10px;
 	text-align: center;
 	position: absolute;
+	font-size: 18px;
+	font-family: "楷体","楷体_GB2312";
 }
 #uploadForm
 {
@@ -23,7 +25,7 @@ body
 	height: 140px;
 	top: calc(50% - 81px);
     left: calc(50% - 111px);
-	background-color: white;
+	background-color: lightgrey;
 	border:1px solid;
     border-radius:10px;
 	text-align: center;
@@ -35,6 +37,7 @@ body
 	margin: 20px;
 	padding: 20px;
 	border: 3px solid black;
+	background-color: white;
 }
 .goods
 {
@@ -100,11 +103,45 @@ body
 	display: inline-block;
 	text-align: center;
 	font-size: 25px;
+	font-family: "楷体","楷体_GB2312";
 	color: #ffffff;
 	cursor:pointer;
-	font-family: "楷体","楷体_GB2312";
 }
 .topText:hover
 {
 	background-color: #000000;
+}
+#addfile,#backlogin
+{
+	position: absolute;
+	top: 192px;
+	left: 40px;
+}
+.loginText
+{
+	margin: 10px;
+	height: 40px;
+	width: 80px;
+	line-height: 40px;
+	display: inline-block;
+	text-align: center;
+	font-size: 25px;
+	font-family: "楷体","楷体_GB2312";
+	color: white;
+	background-color: #728134;
+	cursor:pointer;
+}
+.loginText:hover
+{
+	background-color: rgb(200, 200, 100);
+}
+#back_top
+{
+	position: fixed;
+	bottom: 20px;
+	right: 20px;
+	height: 50px;
+	width: 50px;
+	background-image: url(/images/top.png);
+	cursor:pointer;
 }
