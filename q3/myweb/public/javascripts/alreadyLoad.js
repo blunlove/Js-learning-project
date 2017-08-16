@@ -19,8 +19,14 @@ const toSeeUsername = () => {
 }
 
 const getUserName = () => {
-    let userName = toSeeUsername();
-    $('#the_userName').text(userName);
+    if (document.cookie.length != 0) {
+        let userName = toSeeUsername();
+        $('#the_userName').text(userName);
+        $('#toExit').text('退出');
+    } else {
+        $('#the_userName').text('未登录');
+        $('#toExit').remove();
+    }
 }
 getUserName();
 
