@@ -15,6 +15,7 @@ const checkSend = () => {
 			alert(res.msg);
 			$('.text').val("");
 		} else {
+			alert(res.msg);
 			location = "/login";
 		}
 	});
@@ -31,10 +32,11 @@ const registerSend = () => {
 		return;
 	}
 	$.post('/users/addUser', { 'userName': userName, 'passWord': passWord, 'isregister': true }, (res) => {
-		if (res.code == '-200') {
+		if (res.register == 'fail') {
 			alert(res.msg);
 			$('.text').val("");
 		} else {
+			alert(res.msg);
 			location = '/login';
 		}
 	});

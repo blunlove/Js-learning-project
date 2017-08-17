@@ -32,11 +32,11 @@ router.post('/addUser', (req, res, next) => {
     pool.getConnection((err, connection) => {
         connection.query(userSQL.insert, [req.body.userName, req.body.passWord], (err, result) => {
             if (result) {
-                res.cookie("account", { userid: result.uid, userName: result.userName });
-                res.json({ code: '200', msg: '注册成功' });
+                res.cookie("account", { userName: req.body.userName });
+                res.json({ register: 'success', msg: '注册成功' });
             } else {
                 console.log('fail');
-                res.json({ code: '-200', msg: '用户名已存在' });
+                res.json({ register: 'fail', msg: '用户名已存在' });
             }
             connection.release();
         });
@@ -49,7 +49,7 @@ router.post('/checkUser', (req, res, next) => {
             for (users in result) {
                 if (result[users].userName == req.body.userName) {
                     if (result[users].passWord == req.body.passWord) {
-                        res.cookie("account", { userid: result[users].uid, userName: result[users].userName });
+                        res.cookie("account", { userName: result[users].userName });
                         res.json({ islogin: 'success', msg: '登录成功' });
                         connection.release();
                         return;
@@ -64,11 +64,6 @@ router.post('/checkUser', (req, res, next) => {
             connection.release();
         });
     });
-});
-
-/* GET users listing. */
-router.get('/', (req, res, next) => {
-    res.send('respond with a resource');
 });
 
 module.exports = router;
