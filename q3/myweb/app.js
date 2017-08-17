@@ -11,6 +11,7 @@ let file = require('./routes/file');
 let login = require('./routes/login');
 let detail = require('./routes/detail');
 let register = require('./routes/register');
+let deletegoods = require('./routes/deletegoods');
 
 let app = express();
 
@@ -32,6 +33,7 @@ app.use('/file', file);
 app.use('/login', login);
 app.use('/detail', detail);
 app.use('/register', register);
+app.use('/deletegoods', deletegoods);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

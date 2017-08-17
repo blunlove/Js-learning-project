@@ -43,20 +43,6 @@ router.post('/addUser', (req, res, next) => {
     });
 });
 
-router.get('/deleteUser', (req, res, next) => {
-    pool.getConnection((err, connection) => {
-        let param = req.query || req.params;
-        connection.query(userSQL.delete, [param.name], (err, result) => {
-            if (result.affectedRows) {
-                res.json({ code: '200', msg: '删除成功' });
-            } else {
-                res.json({ code: '-200', msg: '不存在当前项' });
-            }
-            connection.release();
-        });
-    });
-});
-
 router.post('/checkUser', (req, res, next) => {
     pool.getConnection((err, connection) => {
         connection.query(userSQL.queryAll, (err, result) => {

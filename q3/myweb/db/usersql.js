@@ -1,7 +1,7 @@
 var UserSQL = 
 {  
 	insert:'INSERT INTO User(userName,passWord) VALUES(?,?)', 
-	delete:'DELETE FROM User WHERE userName= ? ',
+	delete:'DELETE FROM goods WHERE goodsName= ? ',
 	queryAll:'SELECT * FROM User',
 	getUserById:'SELECT * FROM User WHERE uid = ? ',
 

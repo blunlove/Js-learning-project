@@ -1,0 +1,11 @@
+extends layout
+
+block content
+  #signIn(onkeypress="if (event.key == 'Enter') {checkgood();}")
+    #the_good_name.message
+      | 商品名称:
+      input#good_name.text(type="text")
+    br
+    #button
+      #deletegoods.loginText(onclick='checkgood()') 确认删除
+  script(src='/javascripts/checkgoods.js')
