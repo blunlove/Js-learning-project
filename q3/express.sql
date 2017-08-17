@@ -31,7 +31,7 @@ CREATE TABLE `goods` (
   UNIQUE KEY `goodsName_UNIQUE` (`goodsName`),
   UNIQUE KEY `goodscol_UNIQUE` (`goodsPic`),
   UNIQUE KEY `goodscol1_UNIQUE` (`goodsDetail`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,7 +40,7 @@ CREATE TABLE `goods` (
 
 LOCK TABLES `goods` WRITE;
 /*!40000 ALTER TABLE `goods` DISABLE KEYS */;
-INSERT INTO `goods` VALUES (1,'鞋子','public/images/goods/鞋子.jpg','public/images/goods/鞋子_detail.jpg'),(2,'背包001','public/images/goods/背包001.jpg','public/images/goods/背包001_detail.jpg'),(3,'背包98757','public/images/goods/背包98757.jpg','public/images/goods/背包98757_detail.jpg'),(4,'鞋子123','public/images/goods/鞋子123.jpg','public/images/goods/鞋子123_detail.jpg');
+INSERT INTO `goods` VALUES (1,'鞋子','public/images/goods/鞋子.jpg','public/images/goods/鞋子_detail.jpg'),(2,'背包001','public/images/goods/背包001.jpg','public/images/goods/背包001_detail.jpg'),(3,'背包98757','public/images/goods/背包98757.jpg','public/images/goods/背包98757_detail.jpg'),(5,'鼠标782','public/images/goods/鼠标782.jpg','public/images/goods/鼠标782_detail.jpg'),(6,'牛仔裤462','public/images/goods/牛仔裤462.jpg','public/images/goods/牛仔裤462_detail.jpg');
 /*!40000 ALTER TABLE `goods` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -79,4 +79,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-08-16 16:37:20
+-- Dump completed on 2017-08-17 10:01:16
