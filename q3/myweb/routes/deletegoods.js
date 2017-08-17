@@ -22,7 +22,6 @@ router.post('/delete', (req, res, next) => {
 				goodsDetail = result[0].goodsDetail;
 				connection.query(userSQL.delete, [delete_goodsName], (err, result) => {
 					if (result.affectedRows) {
-						console.log(result);
 						res.json({ delete: 'success', msg: '删除成功' });
 						fs.unlink(goodsPic,()=>{
 							console.log("删除商品图片成功");
