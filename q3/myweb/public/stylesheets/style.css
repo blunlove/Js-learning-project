@@ -22,7 +22,7 @@ body
 {
 	padding: 10px;
 	width: 200px;
-	height: 140px;
+	height: 160px;
 	top: calc(50% - 81px);
     left: calc(50% - 111px);
 	background-color: lightgrey;
@@ -157,4 +157,19 @@ body
 	width: 50px;
 	background-image: url(/images/top.png);
 	cursor:pointer;
+}
+#tosend
+{
+	height: 48px;
+	width: 100px;
+	font-size: 25px;
+	font-family: "楷体","楷体_GB2312";
+	color: white;
+	background-color: #728134;
+	cursor:pointer;
+	border: 0;
+}
+#tosend:hover
+{
+	background-color: rgb(200, 200, 100);
 }

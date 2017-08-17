@@ -31,9 +31,7 @@ const getUserName = () => {
 getUserName();
 
 const deleteCookie = () => {
-    let nowDate = new Date();
-    let data = document.cookie;
-    let temp = data.split("=");
-    document.cookie = temp[0] + "=''; expires=" + nowDate.toGMTString();
-    location = '/';
+    $.post('/deleteCookie', (res) => {
+		location = '/';
+	});
 }
