@@ -117,6 +117,19 @@ body
 	top: 192px;
 	left: 40px;
 }
+
+#to_deletegoods
+{
+	position: absolute;
+	top: 192px;
+	left: 160px;
+}
+
+#deletegoods
+{
+	width: 130px;
+}
+
 .loginText
 {
 	margin: 10px;
