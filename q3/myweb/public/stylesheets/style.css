@@ -160,8 +160,8 @@ body
 }
 #tosend
 {
-	height: 48px;
-	width: 100px;
+	height: 40px;
+	width: 80px;
 	font-size: 25px;
 	font-family: "楷体","楷体_GB2312";
 	color: white;
@@ -172,4 +172,28 @@ body
 #tosend:hover
 {
 	background-color: rgb(200, 200, 100);
+}
+.uploadfile_button {
+	height: 25px;
+	width: 150px;
+	line-height: 25px;
+	font-size: 20px;
+	font-family: "楷体","楷体_GB2312";
+    position: relative;
+	display: inline-block;
+	overflow: hidden;
+	background-color: #728134;
+	color: white;
+}
+.uploadfile_button:hover
+{
+	background-color: rgb(200, 200, 100);
+}
+.uploadfile_button input{
+    position: absolute;
+    right: 0px;
+	top: 0px;
+	opacity: 0;
+	font-size: 200px;
+	cursor:pointer;	
 }

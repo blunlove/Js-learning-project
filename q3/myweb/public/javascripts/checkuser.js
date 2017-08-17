@@ -15,7 +15,6 @@ const checkSend = () => {
 			alert(res.msg);
 			$('.text').val("");
 		} else {
-			alert(res.msg);
 			location = "/login";
 		}
 	});
@@ -36,7 +35,6 @@ const registerSend = () => {
 			alert(res.msg);
 			$('.text').val("");
 		} else {
-			alert(res.msg);
 			location = '/login';
 		}
 	});
