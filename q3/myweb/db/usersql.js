@@ -1,4 +1,4 @@
-var UserSQL = 
+let UserSQL = 
 {  
 	insert:'INSERT INTO User(userName,passWord) VALUES(?,?)', 
 	delete:'DELETE FROM goods WHERE goodsName= ? ',

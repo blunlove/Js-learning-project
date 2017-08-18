@@ -1,5 +1,4 @@
 let express = require('express');
-let router = express.Router();
 let multipart = require('connect-multiparty');
 let formidable = require('formidable');
 let fs = require('fs');
@@ -9,6 +8,7 @@ let dbConfig = require('../db/DBConfig');
 let userSQL = require('../db/Usersql');
 
 let pool = mysql.createPool(dbConfig.mysql);
+let router = express.Router();
 
 let goodsUrl = 'public/images/goods/';
 /* GET home page. */

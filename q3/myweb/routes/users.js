@@ -1,11 +1,10 @@
 let express = require('express');
-let router = express.Router();
-
 let mysql = require('mysql');
 let dbConfig = require('../db/DBConfig');
 let userSQL = require('../db/Usersql');
 
 let pool = mysql.createPool(dbConfig.mysql);
+let router = express.Router();
 
 router.requireAuthentication = (req, res, next) => {
     if (req.body.islogin || req.body.isregister) {
@@ -32,7 +31,7 @@ router.post('/addUser', (req, res, next) => {
     pool.getConnection((err, connection) => {
         connection.query(userSQL.insert, [req.body.userName, req.body.passWord], (err, result) => {
             if (result) {
-                res.cookie("account", { userName: req.body.userName });
+                res.cookie("account", { userName: req.body.userName, });
                 res.json({ register: 'success', msg: '注册成功' });
             } else {
                 console.log('fail');
@@ -67,20 +66,20 @@ router.post('/checkUser', (req, res, next) => {
 });
 
 router.get('/register', (req, res, next) => {
-	res.render('register');
+    res.render('register');
 });
 
 router.get('/login', (req, res, next) => {
-	pool.getConnection((err, connection) => {
-		connection.query(userSQL.queryAllGoods, (err, result) => {
-			for (let i = 0; i < result.length; i++) {
-				result[i].goodsPic = result[i].goodsPic.substr(6);
-				result[i].goodsDetail = result[i].goodsDetail.substr(6);
-			}
-			res.render('login', { goods: result });
-			connection.release();
-		});
-	});
+    pool.getConnection((err, connection) => {
+        connection.query(userSQL.queryAllGoods, (err, result) => {
+            for (let i = 0; i < result.length; i++) {
+                result[i].goodsPic = result[i].goodsPic.substr(6);
+                result[i].goodsDetail = result[i].goodsDetail.substr(6);
+            }
+            res.render('login', { goods: result });
+            connection.release();
+        });
+    });
 });
 
 module.exports = router;

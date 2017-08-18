@@ -1,11 +1,10 @@
 let express = require('express');
-let router = express.Router();
-
 let mysql = require('mysql');
 let dbConfig = require('../db/DBConfig');
 let userSQL = require('../db/Usersql');
 
 let pool = mysql.createPool(dbConfig.mysql);
+let router = express.Router();
 /* GET home page. */
 router.get('/', (req, res, next) => {
 	pool.getConnection((err, connection) => {
