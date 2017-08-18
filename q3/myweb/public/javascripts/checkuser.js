@@ -1,7 +1,6 @@
 const checkSend = () => {
 	let userName = $("#name").val();
 	let passWord = $("#psw").val();
-	passWord = hex_md5(passWord);
 	if (userName.length == 0) {
 		alert('账号不能为空');
 		$('.text').val("");
@@ -11,7 +10,7 @@ const checkSend = () => {
 		$('.text').val("");
 		return;
 	}
-	$.post('/users/checkUser', { 'userName': userName, 'passWord': passWord, 'islogin': true }, (res) => {
+	$.post('/users/checkUser', { 'userName': userName, 'passWord': hex_md5(passWord), 'islogin': true }, (res) => {
 		if (res.islogin == 'fail') {
 			alert(res.msg);
 			$('.text').val("");
@@ -24,7 +23,6 @@ const checkSend = () => {
 const registerSend = () => {
 	let userName = $("#name").val();
 	let passWord = $("#psw").val();
-	passWord = hex_md5(passWord);
 	if (userName.length == 0) {
 		alert('账号不能为空');
 		return;
@@ -32,7 +30,7 @@ const registerSend = () => {
 		alert('密码不能为空');
 		return;
 	}
-	$.post('/users/addUser', { 'userName': userName, 'passWord': passWord, 'isregister': true }, (res) => {
+	$.post('/users/addUser', { 'userName': userName, 'passWord': hex_md5(passWord), 'isregister': true }, (res) => {
 		if (res.register == 'fail') {
 			alert(res.msg);
 			$('.text').val("");

@@ -34,7 +34,6 @@ router.post('/addUser', (req, res, next) => {
                 res.cookie("account", { userName: req.body.userName, });
                 res.json({ register: 'success', msg: '注册成功' });
             } else {
-                console.log('fail');
                 res.json({ register: 'fail', msg: '用户名已存在' });
             }
             connection.release();
@@ -44,22 +43,17 @@ router.post('/addUser', (req, res, next) => {
 
 router.post('/checkUser', (req, res, next) => {
     pool.getConnection((err, connection) => {
-        connection.query(userSQL.queryAll, (err, result) => {
-            for (users in result) {
-                if (result[users].userName == req.body.userName) {
-                    if (result[users].passWord == req.body.passWord) {
-                        res.cookie("account", { userName: result[users].userName });
-                        res.json({ islogin: 'success', msg: '登录成功' });
-                        connection.release();
-                        return;
-                    } else {
-                        res.json({ islogin: 'fail', msg: '密码错误' });
-                        connection.release();
-                        return;
-                    }
+        connection.query(userSQL.queryUser, [req.body.userName], (err, result) => {
+            if (result[0]) {
+                if (result[0].passWord == req.body.passWord) {
+                    res.cookie("account", { userName: result[0].userName });
+                    res.json({ islogin: 'success', msg: '登录成功' });
+                } else {
+                    res.json({ islogin: 'fail', msg: '密码错误' });
                 }
+            } else {
+                res.json({ islogin: 'fail', msg: '用户名不存在' });
             }
-            res.json({ islogin: 'fail', msg: '用户名不存在' });
             connection.release();
         });
     });
