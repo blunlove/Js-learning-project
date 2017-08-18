@@ -1,6 +1,7 @@
 const checkSend = () => {
 	let userName = $("#name").val();
 	let passWord = $("#psw").val();
+	passWord = hex_md5(passWord);
 	if (userName.length == 0) {
 		alert('账号不能为空');
 		$('.text').val("");
@@ -15,7 +16,7 @@ const checkSend = () => {
 			alert(res.msg);
 			$('.text').val("");
 		} else {
-			location = "/login";
+			location = "/users/login";
 		}
 	});
 }
@@ -23,6 +24,7 @@ const checkSend = () => {
 const registerSend = () => {
 	let userName = $("#name").val();
 	let passWord = $("#psw").val();
+	passWord = hex_md5(passWord);
 	if (userName.length == 0) {
 		alert('账号不能为空');
 		return;
@@ -35,15 +37,15 @@ const registerSend = () => {
 			alert(res.msg);
 			$('.text').val("");
 		} else {
-			location = '/login';
+			location = '/users/login';
 		}
 	});
 }
 
 const toRegister = () => {
-	location = "/register";
+	location = "/users/register";
 }
 
-const backLogin = () => {
+const backIndex = () => {
 	location = "/";
 }

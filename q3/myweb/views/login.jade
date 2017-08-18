@@ -6,6 +6,6 @@ block content
     div.goods
       img(src=goods[i].goodsPic , id=goods[i].goodsName , onclick='toDetails(this)')
     - }
-  #addfile.topText(onclick='location="/file/upload"') 添加商品
-  #to_deletegoods.topText(onclick='location="/deletegoods"') 删除商品
-  script(src='/javascripts/goods.js')
+  #addfile.topText(onclick='location="/goods/upload"') 添加商品
+  #to_deletegoods.topText(onclick='location="/goods/delete"') 删除商品
+  script(src='/javascripts/detail.js')

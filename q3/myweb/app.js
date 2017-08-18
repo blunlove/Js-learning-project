@@ -7,11 +7,8 @@ let bodyParser = require('body-parser');
 
 let index = require('./routes/index');
 let users = require('./routes/users');
-let file = require('./routes/file');
-let login = require('./routes/login');
+let goods = require('./routes/goods');
 let detail = require('./routes/detail');
-let register = require('./routes/register');
-let deletegoods = require('./routes/deletegoods');
 let deleteCookie = require('./routes/deleteCookie');
 
 let app = express();
@@ -31,11 +28,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.all('*', users.requireAuthentication);
 app.use('/', index);
 app.use('/users', users);
-app.use('/file', file);
-app.use('/login', login);
+app.use('/goods', goods);
 app.use('/detail', detail);
-app.use('/register', register);
-app.use('/deletegoods', deletegoods);
 app.use('/deleteCookie', deleteCookie);
 
 // catch 404 and forward to error handler

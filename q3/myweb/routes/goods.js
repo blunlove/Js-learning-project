@@ -21,7 +21,7 @@ const savePic = (filePath, uploadPath) => {
 	});
 }
 
-router.post('/uploadfile', multipart(), (req, res, next) => {
+router.post('/uploadgoods', multipart(), (req, res, next) => {
 	let fileName = req.body.goodsName;
 	let picsPath = req.files.pics.path;
 	let detailPath = req.files.detail.path;
@@ -37,11 +37,44 @@ router.post('/uploadfile', multipart(), (req, res, next) => {
 			});
 		});
 	}
-	res.redirect('/file/upload');
+	res.redirect('/goods/upload');
 });
 
 router.get('/upload', (req, res, next) => {
-	res.render('uploadfile');
+	res.render('uploadgoods');
+});
+
+router.post('/deletegoods', (req, res, next) => {
+	pool.getConnection((err, connection) => {
+		let delete_goodsName = req.body.goodsName;
+		connection.query(userSQL.queryGood, [delete_goodsName], (err, result) => {
+			let goodsPic, goodsDetail;
+			if (result) {
+				goodsPic = result[0].goodsPic;
+				goodsDetail = result[0].goodsDetail;
+				connection.query(userSQL.delete, [delete_goodsName], (err, result) => {
+					if (result.affectedRows) {
+						res.json({ delete: 'success', msg: '删除成功' });
+						fs.unlink(goodsPic,()=>{
+							console.log("删除商品图片成功");
+						});
+						fs.unlink(goodsDetail,()=>{
+							console.log("删除商品详情成功");
+						});
+					} else {
+						res.json({ delete: 'fail', msg: '删除失败' });
+					}
+				});
+			} else {
+				res.json({ delete: 'fail', msg: '该商品不存在' });
+			}
+			connection.release();
+		});
+	});
+});
+
+router.get('/delete', (req, res, next) => {
+	res.render('deletegoods');
 });
 
 module.exports = router;

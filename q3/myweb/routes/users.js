@@ -13,14 +13,14 @@ router.requireAuthentication = (req, res, next) => {
         return;
     }
     if (req.cookies["account"] != null) {
-        if (req.path == "/" || req.path == "/register") {
-            res.redirect('/login');
+        if (req.path == "/" || req.path == "/users/register") {
+            res.redirect('/users/login');
             return;
         }
         next();
         return;
     }
-    if (req.path == '/' || req.path == "/register") {
+    if (req.path == '/' || req.path == "/users/register") {
         next();
         return;
     }
@@ -64,6 +64,23 @@ router.post('/checkUser', (req, res, next) => {
             connection.release();
         });
     });
+});
+
+router.get('/register', (req, res, next) => {
+	res.render('register');
+});
+
+router.get('/login', (req, res, next) => {
+	pool.getConnection((err, connection) => {
+		connection.query(userSQL.queryAllGoods, (err, result) => {
+			for (let i = 0; i < result.length; i++) {
+				result[i].goodsPic = result[i].goodsPic.substr(6);
+				result[i].goodsDetail = result[i].goodsDetail.substr(6);
+			}
+			res.render('login', { goods: result });
+			connection.release();
+		});
+	});
 });
 
 module.exports = router;

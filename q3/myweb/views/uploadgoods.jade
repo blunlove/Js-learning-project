@@ -1,7 +1,7 @@
 extends layout
 
 block content
-  form#uploadForm(method='POST', enctype='multipart/form-data', action='/file/uploadfile' , onsubmit="return checkUpFile(this)")
+  form#uploadForm(method='POST', enctype='multipart/form-data', action='/goods/uploadgoods' , onsubmit="return checkUpFile(this)")
     | 商品名称:
     input#goodsName(type='text',name='goodsName')
     .uploadfile_button
@@ -11,5 +11,5 @@ block content
       div 上传详情
       input#det(type='file',name='detail')
     input#tosend(type='submit', value='提交')
-  #backlogin.topText(onclick='location="/login"') 返回
-  script(src='/javascripts/checkfile.js')
+  #backlogin.topText(onclick='location="/users/login"') 返回
+  script(src='/javascripts/goods.js')
