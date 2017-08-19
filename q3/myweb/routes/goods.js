@@ -47,11 +47,11 @@ router.get('/upload', (req, res, next) => {
 router.post('/deletegoods', (req, res, next) => {
 	pool.getConnection((err, connection) => {
 		let delete_goodsName = req.body.goodsName;
-		connection.query(userSQL.queryGood, [delete_goodsName], (err, result) => {
+		connection.query(userSQL.queryGood, [delete_goodsName], (err, goodMsg) => {
 			let goodsPic, goodsDetail;
-			if (result) {
-				goodsPic = result[0].goodsPic;
-				goodsDetail = result[0].goodsDetail;
+			if (goodMsg[0]) {
+				goodsPic = goodMsg[0].goodsPic;
+				goodsDetail = goodMsg[0].goodsDetail;
 				connection.query(userSQL.delete, [delete_goodsName], (err, result) => {
 					if (result.affectedRows) {
 						res.json({ delete: 'success', msg: '删除成功' });

@@ -15,13 +15,15 @@ router.requireAuthentication = (req, res, next) => {
         if (req.path == "/" || req.path == "/users/register") {
             res.redirect('/users/login');
             return;
+        } else {
+            next();
+            return;
         }
-        next();
-        return;
-    }
-    if (req.path == '/' || req.path == "/users/register") {
-        next();
-        return;
+    } else {
+        if (req.path == '/' || req.path == "/users/register") {
+            next();
+            return;
+        }
     }
     console.log("not login, redirect to index");
     res.redirect('/');
@@ -31,7 +33,9 @@ router.post('/addUser', (req, res, next) => {
     pool.getConnection((err, connection) => {
         connection.query(userSQL.insert, [req.body.userName, req.body.passWord], (err, result) => {
             if (result) {
-                res.cookie("account", { userName: req.body.userName, });
+                connection.query(userSQL.queryUser, [req.body.userName], (err, userMsg) => {
+                    res.cookie("account", { uid: userMsg[0].uid, passWord: userMsg[0].passWord });
+                });
                 res.json({ register: 'success', msg: '注册成功' });
             } else {
                 res.json({ register: 'fail', msg: '用户名已存在' });
@@ -46,7 +50,7 @@ router.post('/checkUser', (req, res, next) => {
         connection.query(userSQL.queryUser, [req.body.userName], (err, result) => {
             if (result[0]) {
                 if (result[0].passWord == req.body.passWord) {
-                    res.cookie("account", { userName: result[0].userName });
+                    res.cookie("account", { uid: result[0].uid, passWord: result[0].passWord });
                     res.json({ islogin: 'success', msg: '登录成功' });
                 } else {
                     res.json({ islogin: 'fail', msg: '密码错误' });
@@ -71,6 +75,20 @@ router.get('/login', (req, res, next) => {
                 result[i].goodsDetail = result[i].goodsDetail.substr(6);
             }
             res.render('login', { goods: result });
+            connection.release();
+        });
+    });
+});
+
+router.post('/getUserName', (req, res, next) => {
+    pool.getConnection((err, connection) => {
+        connection.query(userSQL.getUserById, [req.body.uid], (err, result) => {
+            if (result[0] && result[0].passWord == req.body.passWord) {
+                res.json({ userName: result[0].userName });
+            } else {
+                res.clearCookie("account", { path: '/' });
+                res.send();
+            }
             connection.release();
         });
     });
