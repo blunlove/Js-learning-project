@@ -87,6 +87,7 @@ router.post('/getUserName', (req, res, next) => {
                 res.json({ userName: result[0].userName });
             } else {
                 res.clearCookie("account", { path: '/' });
+                res.redirect('/');
                 res.send();
             }
             connection.release();
