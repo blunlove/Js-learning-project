@@ -35,6 +35,7 @@ router.post('/addUser', (req, res, next) => {
             if (result) {
                 connection.query(userSQL.queryUser, [req.body.userName], (err, userMsg) => {
                     res.cookie("account", { uid: userMsg[0].uid, passWord: userMsg[0].passWord });
+                    connection.release();
                 });
                 res.json({ register: 'success', msg: '注册成功' });
             } else {
