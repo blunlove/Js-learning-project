@@ -9,15 +9,17 @@ class Man {
         this.y = y;
         this.animation_k = 0;
         this.animation_direction = 0;
-        this.animation_time = 1000 / 4;
+        this.animation_time = 1000;
+        this.animation_frame = 4;
+        this.animation_earchTime = this.animation_time / this.animation_frame;
         this.animation_lastTime = Date.now();
         this.min_distance = 1;
         this.frame = 1000;
         this.directionX = 0;
         this.directionY = 0;
-        this.draw();
         this.dTime = 1000 / this.frame;
         this.lastTime = Date.now();
+        this.draw();
     }
     goLeft() {
         this.directionX = -1;
@@ -74,7 +76,7 @@ class Man {
     }
     animation_K() {
         let nowTime = Date.now();
-        if (nowTime - this.animation_lastTime >= this.animation_time) {
+        if (nowTime - this.animation_lastTime >= this.animation_earchTime) {
             this.animation_lastTime = nowTime;
             this.animation_k++;
             this.animation_k = this.animation_k % 4;
@@ -92,6 +94,12 @@ const imageFromPath = path => {
 const game = () => {
     let fps = 60;
     let man = new Man(image, 32, 48, 10, 10);
+    let inputKeys = {
+        Up: 'ArrowUp',
+        Down: 'ArrowDown',
+        Left: 'ArrowLeft',
+        Right: 'ArrowRight',
+    }
     let key;
     $(document).keydown(function (event) {
         key = event.key;
@@ -101,23 +109,23 @@ const game = () => {
     //     key = null;
     // });
     setInterval(() => {
-        if (key == "ArrowDown") {
+        if (key == inputKeys.Down) {
             man.goDown();
         }
-        if (key == "ArrowLeft") {
+        if (key == inputKeys.Left) {
             man.goLeft();
         }
-        if (key == "ArrowRight") {
+        if (key == inputKeys.Right) {
             man.goRight();
         }
-        if (key == "ArrowUp") {
+        if (key == inputKeys.Up) {
             man.goUp();
         }
         man.update();
     }, 1000 / fps);
 }
 
-let image = imageFromPath('man.png')
+let image = imageFromPath('man.png');
 image.onload = () => {
     game();
 };
