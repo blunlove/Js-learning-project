@@ -19,7 +19,7 @@ class Man {
         this.directionY = 0;
         this.dTime = 1000 / this.frame;
         this.lastTime = Date.now();
-        this.draw();
+        this.isMove = false;
     }
     goLeft() {
         this.directionX = -1;
@@ -65,17 +65,9 @@ class Man {
             return true;
         }
     }
-    update() {
-        this.draw();
-    }
-    draw() {
-        let canvas = document.getElementById("world");
-        let context = canvas.getContext("2d");
-        context.drawImage(this.image, this.width * this.animation_K(), this.height * this.animation_direction, this.width, this.height, this.x, this.y, this.width, this.height);
-    }
     animation_K() {
         let nowTime = Date.now();
-        if (nowTime - this.animation_lastTime >= this.animation_earchTime) {
+        if (nowTime - this.animation_lastTime >= this.animation_earchTime && this.isMove) {
             this.animation_lastTime = nowTime;
             this.animation_k++;
             this.animation_k = this.animation_k % 4;
@@ -84,60 +76,61 @@ class Man {
     }
 }
 
+class Game {
+    constructor() {
+        this.actions = {};
+        this.keydowns = {};
+    }
+    regiserAction(key, callback) {
+        this.actions[key] = callback;
+    }
+}
+
 const imageFromPath = path => {
     let img = new Image();
     img.src = path;
     return img;
 }
-const game = () => {
+const _main = () => {
     let canvas = document.getElementById("world");
     let context = canvas.getContext("2d");
     let fps = 60;
-    let isMove = false;
-    let man = new Man(image, 32, 48, 10, 10);
-    let inputKeys = {
-        Up: 'ArrowUp',
-        Down: 'ArrowDown',
-        Left: 'ArrowLeft',
-        Right: 'ArrowRight',
-    }
-    let game = {
-        actions: {},
-        keydowns: {}
-    }
+    let game = new Game();
+    //注册按键
+    game.regiserAction('ArrowUp', () => {
+        man.goUp();
+    });
+    game.regiserAction('ArrowDown', () => {
+        man.goDown();
+    });
+    game.regiserAction('ArrowLeft', () => {
+        man.goLeft();
+    });
+    game.regiserAction('ArrowRight', () => {
+        man.goRight();
+    });
+    //监听键盘哪个键被按下
     window.addEventListener('keydown', event => {
         game.keydowns[event.key] = true;
     });
     window.addEventListener('keyup', event => {
         delete game.keydowns[event.key];
     });
-    game.regiserAction = (key, callback) => {
-        game.actions[key] = callback;
-    }
-
-    game.regiserAction(inputKeys.Up, () => {
-        man.goUp();
-    });
-    game.regiserAction(inputKeys.Down, () => {
-        man.goDown();
-    });
-    game.regiserAction(inputKeys.Left, () => {
-        man.goLeft();
-    });
-    game.regiserAction(inputKeys.Right, () => {
-        man.goRight();
-    });
-
+    let man = new Man(image, 32, 48, 10, 10);
+    context.drawImage(man.image, man.width * man.animation_K(), man.height * man.animation_direction, man.width, man.height, man.x, man.y, man.width, man.height);
     setInterval(() => {
         let keydowns = Object.keys(game.keydowns);
-        let lastKey = keydowns[keydowns.length-1];
+        let lastKey = keydowns[keydowns.length - 1];
         if (lastKey) {
+            man.isMove = true;
             game.actions[lastKey]();
+        } else {
+            man.isMove = false;
         }
         context.clearRect(0, 0, canvas.width, canvas.height);
-        man.update();
+        context.drawImage(man.image, man.width * man.animation_K(), man.height * man.animation_direction, man.width, man.height, man.x, man.y, man.width, man.height);
     }, 1000 / fps);
 }
 
 let image = imageFromPath('man.png');
-game();
+_main();
