@@ -116,7 +116,11 @@ const _main = () => {
     window.addEventListener('keyup', event => {
         delete game.keydowns[event.key];
     });
-    let man = new Man(image, 32, 48, 10, 10);
+    let beginPoint = {
+        x: Math.floor(Math.random() * (canvas.width - 32)) + 1,
+        y: Math.floor(Math.random() * (canvas.height - 48)) + 1
+    }
+    let man = new Man(image, 32, 48, beginPoint.x, beginPoint.y);
     context.drawImage(man.image, man.width * man.animation_K(), man.height * man.animation_direction, man.width, man.height, man.x, man.y, man.width, man.height);
     setInterval(() => {
         let keydowns = Object.keys(game.keydowns);
