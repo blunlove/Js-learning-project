@@ -71,7 +71,6 @@ class Man {
     draw() {
         let canvas = document.getElementById("world");
         let context = canvas.getContext("2d");
-        context.clearRect(0, 0, canvas.width, canvas.height);
         context.drawImage(this.image, this.width * this.animation_K(), this.height * this.animation_direction, this.width, this.height, this.x, this.y, this.width, this.height);
     }
     animation_K() {
@@ -90,9 +89,11 @@ const imageFromPath = path => {
     img.src = path;
     return img;
 }
-
 const game = () => {
+    let canvas = document.getElementById("world");
+    let context = canvas.getContext("2d");
     let fps = 60;
+    let isMove = false;
     let man = new Man(image, 32, 48, 10, 10);
     let inputKeys = {
         Up: 'ArrowUp',
@@ -100,32 +101,43 @@ const game = () => {
         Left: 'ArrowLeft',
         Right: 'ArrowRight',
     }
-    let key;
-    $(document).keydown(function (event) {
-        key = event.key;
+    let game = {
+        actions: {},
+        keydowns: {}
+    }
+    window.addEventListener('keydown', event => {
+        game.keydowns[event.key] = true;
     });
-    //有个bug
-    // $(document).keyup(function (event) {
-    //     key = null;
-    // });
+    window.addEventListener('keyup', event => {
+        delete game.keydowns[event.key];
+    });
+    game.regiserAction = (key, callback) => {
+        game.actions[key] = callback;
+    }
+
+    game.regiserAction(inputKeys.Up, () => {
+        man.goUp();
+    });
+    game.regiserAction(inputKeys.Down, () => {
+        man.goDown();
+    });
+    game.regiserAction(inputKeys.Left, () => {
+        man.goLeft();
+    });
+    game.regiserAction(inputKeys.Right, () => {
+        man.goRight();
+    });
+
     setInterval(() => {
-        if (key == inputKeys.Down) {
-            man.goDown();
+        let keydowns = Object.keys(game.keydowns);
+        let lastKey = keydowns[keydowns.length-1];
+        if (lastKey) {
+            game.actions[lastKey]();
         }
-        if (key == inputKeys.Left) {
-            man.goLeft();
-        }
-        if (key == inputKeys.Right) {
-            man.goRight();
-        }
-        if (key == inputKeys.Up) {
-            man.goUp();
-        }
+        context.clearRect(0, 0, canvas.width, canvas.height);
         man.update();
     }, 1000 / fps);
 }
 
 let image = imageFromPath('man.png');
-image.onload = () => {
-    game();
-};
+game();
