@@ -1,12 +1,17 @@
 let log = console.log.bind(console)
 
 class Man {
-    constructor(image, width, height, x, y) {
+    constructor(image, width, height, k, x, y, worldX, worldY) {
+        //缓存参数
         this.image = image;
         this.width = width;
         this.height = height;
+        this.k = k;
         this.x = x;
         this.y = y;
+        this.worldX = worldX;
+        this.worldY = worldY;
+        //初始化配置
         this.animation_k = 0;
         this.animation_direction = 0;
         this.animation_time = 1000;
@@ -21,33 +26,33 @@ class Man {
         this.lastTime = Date.now();
         this.isMove = false;
     }
-    goLeft() {
+    turnLeft() {
         this.directionX = -1;
         this.directionY = 0;
         this.animation_direction = 1;
-        this.move();
     }
-    goRight() {
+    turnRight() {
         this.directionX = 1;
         this.directionY = 0;
         this.animation_direction = 2;
-        this.move();
     }
-    goUp() {
+    turnUp() {
         this.directionX = 0;
         this.directionY = -1;
         this.animation_direction = 3;
-        this.move();
     }
-    goDown() {
+    turnDown() {
         this.directionX = 0;
         this.directionY = 1;
         this.animation_direction = 0;
+    }
+    update() {
         this.move();
+        this.animation();
     }
     move() {
         let nowTime = Date.now();
-        if (nowTime - this.lastTime >= this.dTime) {
+        if (nowTime - this.lastTime >= this.dTime && this.isMove) {
             this.lastTime = nowTime;
             let newX = this.x + this.directionX * this.min_distance;
             let newY = this.y + this.directionY * this.min_distance;
@@ -58,21 +63,20 @@ class Man {
         }
     }
     bumpBody(x, y) {
-        if (x < 0 || x > 400 - this.width) {
+        if (x < 0 || x > this.worldX - this.width) {
             return true;
         }
-        if (y < 0 || y > 300 - this.height) {
+        if (y < 0 || y > this.worldY - this.height) {
             return true;
         }
     }
-    animation_K() {
+    animation() {
         let nowTime = Date.now();
         if (nowTime - this.animation_lastTime >= this.animation_earchTime && this.isMove) {
             this.animation_lastTime = nowTime;
             this.animation_k++;
-            this.animation_k = this.animation_k % 4;
+            this.animation_k = this.animation_k % this.k;
         }
-        return this.animation_k;
     }
 }
 
@@ -98,16 +102,16 @@ const _main = () => {
     let game = new Game();
     //注册按键
     game.regiserAction('ArrowUp', () => {
-        man.goUp();
+        man.turnUp();
     });
     game.regiserAction('ArrowDown', () => {
-        man.goDown();
+        man.turnDown();
     });
     game.regiserAction('ArrowLeft', () => {
-        man.goLeft();
+        man.turnLeft();
     });
     game.regiserAction('ArrowRight', () => {
-        man.goRight();
+        man.turnRight();
     });
     //监听键盘哪个键被按下
     window.addEventListener('keydown', event => {
@@ -120,8 +124,16 @@ const _main = () => {
         x: Math.floor(Math.random() * (canvas.width - 32)) + 1,
         y: Math.floor(Math.random() * (canvas.height - 48)) + 1
     }
-    let man = new Man(image, 32, 48, beginPoint.x, beginPoint.y);
-    context.drawImage(man.image, man.width * man.animation_K(), man.height * man.animation_direction, man.width, man.height, man.x, man.y, man.width, man.height);
+
+    const draw = (object) => {
+        context.drawImage(object.image,
+            object.width * object.animation_k,
+            object.height * object.animation_direction,
+            object.width, object.height, object.x, object.y,
+            object.width, object.height);
+    }
+    let man = new Man(image, 32, 48, 4, beginPoint.x, beginPoint.y, canvas.width, canvas.height);
+    draw(man);
     setInterval(() => {
         let keydowns = Object.keys(game.keydowns);
         let lastKey = keydowns[keydowns.length - 1];
@@ -131,8 +143,9 @@ const _main = () => {
         } else {
             man.isMove = false;
         }
+        man.update();
         context.clearRect(0, 0, canvas.width, canvas.height);
-        context.drawImage(man.image, man.width * man.animation_K(), man.height * man.animation_direction, man.width, man.height, man.x, man.y, man.width, man.height);
+        draw(man);
     }, 1000 / fps);
 }
 
