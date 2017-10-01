@@ -50,6 +50,15 @@ class Man {
         this.move();
         this.animation();
     }
+    stop() {
+        this.isMove = false;
+        this.directionX = 0;
+        this.directionY = 0;
+        this.animation_k = 0;
+    }
+    moving() {
+        this.isMove = true;
+    }
     move() {
         let nowTime = Date.now();
         if (nowTime - this.lastTime >= this.dTime && this.isMove) {
@@ -138,10 +147,10 @@ const _main = () => {
         let keydowns = Object.keys(game.keydowns);
         let lastKey = keydowns[keydowns.length - 1];
         if (lastKey) {
-            man.isMove = true;
+            man.moving();
             game.actions[lastKey]();
         } else {
-            man.isMove = false;
+            man.stop();
         }
         man.update();
         context.clearRect(0, 0, canvas.width, canvas.height);
