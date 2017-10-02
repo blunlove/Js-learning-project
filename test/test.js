@@ -146,7 +146,7 @@ const _main = () => {
     setInterval(() => {
         let keydowns = Object.keys(game.keydowns);
         let lastKey = keydowns[keydowns.length - 1];
-        if (lastKey && game.actions[lastKey] != undefined) {
+        if (lastKey && game.actions[lastKey]) {
             man.moving();
             game.actions[lastKey]();
         } else {
