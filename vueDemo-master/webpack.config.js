@@ -39,8 +39,8 @@ module.exports = {
             }
             ,
             {
-                test: /\.scss$/,
-                loader: "style-loader!css-loader!sass-loader!"
+                test: /\.(scss|sass)$/,
+                loader: "style-loader!css-loader!sass-loader!sass!scss-loader!vue-style-loader"
             }
         ]
     },
@@ -52,7 +52,8 @@ module.exports = {
     devServer: {//webpack-dev-server配置
         historyApiFallback: true,//不跳转
         noInfo: true,
-        inline: true//实时刷新
+        inline: true,//实时刷新
+        hot:true
     },
     performance: {
         hints: false
@@ -62,6 +63,7 @@ module.exports = {
 
 if (process.env.NODE_ENV === 'production') {
     module.exports.devtool = '#source-map'
+    // http://vue-loader.vuejs.org/en/workflow/production.html
     module.exports.plugins = (module.exports.plugins || []).concat([
         new webpack.DefinePlugin({
             'process.env': {

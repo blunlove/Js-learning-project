@@ -1,3 +1,4 @@
+<!--App.vue是项目入口文件。-->
 <template>
     <div id="app">
         <header-tab></header-tab>
@@ -16,22 +17,24 @@
 
 <script>
 import HeaderTab from './components/header.vue';
+
 export default {
-    name: 'app',
-    data() {
-        return {
-            msg: 'Welcome to Your Vue.js App'
-        }
-    },
-    components: {
-        HeaderTab
+  name: 'app',
+  data () {
+    return {
+      msg: 'Welcome to Your Vue.js App'
     }
+  },
+  components:{
+    HeaderTab
+  }
 }
 </script>
 
 <style lang="sass">
+    /*这里sass编译正常*/
     $redColor:#f00;
-    h2 {
+    h2{
         color:$redColor;
     }
     #app {
