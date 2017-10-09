@@ -1,11 +1,11 @@
-var path = require('path')
-var webpack = require('webpack')
+let path = require('path')
+let webpack = require('webpack')
 
 module.exports = {
-    entry: './src/main.js',//值可以是字符串、数组或对象
+    entry: './src/main.js',
     output: {
-        path: path.resolve(__dirname, './dist'),//Webpack结果存储
-        publicPath: '/dist/',//懵懂，懵逼，//然而“publicPath”项则被许多Webpack的插件用于在生产模式和开发模式下下更新内嵌到css、html，img文件里的url值
+        path: path.resolve(__dirname, './dist'),
+        publicPath: '/dist/',
         filename: 'build.js'
     },
     module: {
@@ -16,7 +16,6 @@ module.exports = {
                 options: {
                     loaders: {
                     }
-                    // other vue-loader options go here
                 }
             },
             {
@@ -31,7 +30,6 @@ module.exports = {
                     name: '[name].[ext]?[hash]'
                 }
             }
-            //自己加的
             ,
             {
                 test: /\.css$/,
@@ -49,10 +47,10 @@ module.exports = {
             'vue$': 'vue/dist/vue.esm.js'
         }
     },
-    devServer: {//webpack-dev-server配置
-        historyApiFallback: true,//不跳转
+    devServer: {
+        historyApiFallback: true,
         noInfo: true,
-        inline: true//实时刷新
+        inline: true
     },
     performance: {
         hints: false
