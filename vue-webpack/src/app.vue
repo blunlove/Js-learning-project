@@ -29,7 +29,7 @@ export default {
 }
 </script>
 
-<style lang="sass">
+<style lang="scss">
     $redColor:#f00;
     h2 {
         color:$redColor;
