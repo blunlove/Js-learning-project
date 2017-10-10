@@ -11,11 +11,13 @@
         <div>
             <router-view></router-view>
         </div>
+        <footer-tab></footer-tab>
     </div>
 </template>
 
 <script>
 import HeaderTab from './components/header.vue';
+import FooterTab from './components/footer.vue';
 export default {
     name: 'app',
     data() {
@@ -24,7 +26,7 @@ export default {
         }
     },
     components: {
-        HeaderTab
+        HeaderTab, FooterTab
     }
 }
 </script>
