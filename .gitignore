@@ -2,5 +2,5 @@
 .vscode
 
 #js:
-vue-webpack/dist
-vue-webpack/node_modules
+dist
+node_modules
