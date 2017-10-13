@@ -1,9 +1,9 @@
-import Vue from 'vue'
-import App from './App.vue'
-import router from './routes.js'
+import Vue from 'vue';
+import App from './App.vue';
+import router from './routes.js';
 
-import './assets/styles/base.css'
-import './assets/less/reset.less'
+import './assets/styles/base.css';
+import './assets/less/reset.less';
 
 Vue.config.debug = true;
 
