@@ -1,10 +1,5 @@
 <template>
     <div>
-        <ol>
-            <li v-for="todo in todos">
-                {{ todo.text }}
-            </li>
-        </ol>
         <button @click="eClick()">事件</button>
     </div>
 </template>
