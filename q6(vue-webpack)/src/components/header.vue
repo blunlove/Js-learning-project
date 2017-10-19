@@ -1,5 +1,6 @@
 <template>
-    <div>
-        <h1>共同header</h1>
+    <div class="header">
+        <div class="header_line"></div>
+        <a id="logo"></a>
     </div>
 </template>

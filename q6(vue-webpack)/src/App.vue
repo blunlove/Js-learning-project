@@ -1,7 +1,7 @@
 <template>
     <div id="app">
         <header-tab></header-tab>
-        <h2>{{msg}}</h2>
+        
         <div class="nav-box">
             <p class="nav-list">
                 <router-link class="nav-item" to="/">首页</router-link>
