@@ -1,2 +1,78 @@
-
-
+.header {
+    position: relative;
+    width: 100%;
+    height: 170px;
+    background: transparent url(../imgs/header/header.png) no-repeat center;
+}
+.header_line {
+    position: relative;
+    height: 42px;
+}
+.header_line_under {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    height: 42px;
+    overflow: hidden;
+}
+.header_line_under_filter {
+    height: 62px;
+    width: 100%;
+    position: absolute;
+    top: -4px;
+    background: transparent url(../imgs/header/header.png) no-repeat;
+    background-position: center 0px!important;
+    filter: blur(5px);
+}
+.header_line_under_color {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.4);
+    z-index: 10;
+}
+.header_line_menu {
+    position: relative;
+    z-index: 20;
+    width: 980px;
+    margin: auto;
+}
+#logo {
+    background: url(../imgs/header/logo.png);
+    position: absolute;
+    width: 220px;
+    height: 105px;
+    left: 24px;
+    top: 55px;
+}
+.home {
+    background: url(../imgs/icon/icons.png) no-repeat -910px -74px;
+}
+.home .i-link {
+    padding-left: 20px;
+}
+.home, .friend, .game, .live, .pay, .real-things, .mobile {
+    position: relative;
+    display: inline-block;
+    line-height: 42px;
+    text-align: center;
+    color: black;
+    cursor: pointer;
+}
+.home, .game {
+    width: 70px;
+}
+.pay, .mobile {
+    width: 58px;
+}
+.friend, .live, .real-things {
+    width: 46px;
+}
+.i-link {
+    display: block;
+}
+.i-link:hover {
+    background: rgba(255, 255, 255, 0.24);
+}
