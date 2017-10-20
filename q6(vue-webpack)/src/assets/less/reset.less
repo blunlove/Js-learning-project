@@ -15,7 +15,6 @@
     position: absolute;
     width: 100%;
     height: 100%;
-    height: 42px;
     overflow: hidden;
 }
 .header_line_under_filter {
@@ -56,12 +55,13 @@
 .home .i-link {
     padding-left: 20px;
 }
-.home, .friend, .game, .live, .pay, .real-things, .mobile {
+.menu {
     position: relative;
     display: inline-block;
     line-height: 42px;
     text-align: center;
     color: black;
+    height: 42px;
 }
 .home, .game {
     width: 70px;
@@ -78,4 +78,21 @@
 }
 .i-link:hover {
     background: rgba(255, 255, 255, 0.24);
+}
+.child_menu {
+    position: absolute;
+    text-align: left;
+    width: 200px;
+    height: 150px;
+    background: rgba(0, 0, 0, 0.2);
+    display: none;
+}
+.game:hover .child_menu {
+    display: block;
+}
+.live:hover .child_menu {
+    display: block;
+}
+.mobile:hover .child_menu {
+    display: block;
 }
