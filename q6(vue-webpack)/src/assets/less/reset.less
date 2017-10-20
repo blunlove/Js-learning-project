@@ -1,8 +1,11 @@
+@header_image_path: url(../imgs/header/header.png);
+@icons_image_path: url(../imgs/icon/icons.png);
+@logo_image_path: url(../imgs/header/logo.png);
 .header {
     position: relative;
     width: 100%;
     height: 170px;
-    background: transparent url(../imgs/header/header.png) no-repeat center;
+    background: transparent @header_image_path no-repeat center;
 }
 .header_line {
     position: relative;
@@ -20,7 +23,7 @@
     width: 100%;
     position: absolute;
     top: -4px;
-    background: transparent url(../imgs/header/header.png) no-repeat;
+    background: transparent @header_image_path no-repeat;
     background-position: center 0px!important;
     filter: blur(5px);
 }
@@ -40,7 +43,7 @@
     margin: auto;
 }
 #logo {
-    background: url(../imgs/header/logo.png);
+    background: @logo_image_path;
     position: absolute;
     width: 220px;
     height: 105px;
@@ -48,7 +51,7 @@
     top: 55px;
 }
 .home {
-    background: url(../imgs/icon/icons.png) no-repeat -910px -74px;
+    background: @icons_image_path no-repeat -910px -74px;
 }
 .home .i-link {
     padding-left: 20px;
@@ -71,6 +74,7 @@
 }
 .i-link {
     display: block;
+    transition: background 0.2s;
 }
 .i-link:hover {
     background: rgba(255, 255, 255, 0.24);
