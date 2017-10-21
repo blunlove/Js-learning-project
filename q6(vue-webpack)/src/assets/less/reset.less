@@ -83,16 +83,17 @@
     position: absolute;
     text-align: left;
     width: 200px;
-    height: 150px;
+    height: 0;
+    overflow: hidden;
     background: rgba(0, 0, 0, 0.2);
-    display: none;
+    transition: height 0.5s;
 }
 .game:hover .child_menu {
-    display: block;
+    height: 150px;
 }
 .live:hover .child_menu {
-    display: block;
+    height: 150px;
 }
 .mobile:hover .child_menu {
-    display: block;
+    height: 150px;
 }
