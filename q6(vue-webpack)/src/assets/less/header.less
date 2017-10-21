@@ -76,21 +76,21 @@
 .i-link:hover {
     background: rgba(255, 255, 255, 0.24);
 }
-.child_menu {
+.curtain {
     position: absolute;
     text-align: left;
-    width: 200px;
+    width: @child_menu_width;
     height: 0;
     overflow: hidden;
     background: rgba(0, 0, 0, 0.2);
     transition: height 0.5s;
 }
-.game:hover .child_menu {
+.game:hover .curtain {
     height: @child_menu_height;
 }
-.live:hover .child_menu {
+.live:hover .curtain {
     height: @child_menu_height;
 }
-.mobile:hover .child_menu {
+.mobile:hover .curtain {
     height: @child_menu_height;
 }

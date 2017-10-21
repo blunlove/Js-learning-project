@@ -8,12 +8,18 @@
             <div class="header_line_menu">
                 <div class="header_line_menu_left">
                     <ul>
-                        <li v-for="menu in menus" :class="menu.class">
+                        <li v-for="menu in menus" :class="'menu ' + menu.class">
                             <a class="i-link">
                                 <span>{{ menu.name }}</span>
                             </a>
-                            <div v-if="menu.child" :class="menu.child_class">
-                                {{ menu.child_class.substr(11) }}
+                            <div v-if="menu.class == 'game'" :class="'curtain ' + menu.class">
+                                <game-menu></game-menu>
+                            </div>
+                            <div v-else-if="menu.class == 'live'" :class="'curtain ' + menu.class">
+                                <live-menu></live-menu>
+                            </div>
+                            <div v-else-if="menu.class == 'mobile'" :class="'curtain ' + menu.class">
+                                <mobile-menu></mobile-menu>
                             </div>
                         </li>
                     </ul>
@@ -25,14 +31,17 @@
     </div>
 </template>
 <script>
+import gameMenu from '../child_menu/game.vue';
+import liveMenu from '../child_menu/live.vue';
+import mobileMenu from '../child_menu/mobile.vue';
 let menus = [
-    { name: '主站', class: 'menu home', child: false },
-    { name: '画友', class: 'menu friend', child: false },
-    { name: '游戏中心', class: 'menu game', child: true, child_class: 'child_menu game-page' },
-    { name: '直播', class: 'menu live', child: true, child_class: 'child_menu live-page' },
-    { name: '会员购', class: 'menu pay', child: false },
-    { name: '周边', class: 'menu real-things', child: false },
-    { name: '移动端', class: 'menu mobile', child: true, child_class: 'child_menu mobile-page' },
+    { name: '主站', class: 'home' },
+    { name: '画友', class: 'friend' },
+    { name: '游戏中心', class: 'game' },
+    { name: '直播', class: 'live' },
+    { name: '会员购', class: 'pay' },
+    { name: '周边', class: 'real-things' },
+    { name: '移动端', class: 'mobile' },
 ]
 export default {
     name: 'headerMenu_left',
@@ -43,6 +52,9 @@ export default {
     },
     methods: {
 
+    },
+    components: {
+        gameMenu, liveMenu, mobileMenu
     }
 }
 </script>
