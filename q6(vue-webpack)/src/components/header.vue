@@ -30,6 +30,24 @@
                             <a class="i-link">
                                 <span>{{ menu.name }}</span>
                             </a>
+                            <div v-if="menu.class == 'message'" :class="'curtain ' + menu.class">
+                                
+                            </div>
+                            <div v-else-if="menu.class == 'dynamic'" :class="'curtain ' + menu.class">
+                                
+                            </div>
+                            <div v-else-if="menu.class == 'later'" :class="'curtain ' + menu.class">
+                                
+                            </div>
+                            <div v-else-if="menu.class == 'favorite'" :class="'curtain ' + menu.class">
+                                
+                            </div>
+                            <div v-else-if="menu.class == 'history'" :class="'curtain ' + menu.class">
+                                
+                            </div>
+                            <div v-else-if="menu.class == 'submission'" :class="'curtain ' + menu.class">
+                                
+                            </div>
                         </li>
                     </ul>
                 </div>
@@ -45,27 +63,29 @@
 import gameMenu from '../child_menu/game.vue';
 import liveMenu from '../child_menu/live.vue';
 import mobileMenu from '../child_menu/mobile.vue';
+let menus_left = [
+    { name: '主站', class: 'home' },
+    { name: '画友', class: 'friend' },
+    { name: '游戏中心', class: 'game' },
+    { name: '直播', class: 'live' },
+    { name: '会员购', class: 'pay' },
+    { name: '周边', class: 'real-things' },
+    { name: '移动端', class: 'mobile' },
+];
+let menus_right = [
+    { name: '消息', class: 'message' },
+    { name: '动态', class: 'dynamic' },
+    { name: '稍后再看', class: 'later' },
+    { name: '收藏夹', class: 'favorite' },
+    { name: '历史', class: 'history' },
+    { name: '投稿', class: 'submission' },
+];
 export default {
     name: 'headerMenu_left',
     data() {
         return {
-            menus_left: [
-                { name: '主站', class: 'home' },
-                { name: '画友', class: 'friend' },
-                { name: '游戏中心', class: 'game' },
-                { name: '直播', class: 'live' },
-                { name: '会员购', class: 'pay' },
-                { name: '周边', class: 'real-things' },
-                { name: '移动端', class: 'mobile' },
-            ],
-            menus_right: [
-                { name: '消息', class: 'message' },
-                { name: '动态', class: 'dynamic' },
-                { name: '稍后再看', class: 'later' },
-                { name: '收藏夹', class: 'favorite' },
-                { name: '历史', class: 'history' },
-                { name: '投稿', class: 'submission' },
-            ]
+            menus_left: menus_left,
+            menus_right: menus_right
         }
     },
     methods: {

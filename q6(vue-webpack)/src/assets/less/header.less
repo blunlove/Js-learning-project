@@ -69,9 +69,6 @@
     color: black;
     height: 42px;
 }
-.menu_right {
-    float: right;
-}
 .home, .game, .later {
     width: 70px;
 }
@@ -96,7 +93,6 @@
     overflow: hidden;
     background: rgba(0, 0, 0, 0.2);
     transition: height 0.5s;
-    transition-delay: 0.2s;
 }
 .game:hover .curtain {
     height: @child_menu_height;
@@ -105,6 +101,9 @@
     height: @child_menu_height;
 }
 .mobile:hover .curtain {
+    height: @child_menu_height;
+}
+.message:hover .curtain {
     height: @child_menu_height;
 }
 .userPortrait {
