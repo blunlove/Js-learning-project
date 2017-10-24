@@ -7,46 +7,47 @@
 .header_line {
     position: relative;
     height: 42px;
+    &_under {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        &_filter {
+            height: 62px;
+            width: 100%;
+            position: absolute;
+            top: -4px;
+            background: transparent @header_image_path no-repeat;
+            background-position: center 0px!important;
+            filter: blur(5px);
+        }
+        &_color {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.4);
+            z-index: 10;
+        }
+    }
+    &_menu {
+        position: relative;
+        height: 100%;
+        z-index: 20;
+        width: 980px;
+        margin: auto;
+        &_left {
+            width: 394px;
+            float: left;
+        }
+            &_right {
+            width: 339px;
+            float: right;
+        }
+    }
 }
-.header_line_under {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-}
-.header_line_under_filter {
-    height: 62px;
-    width: 100%;
-    position: absolute;
-    top: -4px;
-    background: transparent @header_image_path no-repeat;
-    background-position: center 0px!important;
-    filter: blur(5px);
-}
-.header_line_under_color {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    background-color: rgba(255, 255, 255, 0.4);
-    z-index: 10;
-}
-.header_line_menu {
-    position: relative;
-    height: 100%;
-    z-index: 20;
-    width: 980px;
-    margin: auto;
-}
-.header_line_menu_left {
-    width: 394px;
-    float: left;;
-}
-.header_line_menu_right {
-    width: 339px;
-    float: right;
-}
+
 #logo {
     background: @logo_image_path;
     position: absolute;
@@ -57,9 +58,9 @@
 }
 .home {
     background: @icons_image_path no-repeat -910px -74px;
-}
-.home .i-link {
-    padding-left: 20px;
+    .i-link {
+        padding-left: 20px;
+    }
 }
 .menu_left, .menu_right {
     position: relative;
@@ -69,21 +70,30 @@
     color: black;
     height: 42px;
 }
-.home, .game, .later {
+.first {
     width: @menu_width_first;
 }
-.pay, .mobile, .favorite, .submission {
+.second {
     width: @menu_width_second;
 }
-.friend, .live, .real-things, .message, .dynamic, .history {
+.third {
     width: @menu_width_third;
 }
 .i-link {
     display: block;
     transition: background 0.2s;
+    &:hover {
+        background: rgba(255, 255, 255, 0.24);
+    }
 }
-.i-link:hover {
-    background: rgba(255, 255, 255, 0.24);
+.menu_right.first .curtain {
+    left: @menu_width_first / 2 - @child_menu_width / 2;
+}
+.menu_right.second .curtain {
+    left: @menu_width_second / 2 - @child_menu_width / 2;
+}
+.menu_right.third .curtain {
+    left: @menu_width_third / 2 - @child_menu_width / 2;
 }
 .curtain {
     position: absolute;
@@ -93,15 +103,6 @@
     overflow: hidden;
     background: rgba(0, 0, 0, 0.2);
     transition: height 0.5s;
-}
-.first {
-    left: @menu_width_first / 2 - @child_menu_width / 2;
-}
-.second {
-    left: @menu_width_second / 2 - @child_menu_width / 2;
-}
-.third {
-    left: @menu_width_third / 2 - @child_menu_width / 2;
 }
 .menu:hover .curtain {
     height: @child_menu_height;
@@ -119,10 +120,10 @@
     background-size: 100% 100%;
     transition: all 0.3s;
     transition-delay: 0.3s;
-}
-.userPortrait_image:hover {
-    cursor: pointer;
-    transform-origin: 21px 0;
-    transform: scale(2) translateY(10px);
-    box-shadow: 0 0 3px 1px lightskyblue;
+    &:hover {
+        cursor: pointer;
+        transform-origin: 21px 0;
+        transform: scale(2) translateY(10px);
+        box-shadow: 0 0 3px 1px lightskyblue;
+    }
 }
