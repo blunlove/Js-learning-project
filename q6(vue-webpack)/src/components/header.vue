@@ -8,17 +8,17 @@
             <div class="header_line_menu">
                 <div class="header_line_menu_left">
                     <ul>
-                        <li v-for="menu in menus_left" :class="'menu_left ' + menu.class">
+                        <li v-for="menu in menus_left" :class="'menu menu_left ' + menu.class">
                             <a class="i-link">
                                 <span>{{ menu.name }}</span>
                             </a>
-                            <div v-if="menu.class == 'game'" :class="'curtain ' + menu.class">
+                            <div v-if="menu.class == 'game'" :class="menu.class + ' curtain'">
                                 <game-menu></game-menu>
                             </div>
-                            <div v-else-if="menu.class == 'live'" :class="'curtain ' + menu.class">
+                            <div v-else-if="menu.class == 'live'" :class="menu.class + ' curtain'">
                                 <live-menu></live-menu>
                             </div>
-                            <div v-else-if="menu.class == 'mobile'" :class="'curtain ' + menu.class">
+                            <div v-else-if="menu.class == 'mobile'" :class="menu.class + ' curtain'">
                                 <mobile-menu></mobile-menu>
                             </div>
                         </li>
@@ -26,26 +26,26 @@
                 </div>
                 <div class="header_line_menu_right">
                     <ul>
-                        <li v-for="menu in menus_right" :class="'menu_right ' + menu.class">
+                        <li v-for="menu in menus_right" :class="'menu menu_right ' + menu.class">
                             <a class="i-link">
                                 <span>{{ menu.name }}</span>
                             </a>
-                            <div v-if="menu.class == 'message'" :class="'curtain ' + menu.class">
+                            <div v-if="menu.class == 'message'" :class="menu.class + ' curtain third'">
                                 
                             </div>
-                            <div v-else-if="menu.class == 'dynamic'" :class="'curtain ' + menu.class">
+                            <div v-else-if="menu.class == 'dynamic'" :class="menu.class + ' curtain third'">
                                 
                             </div>
-                            <div v-else-if="menu.class == 'later'" :class="'curtain ' + menu.class">
+                            <div v-else-if="menu.class == 'later'" :class="menu.class + ' curtain first'">
                                 
                             </div>
-                            <div v-else-if="menu.class == 'favorite'" :class="'curtain ' + menu.class">
+                            <div v-else-if="menu.class == 'favorite'" :class="menu.class + ' curtain second'">
                                 
                             </div>
-                            <div v-else-if="menu.class == 'history'" :class="'curtain ' + menu.class">
+                            <div v-else-if="menu.class == 'history'" :class="menu.class + ' curtain third'">
                                 
                             </div>
-                            <div v-else-if="menu.class == 'submission'" :class="'curtain ' + menu.class">
+                            <div v-else-if="menu.class == 'submission'" :class="menu.class + ' curtain second'">
                                 
                             </div>
                         </li>

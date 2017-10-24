@@ -70,13 +70,13 @@
     height: 42px;
 }
 .home, .game, .later {
-    width: 70px;
+    width: @menu_width_first;
 }
 .pay, .mobile, .favorite, .submission {
-    width: 58px;
+    width: @menu_width_second;
 }
 .friend, .live, .real-things, .message, .dynamic, .history {
-    width: 46px;
+    width: @menu_width_third;
 }
 .i-link {
     display: block;
@@ -94,20 +94,21 @@
     background: rgba(0, 0, 0, 0.2);
     transition: height 0.5s;
 }
-.game:hover .curtain {
-    height: @child_menu_height;
+.first {
+    left: @menu_width_first / 2 - @child_menu_width / 2;
 }
-.live:hover .curtain {
-    height: @child_menu_height;
+.second {
+    left: @menu_width_second / 2 - @child_menu_width / 2;
 }
-.mobile:hover .curtain {
-    height: @child_menu_height;
+.third {
+    left: @menu_width_third / 2 - @child_menu_width / 2;
 }
-.message:hover .curtain {
+.menu:hover .curtain {
     height: @child_menu_height;
 }
 .userPortrait {
     float: right;
+    margin-right: 20px;
 }
 .userPortrait_image {
     border-radius:18px;
