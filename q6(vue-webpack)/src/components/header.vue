@@ -8,11 +8,11 @@
             <div class="header_line_menu">
                 <div class="header_line_menu_left">
                     <ul>
-                        <li v-for="menu in menus_left" :class="'menu menu_left ' + menu.class + menu.size">
+                        <li v-for="menu in menus_left" :class="'menu ' + menu.class + menu.size">
                             <a class="i-link">
                                 <span>{{ menu.name }}</span>
                             </a>
-                            <div v-if="menu.child == 1" :class="menu.class + ' curtain'">
+                            <div v-if="menu.child == 1" :class="'curtain'">
                                 <component :is="menu.class + '-menu'"></component>
                             </div>
                         </li>
@@ -20,11 +20,11 @@
                 </div>
                 <div class="header_line_menu_right">
                     <ul>
-                        <li v-for="menu in menus_right" :class="'menu menu_right ' + menu.class + menu.size">
-                            <a class="i-link">
+                        <li v-for="menu in menus_right" :class="'menu ' + menu.class + menu.size">
+                            <a class="i-link"> 
                                 <span>{{ menu.name }}</span>
                             </a>
-                            <div :class="menu.class + ' curtain'">
+                            <div :class="'curtain'">
                                 <component :is="menu.class + '-menu'"></component>
                             </div>
                         </li>
@@ -33,9 +33,9 @@
                 <div class="userPortrait">
                     <div class="userPortrait_image"></div>
                 </div>
+                <a id="logo"></a>
             </div>
         </div>
-        <a id="logo"></a>
     </div>
 </template>
 <script>

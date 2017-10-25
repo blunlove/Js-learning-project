@@ -1,3 +1,3 @@
 <template>
-    <div class="message">ss</div>
+    <div class="message_menu">message</div>
 </template>

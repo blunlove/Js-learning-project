@@ -4,65 +4,77 @@
     height: 170px;
     background: transparent @header_image_path no-repeat center;
 }
+
 .header_line {
     position: relative;
     height: 42px;
-    &_under {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        overflow: hidden;
-        &_filter {
-            height: 62px;
-            width: 100%;
-            position: absolute;
-            top: -4px;
-            background: transparent @header_image_path no-repeat;
-            background-position: center 0px!important;
-            filter: blur(5px);
-        }
-        &_color {
-            position: absolute;
-            top: 0;
-            left: 0;
-            height: 100%;
-            width: 100%;
-            background-color: rgba(255, 255, 255, 0.4);
-            z-index: 10;
-        }
+}
+
+.header_line_under {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.header_line_under_filter {
+    height: 62px;
+    width: 100%;
+    position: absolute;
+    top: -4px;
+    background: transparent @header_image_path no-repeat;
+    background-position: center 0px!important;
+    filter: blur(5px);
+}
+
+.header_line_under_color {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.4);
+    z-index: 10;
+}
+
+.header_line_menu {
+    position: relative;
+    height: 100%;
+    z-index: 20;
+    width: 980px;
+    margin: auto;
+}
+
+.header_line_menu_left {
+    width: 394px;
+    float: left;
+}
+
+.header_line_menu_right {
+    width: 339px;
+    float: right;
+    .first .curtain {
+        left: @menu_width_first / 2 - @child_menu_width / 2;
     }
-    &_menu {
-        position: relative;
-        height: 100%;
-        z-index: 20;
-        width: 980px;
-        margin: auto;
-        &_left {
-            width: 394px;
-            float: left;
-        }
-            &_right {
-            width: 339px;
-            float: right;
-        }
+    .second .curtain {
+        left: @menu_width_second / 2 - @child_menu_width / 2;
+    }
+    .third .curtain {
+        left: @menu_width_third / 2 - @child_menu_width / 2;
     }
 }
 
 #logo {
     background: @logo_image_path;
     position: absolute;
+    z-index: -1;
     width: 220px;
     height: 105px;
     left: 24px;
     top: 55px;
 }
-.home {
-    background: @icons_image_path no-repeat -910px -74px;
-    .i-link {
-        padding-left: 20px;
-    }
-}
-.menu_left, .menu_right {
+
+.menu {
     position: relative;
     display: inline-block;
     line-height: 42px;
@@ -70,15 +82,19 @@
     color: black;
     height: 42px;
 }
+
 .first {
     width: @menu_width_first;
 }
+
 .second {
     width: @menu_width_second;
 }
+
 .third {
     width: @menu_width_third;
 }
+
 .i-link {
     display: block;
     transition: background 0.2s;
@@ -86,15 +102,14 @@
         background: rgba(255, 255, 255, 0.24);
     }
 }
-.menu_right.first .curtain {
-    left: @menu_width_first / 2 - @child_menu_width / 2;
+
+.home {
+    background: @icons_image_path no-repeat -910px -74px;
+    .i-link {
+        padding-left: 20px;
+    }
 }
-.menu_right.second .curtain {
-    left: @menu_width_second / 2 - @child_menu_width / 2;
-}
-.menu_right.third .curtain {
-    left: @menu_width_third / 2 - @child_menu_width / 2;
-}
+
 .curtain {
     position: absolute;
     text-align: left;
@@ -104,15 +119,18 @@
     background: rgba(0, 0, 0, 0.2);
     transition: height 0.5s;
 }
+
 .menu:hover .curtain {
     height: @child_menu_height;
 }
+
 .userPortrait {
     float: right;
     margin-right: 20px;
 }
+
 .userPortrait_image {
-    border-radius:18px;
+    border-radius: 18px;
     margin-top: 3px;
     background: @userPortrait_image_path;
     width: @userPortrait_size_begin;

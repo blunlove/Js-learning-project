@@ -1,3 +1,3 @@
 <template>
-    <div></div>
+    <div class="favorite_menu">favorite</div>
 </template>

@@ -1,3 +1,3 @@
 <template>
-    <div></div>
+    <div class="dynamic_menu">dynamic</div>
 </template>

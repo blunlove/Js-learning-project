@@ -1,3 +1,3 @@
 <template>
-    <div></div>
+    <div class="submission_menu">submission</div>
 </template>
