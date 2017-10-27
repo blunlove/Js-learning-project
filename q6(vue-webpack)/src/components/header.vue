@@ -37,6 +37,8 @@
                     <div class="userPortrait_image"></div>
                 </div>
             </div>
+            <div class="animation" :style="style" v-on:mouseover="over()" v-on:mouseleave="leave()">
+            </div>
         </div>
     </div>
 </template>
@@ -72,11 +74,50 @@ export default {
     data() {
         return {
             menus_left: menus_left,
-            menus_right: menus_right
+            menus_right: menus_right,
+            style: 'background-position: -00px',
+            isClick: false,
+            isAn: false,
+            leaving: false,
+            frame: 0
         }
     },
     methods: {
-
+        animation () {
+            setTimeout(() => {
+                if (this.leaving == true){
+                    this.frame--;
+                }else {
+                    this.frame++;
+                    if ( this.frame > 15 ) {
+                        this.frame = this.frame - 6;
+                    }
+                }
+                let px = this.frame * 80;
+                this.style = `background-position: -${px}px`;
+                if (this.frame > 0){
+                    this.animation();
+                }else {
+                    this.leaving = false;
+                    this.isAn = false;
+                }
+            }, 100);
+        },
+        over () {
+            if (!this.isClick) {
+                this.leaving = false;
+                this.isClick = true;
+                if (!this.isAn) {
+                    this.isAn = true;
+                    this.animation();
+                }
+            }
+        },
+        leave () {
+            this.leaving = true;
+            this.frame = 10;
+            this.isClick = false;
+        }
     },
     components: {
         gameMenu,
