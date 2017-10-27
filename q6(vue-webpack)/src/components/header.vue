@@ -5,8 +5,11 @@
                 <div class="header_line_under_filter"></div>
                 <div class="header_line_under_color"></div>
             </div>
-            <div class="header_line_menu">
-                <div class="header_line_menu_left">
+        </div>
+        <div class="header_back">
+            <a id="logo"></a>
+            <div class="header_menu">
+                <div class="header_menu_left">
                     <ul>
                         <li v-for="menu in menus_left" :class="'menu ' + menu.class + menu.size">
                             <a class="i-link">
@@ -18,7 +21,7 @@
                         </li>
                     </ul>
                 </div>
-                <div class="header_line_menu_right">
+                <div class="header_menu_right">
                     <ul>
                         <li v-for="menu in menus_right" :class="'menu ' + menu.class + menu.size">
                             <a class="i-link"> 
@@ -33,7 +36,6 @@
                 <div class="userPortrait">
                     <div class="userPortrait_image"></div>
                 </div>
-                <a id="logo"></a>
             </div>
         </div>
     </div>
