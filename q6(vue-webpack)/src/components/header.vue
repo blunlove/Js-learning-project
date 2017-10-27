@@ -69,6 +69,9 @@ let menus_right = [
     { name: '历史', class: 'history', size: ' third' },
     { name: '投稿', class: 'submission', size: ' second' },
 ];
+let isAn = false;
+let leaving = false;
+let frame = 0;
 export default {
     name: 'headerMenu_left',
     data() {
@@ -76,47 +79,41 @@ export default {
             menus_left: menus_left,
             menus_right: menus_right,
             style: 'background-position: -00px',
-            isClick: false,
-            isAn: false,
-            leaving: false,
-            frame: 0
         }
     },
     methods: {
         animation () {
             setTimeout(() => {
-                if (this.leaving == true){
-                    this.frame--;
+                if (leaving == true){
+                    frame--;
                 }else {
-                    this.frame++;
-                    if ( this.frame > 15 ) {
-                        this.frame = this.frame - 6;
+                    frame++;
+                    if ( frame > 15 ) {
+                        frame = frame - 6;
                     }
                 }
-                let px = this.frame * 80;
+                let px = frame * 80;
                 this.style = `background-position: -${px}px`;
-                if (this.frame > 0){
+                if (frame > 0){
                     this.animation();
                 }else {
-                    this.leaving = false;
-                    this.isAn = false;
+                    leaving = false;
+                    isAn = false;
                 }
             }, 100);
         },
         over () {
-            if (!this.isClick) {
-                this.leaving = false;
-                this.isClick = true;
-                if (!this.isAn) {
-                    this.isAn = true;
-                    this.animation();
-                }
+            leaving = false;
+            if (!isAn) {
+                isAn = true;
+                this.animation();
             }
         },
         leave () {
-            this.leaving = true;
-            this.frame = 10;
-            this.isClick = false;
+            leaving = true;
+            if (frame > 10) {
+                frame = 10;
+            }
         }
     },
     components: {
