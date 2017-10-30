@@ -45,6 +45,7 @@
 
 .header_menu {
     position: relative;
+    z-index: 1;
     height: 42px;
     width: 100%;
 }
@@ -55,7 +56,7 @@
 
 .header_menu_right {
     float: right;
-    margin-right: 48px;
+    margin-right: 53px;
     .first .curtain {
         left: @menu_width_first / 2 - @child_menu_width / 2;
     }
@@ -70,6 +71,7 @@
 #logo {
     background: @logo_image_path;
     position: absolute;
+    z-index: 0;
     width: 220px;
     height: 105px;
     left: 24px;
@@ -115,6 +117,16 @@
         background: -webkit-linear-gradient(#FE84AC, #E17598);
     }
 }
+
+.submission_icon:hover + .header_menu_right .submission {
+    .i-link {
+        background: -webkit-linear-gradient(#FE84AC, #E17598);
+    }
+    .curtain {
+        height: @child_menu_height;
+    }
+}
+
 .home {
     background: @icons_image_path no-repeat -910px -74px;
     .i-link {
@@ -161,9 +173,11 @@
 .submission_icon {
     position: absolute;
     right: 0;
-    width: 50px;
+    z-index: 10;
+    top: 4px;
+    width: 55px;
     height: 42px;
-    background: @icons_image_path -839px -331px;
+    background: @icon2_image_path no-repeat;
 }
 
 .mobilePhone {

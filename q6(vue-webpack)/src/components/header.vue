@@ -7,7 +7,6 @@
             </div>
         </div>
         <div class="header_back">
-            <a id="logo"></a>
             <div class="header_menu">
                 <div class="header_menu_left">
                     <ul>
@@ -21,6 +20,7 @@
                         </li>
                     </ul>
                 </div>
+                <div class="submission_icon"></div>
                 <div class="header_menu_right">
                     <ul>
                         <li v-for="menu in menus_right" :class="'menu ' + menu.class + menu.size">
@@ -33,11 +33,11 @@
                         </li>
                     </ul>
                 </div>
-                <div class="submission_icon"></div>
                 <div class="userPortrait">
                     <div class="userPortrait_image"></div>
                 </div>
             </div>
+            <a id="logo"></a>
             <div class="mobilePhone" :style="style" v-on:mouseover="mobilePhone_over()" v-on:mouseleave="mobilePhone_leave()">
             </div>
         </div>
@@ -87,7 +87,7 @@ export default {
     methods: {
         mobilePhone_animation () {
             setTimeout(() => {
-                if (mobilePhone.leaving == true){
+                if (mobilePhone.isLeaving == true){
                     mobilePhone.frame--;
                 }else {
                     mobilePhone.frame++;
@@ -100,20 +100,20 @@ export default {
                 if (mobilePhone.frame > 0){
                     this.mobilePhone_animation();
                 }else {
-                    mobilePhone.leaving = false;
+                    mobilePhone.isLeaving = false;
                     mobilePhone.isAnimation = false;
                 }
             }, 100);
         },
         mobilePhone_over () {
-            mobilePhone.leaving = false;
+            mobilePhone.isLeaving = false;
             if (!mobilePhone.isAnimation) {
                 mobilePhone.isAnimation = true;
                 this.mobilePhone_animation();
             }
         },
         mobilePhone_leave () {
-            mobilePhone.leaving = true;
+            mobilePhone.isLeaving = true;
             if (mobilePhone.frame > 10) {
                 mobilePhone.frame = 10;
             }
