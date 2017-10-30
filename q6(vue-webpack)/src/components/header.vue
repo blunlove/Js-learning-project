@@ -33,11 +33,12 @@
                         </li>
                     </ul>
                 </div>
+                <div class="submission_icon"></div>
                 <div class="userPortrait">
                     <div class="userPortrait_image"></div>
                 </div>
             </div>
-            <div class="animation" :style="style" v-on:mouseover="over()" v-on:mouseleave="leave()">
+            <div class="mobilePhone" :style="style" v-on:mouseover="mobilePhone_over()" v-on:mouseleave="mobilePhone_leave()">
             </div>
         </div>
     </div>
@@ -69,50 +70,52 @@ let menus_right = [
     { name: '历史', class: 'history', size: ' third' },
     { name: '投稿', class: 'submission', size: ' second' },
 ];
-let isAn = false;
-let leaving = false;
-let frame = 0;
+let mobilePhone = {
+    isAnimation : false,
+    isLeaving : false,
+    frame : 0,
+};
 export default {
     name: 'headerMenu_left',
     data() {
         return {
             menus_left: menus_left,
             menus_right: menus_right,
-            style: 'background-position: -00px',
+            style: '',
         }
     },
     methods: {
-        animation () {
+        mobilePhone_animation () {
             setTimeout(() => {
-                if (leaving == true){
-                    frame--;
+                if (mobilePhone.leaving == true){
+                    mobilePhone.frame--;
                 }else {
-                    frame++;
-                    if ( frame > 15 ) {
-                        frame = frame - 6;
+                    mobilePhone.frame++;
+                    if ( mobilePhone.frame > 15 ) {
+                        mobilePhone.frame = mobilePhone.frame - 6;
                     }
                 }
-                let px = frame * 80;
+                let px = mobilePhone.frame * 80;
                 this.style = `background-position: -${px}px`;
-                if (frame > 0){
-                    this.animation();
+                if (mobilePhone.frame > 0){
+                    this.mobilePhone_animation();
                 }else {
-                    leaving = false;
-                    isAn = false;
+                    mobilePhone.leaving = false;
+                    mobilePhone.isAnimation = false;
                 }
             }, 100);
         },
-        over () {
-            leaving = false;
-            if (!isAn) {
-                isAn = true;
-                this.animation();
+        mobilePhone_over () {
+            mobilePhone.leaving = false;
+            if (!mobilePhone.isAnimation) {
+                mobilePhone.isAnimation = true;
+                this.mobilePhone_animation();
             }
         },
-        leave () {
-            leaving = true;
-            if (frame > 10) {
-                frame = 10;
+        mobilePhone_leave () {
+            mobilePhone.leaving = true;
+            if (mobilePhone.frame > 10) {
+                mobilePhone.frame = 10;
             }
         }
     },

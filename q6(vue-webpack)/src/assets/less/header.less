@@ -38,7 +38,7 @@
 .header_back {
     position: relative;
     top: -42px;
-    width: 980px;
+    width: 1028px;
     height: 100%;
     margin: auto;
 }
@@ -50,13 +50,12 @@
 }
 
 .header_menu_left {
-    width: 394px;
     float: left;
 }
 
 .header_menu_right {
-    width: 339px;
     float: right;
+    margin-right: 48px;
     .first .curtain {
         left: @menu_width_first / 2 - @child_menu_width / 2;
     }
@@ -106,6 +105,16 @@
     }
 }
 
+.submission .i-link {
+    height: 48px;
+    border-radius: 0 0 6px 6px;
+    background: -webkit-linear-gradient(#F15C8D, #D5527D);
+    color: white;
+    font-size: 13px;
+    &:hover {
+        background: -webkit-linear-gradient(#FE84AC, #E17598);
+    }
+}
 .home {
     background: @icons_image_path no-repeat -910px -74px;
     .i-link {
@@ -149,12 +158,20 @@
     }
 }
 
-.animation {
+.submission_icon {
+    position: absolute;
+    right: 0;
+    width: 50px;
+    height: 42px;
+    background: @icons_image_path -839px -331px;
+}
+
+.mobilePhone {
     position: absolute;
     width: 80px;
     height: 80px;
-    top: 80px;
-    left: 50px;
+    top: 300px;
+    right: 50px;
     cursor: pointer;
     background: url(../imgs/header/animation.png);
 }
