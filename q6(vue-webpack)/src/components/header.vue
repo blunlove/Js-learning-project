@@ -107,7 +107,6 @@ export default {
                     }
                 }
                 let px = mobilePhone.frame * 80;
-                console.log(mobilePhone.frame)
                 this.style = `background-position: -${px}px`;
                 if (mobilePhone.frame > 0){
                     this.mobilePhone_animation();
