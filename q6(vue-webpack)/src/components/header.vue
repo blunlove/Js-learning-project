@@ -34,10 +34,17 @@
                     </ul>
                 </div>
                 <div class="userPortrait">
-                    <div class="userPortrait_image"></div>
+                    <a class="userPortrait_image"></a>
                 </div>
             </div>
             <a id="logo"></a>
+            <div class="search">
+                <div class="search_button search_rankList">
+                    <div class="search_rankList_image">排行榜</div>
+                </div>
+                <div class="magnifier"></div>
+                <input class="search_button search_frame" :placeholder="search_value">
+            </div>
             <div class="mobilePhone" :style="style" v-on:mouseover="mobilePhone_over()" v-on:mouseleave="mobilePhone_leave()">
             </div>
         </div>
@@ -70,6 +77,7 @@ let menus_right = [
     { name: '历史', class: 'history', size: ' third' },
     { name: '投稿', class: 'submission', size: ' second' },
 ];
+let search_value = '高燃预警！看童话镇秒变生化镇'
 let mobilePhone = {
     isAnimation : false,
     isLeaving : false,
@@ -82,6 +90,7 @@ export default {
             menus_left: menus_left,
             menus_right: menus_right,
             style: '',
+            search_value: search_value,
         }
     },
     methods: {
@@ -117,6 +126,9 @@ export default {
             if (mobilePhone.frame > 10) {
                 mobilePhone.frame = 10;
             }
+        },
+        input_onfocus () {
+            
         }
     },
     components: {

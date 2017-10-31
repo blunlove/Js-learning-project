@@ -190,3 +190,73 @@
     background: url(../imgs/header/animation.png);
 }
 
+.search {
+    position: absolute;
+    border-radius: 6px;
+    padding: 2px;
+    right: 0;
+    bottom: 20px;
+    width: 338px;
+    height: 32px;
+    background: rgba(0, 0, 0, 0.12);
+}
+
+.search_button {
+    display: inline-block;
+    border-radius: 4px;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.88);
+    &:hover {
+        background: #fff;
+    }
+}
+
+.search_rankList {
+    width: 68px;
+    margin-right: 2px;
+    cursor: pointer;
+    line-height: 30px;
+    text-align: center;
+}
+
+.search_frame {
+    position: absolute;
+    border: 0;
+    padding: 0;
+    padding-left: 10px;
+    height: 32px;
+    width: 208px;
+    padding-right: 50px;
+    &:focus {
+        outline: none;
+    }
+}
+
+.search_rankList_image {
+    display: inline-block;
+    font-size: 12px;
+    padding-left: 16px;
+    line-height: 14px;
+    text-align: right;
+    width: 40px;
+    height: 16px;
+    color: #F25D8E;
+    background: @icons_image_path -664px -663px no-repeat;
+}
+
+.magnifier {
+    position: absolute;
+    z-index: 2;
+    top: 9px;
+    right: 0;
+    width: 38px;
+    height: 18px;
+    background: @icons_image_path -663px -728px;
+    &:hover {
+        background-position: -728px -728px;
+        cursor: pointer;
+        + .search_button {
+            background: #fff;
+        }
+    }
+}
