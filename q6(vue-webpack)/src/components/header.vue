@@ -34,7 +34,7 @@
                     </ul>
                 </div>
                 <div class="userPortrait">
-                    <a class="userPortrait_image"></a>
+                    <div class="userPortrait_image"></div>
                 </div>
             </div>
             <a id="logo"></a>
