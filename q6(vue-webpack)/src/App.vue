@@ -1,7 +1,7 @@
 <template>
     <div id="app">
         <header-tab></header-tab>
-        
+        <header-add-tab></header-add-tab>
         <div class="nav-box">
             <p class="nav-list">
                 <router-link class="nav-item" to="/">首页</router-link>
@@ -17,6 +17,7 @@
 
 <script>
 import HeaderTab from './components/header.vue';
+import HeaderAddTab from './components/header_add.vue';
 import FooterTab from './components/footer.vue';
 export default {
     name: 'app',
@@ -26,7 +27,7 @@ export default {
         }
     },
     components: {
-        HeaderTab, FooterTab
+        HeaderTab, FooterTab, HeaderAddTab
     }
 }
 </script>

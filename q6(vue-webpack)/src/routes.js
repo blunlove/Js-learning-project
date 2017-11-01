@@ -1,7 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import indexPage from './components/header.vue';
-import homePage from './views/home.vue';
+import indexPage from './views/index.vue';
 import aboutPage from './views/about.vue';
 
 Vue.use(Router);
@@ -10,7 +9,7 @@ export default new Router({
     routes: [
         {
             path: '/',
-            component: homePage
+            component: indexPage
         },
         {
             path: '/about',
