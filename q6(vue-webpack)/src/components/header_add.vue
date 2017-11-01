@@ -14,6 +14,7 @@
             <div>{{ menu.name }}</div>
         </li>
     </ul>
+    <div class="special_gif"></div>
 </div>
 </template>
 
