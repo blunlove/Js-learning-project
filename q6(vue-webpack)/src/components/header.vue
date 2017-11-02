@@ -37,7 +37,8 @@
                     <div class="userPortrait_image"></div>
                 </div>
             </div>
-            <a id="logo"></a>
+            <!--about页面测试-->
+            <a id="logo" :is="'router-link'" to="/about"></a>
             <div class="search">
                 <div class="search_button search_rankList">
                     <div class="search_rankList_image">排行榜</div>

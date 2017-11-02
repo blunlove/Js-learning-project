@@ -2,15 +2,7 @@
     <div id="app">
         <header-tab></header-tab>
         <header-add-tab></header-add-tab>
-        <div class="nav-box">
-            <p class="nav-list">
-                <router-link class="nav-item" to="/">首页</router-link>
-                <router-link class="nav-item" to="/about">关于</router-link>
-            </p>
-        </div>
-        <div>
-            <router-view></router-view>
-        </div>
+        <router-view></router-view>
         <footer-tab></footer-tab>
     </div>
 </template>
