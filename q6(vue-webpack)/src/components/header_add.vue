@@ -19,12 +19,42 @@
                 </ul>
             </div>
         </li
-        ><li v-for="menu in menus_right" :class="'headerAdd_menu_item right_item ' + menu.class">
+        ><li :class="'headerAdd_menu_item right_item ' + menus_right[0].class">
             <div class="headerAdd_menu_item_topImage"></div>
-            <div>{{ menu.name }}</div>
+            <div>{{ menus_right[0].name }}</div>
+        </li
+        ><li :class="'headerAdd_menu_item right_item ' + menus_right[1].class">
+            <div class="headerAdd_menu_item_topImage"></div>
+            <div>{{ menus_right[1].name }}</div>
+            <div class="right_item_child">
+                <ul>
+                    <li v-for="child in menus_right[1].child_menus" class="right_item_child_menu">
+                        <div class="arrow">{{ child }}</div>
+                    </li>
+                </ul>
+            </div>
+        </li
+        ><li :class="'headerAdd_menu_item right_item ' + menus_right[2].class">
+            <div class="headerAdd_menu_item_topImage"></div>
+            <div>{{ menus_right[2].name }}</div>
+            <div class="right_item_child">
+                <ul>
+                    <li v-for="child in menus_right[2].child_menus" class="right_item_child_menu">
+                        <div class="arrow">{{ child }}</div
+                        ><div class="arrow_back_frame">
+                            <div class="arrow_back"></div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </li
+        ><li :class="'headerAdd_menu_item right_item ' + menus_right[3].class">
+            <div class="headerAdd_menu_item_topImage"></div>
+            <div>{{ menus_right[3].name }}</div>
         </li>
     </ul>
     <div class="special_gif"></div>
+    <router-view></router-view>
 </div>
 </template>
 
@@ -128,11 +158,28 @@ let menus_left = [{
         ]
     },
 ];
-let menus_right = [
-    { name: '专栏', class: 'special' },
-    { name: '广场', class: 'square' },
-    { name: '直播', class: 'liveBroadcast' },
-    { name: '小黑屋', class: 'blackHouse' },
+let menus_right = [{
+        name: '专栏',
+        class: 'special'
+    },
+    {
+        name: '广场',
+        class: 'square',
+        child_menus: [
+            '会员购', '活动中心', '游戏中心', '新闻中心', '画友', '芒果TV'
+        ]
+    },
+    {
+        name: '直播',
+        class: 'liveBroadcast',
+        child_menus: [
+            '推荐主播', '生活娱乐', '绘画专区', '唱见舞见', '御宅文化', '单机联机', '网络游戏', '电子竞技', '手游直播'
+        ]
+    },
+    {
+        name: '小黑屋',
+        class: 'blackHouse'
+    },
 ];
 export default {
     name: 'home',
