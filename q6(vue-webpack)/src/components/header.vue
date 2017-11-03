@@ -46,8 +46,6 @@
                 <div class="magnifier"></div>
                 <input class="search_button search_frame" :placeholder="search_value">
             </div>
-            <div class="mobilePhone" :style="style" v-on:mouseover="mobilePhone_over()" v-on:mouseleave="mobilePhone_leave()">
-            </div>
         </div>
     </div>
 </template>
@@ -79,64 +77,18 @@ let menus_right = [
     { name: '投稿', class: 'submission', size: ' second' },
 ];
 let search_value = '高燃预警！看童话镇秒变生化镇'
-let mobilePhone = {
-    isAnimation: false,
-    isLeaving: false,
-    begin: false,
-    frame: 0,
-};
+
 export default {
-    name: 'headerMenu_left',
+    name: 'header',
     data() {
         return {
             menus_left: menus_left,
             menus_right: menus_right,
-            style: '',
             search_value: search_value,
         }
     },
     methods: {
-        mobilePhone_animation () {
-            setTimeout(() => {
-                mobilePhone.isAnimation = true;
-                if (mobilePhone.isLeaving == true){
-                    mobilePhone.frame--;
-                }else {
-                    mobilePhone.frame++;
-                    if ( mobilePhone.frame > 15 ) {
-                        mobilePhone.frame = mobilePhone.frame - 6;
-                    }
-                }
-                let px = mobilePhone.frame * 80;
-                this.style = `background-position: -${px}px`;
-                if (mobilePhone.frame > 0){
-                    this.mobilePhone_animation();
-                }else {
-                    mobilePhone.isLeaving = false;
-                    mobilePhone.isAnimation = false;
-                    mobilePhone.begin = false;
-                }
-            }, 100);
-        },
-        mobilePhone_over () {
-            mobilePhone.isLeaving = false;
-            if (!mobilePhone.begin) {
-                mobilePhone.begin = true;
-                this.mobilePhone_animation();
-            }
-        },
-        mobilePhone_leave () {
-            if (!mobilePhone.isAnimation) {
-                return;
-            }
-            mobilePhone.isLeaving = true;
-            if (mobilePhone.frame > 10) {
-                mobilePhone.frame = 10;
-            }
-        },
-        input_onfocus () {
-            
-        }
+        
     },
     components: {
         gameMenu,

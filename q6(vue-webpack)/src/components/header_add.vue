@@ -29,9 +29,13 @@
             <div class="right_item_child">
                 <ul>
                     <li v-for="child in menus_right[1].child_menus" class="right_item_child_menu">
-                        <div class="arrow">{{ child }}</div>
+                        <div :class="'arrow change ' + child.class">{{ child.name }}</div>
                     </li>
                 </ul>
+                <div class="plate">
+                    <div class="label active"></div>
+                    <div class="label topic"></div>
+                </div>
             </div>
         </li
         ><li :class="'headerAdd_menu_item right_item ' + menus_right[2].class">
@@ -46,6 +50,10 @@
                         </div>
                     </li>
                 </ul>
+                <div class="plate">
+                    <div class="label photo"></div>
+                    <div class="label video"></div>
+                </div>
             </div>
         </li
         ><li :class="'headerAdd_menu_item right_item ' + menus_right[3].class">
@@ -166,7 +174,12 @@ let menus_right = [{
         name: '广场',
         class: 'square',
         child_menus: [
-            '会员购', '活动中心', '游戏中心', '新闻中心', '画友', '芒果TV'
+            { name: '会员购', class: 'vip_pay' },
+            { name: '活动中心', class: 'play_center' },
+            { name: '游戏中心', class: 'game_center' },
+            { name: '新闻中心', class: 'news_center' },
+            { name: '画友', class: 'paint_friend' },
+            { name: '芒果TV', class: 'mango_tv' },
         ]
     },
     {
@@ -182,7 +195,7 @@ let menus_right = [{
     },
 ];
 export default {
-    name: 'home',
+    name: 'header_add',
     data() {
         return {
             menus_left: menus_left,

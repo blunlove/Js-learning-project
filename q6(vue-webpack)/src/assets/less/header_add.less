@@ -22,11 +22,12 @@
     text-align: center;
     cursor: pointer;
     &:hover {
-        .left_item_child {
+        .left_item_child, .right_item_child {
             display: inline-block;
-        }
-        .right_item_child {
-            display: inline-block;
+            cursor: auto;
+            ul {
+                cursor: pointer;
+            }
         }
     }
 }
@@ -50,6 +51,7 @@
 .right_item_child {
     z-index: 0;
     ul {
+        float: left;
         width: 100px;
     }   
 }
@@ -60,8 +62,7 @@
     &:hover {
         background-color: #E5E9EF;
         .arrow {
-            padding-left: 29px;
-            background-position-x: 17px;
+            margin-left: 5px;
         }
         .arrow_back {
             right: 100%;
@@ -76,6 +77,31 @@
     background: @icons2_image_path 12px -1613px no-repeat;
     transition-timing-function: linear;
     transition: all 0.2s;
+}
+
+.square {
+    .change {
+        background: @icons_image_path no-repeat;
+        padding-left: 34px;
+    }
+    .vip_pay {
+        background-position: -335px -1231px;
+    }
+    .play_center {
+        background-position: -266px -1170px;
+    }
+    .game_center {
+        background-position: -266px -1232px;
+    }
+    .news_center {
+        background-position: -335px -1169px;
+    }
+    .paint_friend {
+        background-position: -266px -1361px;
+    }
+    .mango_tv {
+        background-position: -265px -1424px;
+    }
 }
 
 .arrow_back_frame {
@@ -127,12 +153,60 @@
     color: #00A1D6;
 }
 
-.square .right_item_child {
-    width: 387px;
+.square {
+    .right_item_child {
+        padding-top: 20px;
+        padding-bottom: 20px;
+        width: 387px;
+    }
+    .plate {
+        float: right;
+        border-left: #E5E6EF solid 1px;
+        height: 180px;
+        width: 286px;
+    }
+    .label {
+        margin: auto;
+        width: 240px;
+        height: 84px;
+        cursor: pointer;
+        &.active {
+            background: @label_active_image_path;
+        }
+        &.topic {
+            margin-top: 12px;
+            background: @label_topic_image_path;
+        }
+    }
 }
 
-.liveBroadcast .right_item_child {
-    width: 350px;
+
+.liveBroadcast {
+    .right_item_child {
+        padding-top: 8px;
+        padding-bottom: 8px;
+        width: 350px;
+    }
+    .plate {
+        float: right;
+        border-left: #E5E6EF solid 1px;
+        height: 270px;
+        width: 249px;
+    }
+    .label {
+        margin: auto;
+        width: 210px;
+        height: 100px;
+        cursor: pointer;
+        &.photo {
+            margin-top: 20px;
+            background: @label_photo_image_path;
+        }
+        &.video {
+            margin-top: 30px;
+            background: @label_video_image_path;
+        }
+    }
 }
 
 .index .headerAdd_menu_item_topImage {
