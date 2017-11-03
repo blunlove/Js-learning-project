@@ -11,11 +11,10 @@
                 </ul>
             </div>
             <div class="baffle"></div>
-            <div class="back_top">
+            <div class="back_top" @click="toTop()">
                 <div class="back_top_image"></div>
             </div>
             <div class="mobilePhone"
-                @click="toTop()"
                 :style="style"
                 v-on:mouseover="mobilePhone_over()"
                 v-on:mouseleave="mobilePhone_leave()">
@@ -84,6 +83,7 @@ export default {
         return {
             style: '',
             position_menu: position_menu,
+            style_suoyin: '',
         }
     },
     methods: {
@@ -126,6 +126,6 @@ export default {
             }
         },
         toTop
-    }
+    },
 }
 </script>
