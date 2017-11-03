@@ -1,9 +1,13 @@
 <template>
-<div class="body_index">
-    <div>index</div>
-    <div class="mobilePhone" :style="style" v-on:mouseover="mobilePhone_over()" v-on:mouseleave="mobilePhone_leave()">
+    <div class="body_index">
+        <div>index</div>
+        <div class="mobilePhone"
+            @click="toTop()"
+            :style="style"
+            v-on:mouseover="mobilePhone_over()"
+            v-on:mouseleave="mobilePhone_leave()">
+        </div>
     </div>
-</div>
 </template>
 
 <script>
@@ -13,6 +17,29 @@ let mobilePhone = {
     begin: false,
     frame: 0,
 };
+let scrolling = false;
+
+const disable_mousewheel = boolean => {
+    if (boolean) {
+        $(document).bind('mousewheel', () => false);
+    }else {
+        $(document).unbind('mousewheel');
+    }
+}
+
+const toTop = () => {
+    if (!scrolling) {
+        scrolling = true;
+        disable_mousewheel(true);
+        $("body").animate({
+            scrollTop: 0
+        }, 500, () => {
+            scrolling = false;
+            disable_mousewheel(false);
+        });
+    }
+}
+
 export default {
     name: 'index',
     data() {
@@ -59,6 +86,7 @@ export default {
                 mobilePhone.frame = 10;
             }
         },
+        toTop
     }
 }
 </script>
