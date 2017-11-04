@@ -1,23 +1,25 @@
 <template>
     <div class="body_index">
         <div>index</div>
-        <div class="suoyin">
-            <div class="position_menu">
-                <ul>
-                    <li v-for="menu in position_menu" :class="menu.class">{{ menu.name }}</li>
-                    <li class="position_18">
-                        <div class="position_18_image">排序</div>
-                    </li>
-                </ul>
-            </div>
-            <div class="baffle"></div>
-            <div class="back_top" @click="toTop()">
-                <div class="back_top_image"></div>
-            </div>
-            <div class="mobilePhone"
-                :style="style"
-                v-on:mouseover="mobilePhone_over()"
-                v-on:mouseleave="mobilePhone_leave()">
+        <div class="suoyin_road">
+            <div class="suoyin" :style="style_suoyin">
+                <div class="position_menu">
+                    <ul>
+                        <li v-for="menu in position_menu" :class="menu.class">{{ menu.name }}</li>
+                        <li class="position_18">
+                            <div class="position_18_image">排序</div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="baffle"></div>
+                <div class="back_top"@click="toTop()">
+                    <div class="back_top_image"></div>
+                </div>
+                <div class="mobilePhone"
+                    :style="style"
+                    v-on:mouseover="mobilePhone_over()"
+                    v-on:mouseleave="mobilePhone_leave()">
+                </div>
             </div>
         </div>
     </div>
@@ -127,5 +129,21 @@ export default {
         },
         toTop
     },
+    mounted() {
+        let position_menu_state = 0;
+        $(document).scroll(() => {
+            let now_scroll = $(document).scrollTop();
+            if (now_scroll > 170) {
+                position_menu_state = 1;
+            }else {
+                position_menu_state = 0;
+            }
+            if (position_menu_state) {
+                this.style_suoyin = 'top: 10px';
+            }else {
+                this.style_suoyin = 'top: 250px';
+            }
+        });
+    }
 }
 </script>

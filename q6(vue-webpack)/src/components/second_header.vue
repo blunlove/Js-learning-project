@@ -1,12 +1,12 @@
 <template>
-<div class="headerAdd">
-    <ul class="headerAdd_menu">
-        <li class="headerAdd_menu_item index" :is="'router-link'" to="/">
-            <div class="headerAdd_menu_item_topImage"></div>
+<div class="second_header">
+    <ul class="second_header_menu">
+        <li class="second_header_menu_item index" :is="'router-link'" to="/">
+            <div class="second_header_menu_item_topImage"></div>
             <div>首页</div>
         </li
-        ><li v-for="menu in menus_left" class="headerAdd_menu_item left_item">
-            <div class="headerAdd_menu_item_newsNumber">{{ menu.newsNumber }}</div>
+        ><li v-for="menu in menus_left" :class="'second_header_menu_item left_item ' + menu.class">
+            <div class="second_header_menu_item_newsNumber">{{ menu.newsNumber }}</div>
             <div>{{ menu.name }}</div>
             <div class="left_item_child">
                 <ul>
@@ -19,12 +19,12 @@
                 </ul>
             </div>
         </li
-        ><li :class="'headerAdd_menu_item right_item ' + menus_right[0].class">
-            <div class="headerAdd_menu_item_topImage"></div>
+        ><li :class="'second_header_menu_item right_item ' + menus_right[0].class">
+            <div class="second_header_menu_item_topImage"></div>
             <div>{{ menus_right[0].name }}</div>
         </li
-        ><li :class="'headerAdd_menu_item right_item ' + menus_right[1].class">
-            <div class="headerAdd_menu_item_topImage"></div>
+        ><li :class="'second_header_menu_item right_item ' + menus_right[1].class">
+            <div class="second_header_menu_item_topImage"></div>
             <div>{{ menus_right[1].name }}</div>
             <div class="right_item_child">
                 <ul>
@@ -38,8 +38,8 @@
                 </div>
             </div>
         </li
-        ><li :class="'headerAdd_menu_item right_item ' + menus_right[2].class">
-            <div class="headerAdd_menu_item_topImage"></div>
+        ><li :class="'second_header_menu_item right_item ' + menus_right[2].class">
+            <div class="second_header_menu_item_topImage"></div>
             <div>{{ menus_right[2].name }}</div>
             <div class="right_item_child">
                 <ul>
@@ -56,13 +56,12 @@
                 </div>
             </div>
         </li
-        ><li :class="'headerAdd_menu_item right_item ' + menus_right[3].class">
-            <div class="headerAdd_menu_item_topImage"></div>
+        ><li :class="'second_header_menu_item right_item ' + menus_right[3].class">
+            <div class="second_header_menu_item_topImage"></div>
             <div>{{ menus_right[3].name }}</div>
         </li>
     </ul>
     <div class="special_gif"></div>
-    <router-view></router-view>
 </div>
 </template>
 
@@ -166,6 +165,9 @@ let menus_left = [{
         ]
     },
 ];
+for (let i = 0; i < 14; i++) {
+    menus_left[i].class = 'second_menu_' + (i + 1).toString();
+}
 let menus_right = [{
         name: '专栏',
         class: 'special'
@@ -195,7 +197,7 @@ let menus_right = [{
     },
 ];
 export default {
-    name: 'header_add',
+    name: 'second_header',
     data() {
         return {
             menus_left: menus_left,
