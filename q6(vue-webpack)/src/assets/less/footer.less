@@ -53,60 +53,62 @@
                 display: inline-block;
                 padding-left: 50px;
                 padding-top: 8px;
-                div {
+                &_image {
                     position: relative;
                     display: inline-block;
                     margin-right: 20px;
-                    width: 66px;
-                    height: 16px;
-                    padding-top: 66px;
-                    text-align: center;
-                    cursor: pointer;
-                    transition: color 0.2s;
-                    div {
+                    &_word1, &_word2, &_word3 {
+                        width: 66px;
+                        height: 16px;
+                        padding-top: 66px;
+                        text-align: center;
+                        transition: color 0.2s;
+                        &:hover {
+                            cursor: pointer;
+                            color: #00A1D6;
+                            background-position-x: -1087px;
+                        }
+                    }
+                    &_word1 {
+                        background: @icons_image_path -1021px -196px;
+                    }
+                    &_word2 {
+                        background: @icons_image_path -1021px -324px;
+                    }
+                    &_word3 {
+                        background: @icons_image_path -1021px -68px;
+                    }
+                    &_erweima1, &_erweima2, &_erweima3 {
                         position: absolute;
                         visibility: hidden;
                         opacity: 0;
-                        transition: all 0.5s;
+                        transition: all 0.8s;
+                        background: @icons_image_path;
                     }
-                    &:nth-child(1) {
-                        background: @icons_image_path -1021px -196px;
-                        div {
-                            
-                            width: 130px;
-                            height: 143px;
-                            left: -32px;
-                            top: -153px;
-                            background: @icons_image_path -1260px -1817px;
-                        }
+                    &_erweima1 {
+                        width: 130px;
+                        height: 143px;
+                        left: -32px;
+                        top: -153px;
+                        background-position: -1260px -1817px;
                     }
-                    &:nth-child(2) {
-                        background: @icons_image_path -1021px -324px;
-                        div {
-                            width: 130px;
-                            height: 143px;
-                            left: -32px;
-                            top: -153px;
-                            background: @icons_image_path -1260px -2025px;
-                        }
+                    &_erweima2 {
+                        width: 130px;
+                        height: 143px;
+                        left: -32px;
+                        top: -153px;
+                        background-position: -1260px -2025px;
                     }
-                    &:nth-child(3) {
-                        background: @icons_image_path -1021px -68px;
-                        div {
-                            width: 250px;
-                            height: 159px;
-                            left: -153px;
-                            top: -169px;
-                            background: @icons_image_path -1260px -2229px;
-                        }
+                    &_erweima3 {
+                        width: 250px;
+                        height: 159px;
+                        left: -153px;
+                        top: -169px;
+                        background-position: -1260px -2229px;
                     }
-                    &:hover {
-                        color: #00A1D6;
-                        background-position-x: -1087px;
-                        div {
-                            opacity: 1;
-                            visibility: visible;
-                        }
+                    &:hover .footer_erweima {
+                        visibility: visible;
+                        opacity: 1;
                     }
                 }
             }

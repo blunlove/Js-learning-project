@@ -13,17 +13,9 @@
                 </div>
                 <div class="footer_top_menu footer_top_download">
                     <div class="footer_top_download_plate">
-                        <div class="footer_top_download_PhoneClient">
-                            <div></div>
-                            <div>手机端下载</div>
-                        </div>
-                        <div class="footer_top_download_MicroBlog">
-                            <div class="footer_top_download_MicroBlog_erweima"></div>
-                            <div>新浪微博</div>
-                        </div>
-                        <div class="footer_top_download_WeChat">
-                            <div class="footer_top_download_WeChat_erweima"></div>
-                            <div>官方微信</div>
+                        <div v-for="plate in footer_download_plate" class="footer_top_download_plate_image">
+                            <div :class="'footer_top_download_plate_image_word' + plate.class">{{ plate.content }}</div>
+                            <div :class="'footer_erweima footer_top_download_plate_image_erweima' + plate.class"></div>
                         </div>
                     </div>
                 </div>
@@ -45,7 +37,7 @@
                         <span>儿童色情信息举报专区</span>
                     </div>
                     <div class="footer_tail_right_word3">
-                        <span>网上有害信息举报专区：<div class="footer_tail_right_icon3"></div> 中国互联网违法和不良信息举报中心</span>
+                        <span>网上有害信息举报专区：<div class="footer_tail_right_icon3"></div>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp中国互联网违法和不良信息举报中心</span>
                     </div>
                 </div>
             </div>
@@ -68,11 +60,17 @@
             { name: 'third', contents: [ '活动专题页', '活动中心', '名人堂' ] },
         ]},
     ];
+    let footer_download_plate = [
+        { content: '手机端下载', class: '1' },
+        { content: '新浪微博', class: '2' },
+        { content: '官方微信', class: '3' },
+    ];
     export default {
         name: 'header',
         data() {
             return {
                 footer_top_menu: footer_top_menu,
+                footer_download_plate: footer_download_plate,
             }
         },
     }
