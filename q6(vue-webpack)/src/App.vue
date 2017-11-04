@@ -12,8 +12,8 @@
             <header-tab></header-tab>
             <second-header-tab></second-header-tab>
             <router-view></router-view>
-            <footer-tab></footer-tab>
         </div>
+        <footer-tab></footer-tab>
     </div>
 </template>
 

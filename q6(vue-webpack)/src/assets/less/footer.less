@@ -1,0 +1,97 @@
+.footer_back {
+    position: relative;
+    padding-top: 50px;
+    background-color: #F6F9FA;
+}
+
+.footer {
+    position: relative;
+    width: @back_change_width;
+    margin: auto;
+    font-size: 13px;
+    &_top {
+        position: relative;
+        display: flex;
+        margin-bottom: 30px;
+        &_menu {
+            position: relative;
+            flex: 1;
+            height: 100%;
+        }
+        &_bilibili, &_portal {
+            &_plate {
+                margin-left: 20px;
+                &_title {
+                    color: #99A2AA;
+                    height: 25px;
+                }
+                &_first, &_second, &_third {
+                    font-size: 14px;
+                    display: inline-block;
+                    margin-right: 40px;
+                    div {
+                        margin-top: 10px;
+                    }
+                    span {
+                        &:hover {
+                            cursor: pointer;
+                            color: #00A1D6;
+                        }
+                    }
+                }
+            }
+        }
+        &_portal {
+            border-left: 1px solid #E5E9EF;
+            border-right: 1px solid #E5E9EF;
+        }
+        &_download {
+        }
+    }
+    &_tail {
+        position: relative;
+        &_left {
+            display: inline-block;
+            &_icon {
+                width: 96px;
+                height: 75px;
+                background: @foot_icon_image_path;
+            }
+        }
+        &_right {
+            display: inline-block;
+            vertical-align: top;
+            margin-left: 10px;
+            width: 814px;
+            font-size: 12px;
+            color: #99A2AA;
+            line-height: 24px;
+            &_word2, &_word3 {
+                position: relative;
+                span {
+                    transition: all 0.2s;
+                    &:hover {
+                        cursor: pointer;
+                        color: black;
+                    }
+                }
+            }
+            &_icon1, &_icon2, &_icon3 {
+                position: absolute;
+                display: inline-block;
+                width: 22px;
+                height: 22px;
+                background: @icons_image_path;
+            }
+            &_icon1 {
+                background-position: -1364px -86px;
+            }
+            &_icon2 {
+                background-position:  -1364px -44px;
+            }
+            &_icon3 {
+                background-position:  -1430px -86px;
+            }
+        }
+    }
+}
