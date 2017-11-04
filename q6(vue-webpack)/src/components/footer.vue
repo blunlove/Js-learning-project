@@ -11,7 +11,22 @@
                         </div>
                     </div>
                 </div>
-                <div class="footer_top_menu footer_top_download"></div>
+                <div class="footer_top_menu footer_top_download">
+                    <div class="footer_top_download_plate">
+                        <div class="footer_top_download_PhoneClient">
+                            <div></div>
+                            <div>手机端下载</div>
+                        </div>
+                        <div class="footer_top_download_MicroBlog">
+                            <div class="footer_top_download_MicroBlog_erweima"></div>
+                            <div>新浪微博</div>
+                        </div>
+                        <div class="footer_top_download_WeChat">
+                            <div class="footer_top_download_WeChat_erweima"></div>
+                            <div>官方微信</div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="footer_tail">
                 <div class="footer_tail_left">

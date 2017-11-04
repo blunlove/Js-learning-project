@@ -93,6 +93,23 @@
     height: 80px;
     left: -15px;
     top: -18px;
-    cursor: pointer;
     background: url(../imgs/header/animation.png);
+    &_download_image {
+        position: absolute;
+        visibility: hidden;
+        opacity: 0;
+        width: 106px;
+        height: 44px;
+        top: -20px;
+        left: -106px;
+        background: @mobilePhone_download_image_path;
+        transition: all 0.8s;
+    }
+    &:hover {
+        cursor: pointer;
+        .mobilePhone_download_image {
+            opacity: 1;
+            visibility: visible;
+        }
+    }
 }

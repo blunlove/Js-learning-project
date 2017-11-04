@@ -1,11 +1,12 @@
 .footer_back {
     position: relative;
-    padding-top: 50px;
     background-color: #F6F9FA;
 }
 
 .footer {
     position: relative;
+    padding-top: 50px;
+    padding-bottom: 30px;
     width: @back_change_width;
     margin: auto;
     font-size: 13px;
@@ -33,6 +34,7 @@
                         margin-top: 10px;
                     }
                     span {
+                        transition: all 0.2s;
                         &:hover {
                             cursor: pointer;
                             color: #00A1D6;
@@ -46,6 +48,68 @@
             border-right: 1px solid #E5E9EF;
         }
         &_download {
+            &_plate {
+                position: relative;
+                display: inline-block;
+                padding-left: 50px;
+                padding-top: 8px;
+                div {
+                    position: relative;
+                    display: inline-block;
+                    margin-right: 20px;
+                    width: 66px;
+                    height: 16px;
+                    padding-top: 66px;
+                    text-align: center;
+                    cursor: pointer;
+                    transition: color 0.2s;
+                    div {
+                        position: absolute;
+                        visibility: hidden;
+                        opacity: 0;
+                        transition: all 0.5s;
+                    }
+                    &:nth-child(1) {
+                        background: @icons_image_path -1021px -196px;
+                        div {
+                            
+                            width: 130px;
+                            height: 143px;
+                            left: -32px;
+                            top: -153px;
+                            background: @icons_image_path -1260px -1817px;
+                        }
+                    }
+                    &:nth-child(2) {
+                        background: @icons_image_path -1021px -324px;
+                        div {
+                            width: 130px;
+                            height: 143px;
+                            left: -32px;
+                            top: -153px;
+                            background: @icons_image_path -1260px -2025px;
+                        }
+                    }
+                    &:nth-child(3) {
+                        background: @icons_image_path -1021px -68px;
+                        div {
+                            width: 250px;
+                            height: 159px;
+                            left: -153px;
+                            top: -169px;
+                            background: @icons_image_path -1260px -2229px;
+                        }
+                    }
+                    &:hover {
+                        color: #00A1D6;
+                        background-position-x: -1087px;
+                        div {
+                            opacity: 1;
+                            visibility: visible;
+                        }
+                    }
+                }
+            }
         }
     }
     &_tail {

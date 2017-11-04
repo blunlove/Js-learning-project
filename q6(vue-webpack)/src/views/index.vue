@@ -19,6 +19,7 @@
                     :style="style"
                     v-on:mouseover="mobilePhone_over()"
                     v-on:mouseleave="mobilePhone_leave()">
+                    <div class="mobilePhone_download_image"></div>
                 </div>
             </div>
         </div>
@@ -139,7 +140,7 @@ export default {
                 position_menu_state = 0;
             }
             if (position_menu_state) {
-                this.style_suoyin = 'top: 10px';
+                this.style_suoyin = 'top: 50px';
             }else {
                 this.style_suoyin = 'top: 250px';
             }
