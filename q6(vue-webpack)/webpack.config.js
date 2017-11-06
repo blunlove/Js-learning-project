@@ -27,8 +27,10 @@ module.exports = {
                 test: /\.(png|jpg|gif|svg)$/,
                 loader: 'file-loader',
                 options: {
-                    name: '[name].[ext]?[hash]'
-                }
+                    outputPath: 'img/',
+                    publicPath:'./dist/',
+                    name: '[name].[ext]'
+                },
             },
             {
                 test: /\.css$/,
