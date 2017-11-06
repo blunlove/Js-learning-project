@@ -52,9 +52,7 @@ for (let i = 0; i < 17; i++) {
 }
 
 let mobilePhone = {
-    isAnimation: false,
-    isLeaving: false,
-    begin: false,
+    state: 0,
     frame: 0,
 };
 let scrolling = false;
@@ -92,9 +90,12 @@ export default {
     methods: {
         mobilePhone_animation () {
             setTimeout(() => {
-                mobilePhone.isAnimation = true;
-                if (mobilePhone.isLeaving == true){
-                    mobilePhone.frame--;
+                if (!mobilePhone.state){
+                    if (mobilePhone.frame > 0) {
+                        mobilePhone.frame--;
+                    }else {
+                        return;
+                    }
                 }else {
                     mobilePhone.frame++;
                     if ( mobilePhone.frame > 15 ) {
@@ -105,25 +106,17 @@ export default {
                 this.style = `background-position: -${px}px`;
                 if (mobilePhone.frame > 0){
                     this.mobilePhone_animation();
-                }else {
-                    mobilePhone.isLeaving = false;
-                    mobilePhone.isAnimation = false;
-                    mobilePhone.begin = false;
                 }
             }, 100);
         },
         mobilePhone_over () {
-            mobilePhone.isLeaving = false;
-            if (!mobilePhone.begin) {
-                mobilePhone.begin = true;
+            mobilePhone.state = 1;
+            if (mobilePhone.frame == 0){
                 this.mobilePhone_animation();
             }
         },
         mobilePhone_leave () {
-            if (!mobilePhone.isAnimation) {
-                return;
-            }
-            mobilePhone.isLeaving = true;
+            mobilePhone.state = 0;
             if (mobilePhone.frame > 10) {
                 mobilePhone.frame = 10;
             }
@@ -140,9 +133,9 @@ export default {
                 position_menu_state = 0;
             }
             if (position_menu_state) {
-                this.style_suoyin = 'top: 50px';
+                this.style_suoyin = 'top: 50%; margin-top: -410px';
             }else {
-                this.style_suoyin = 'top: 250px';
+                this.style_suoyin = 'top: 250px; margin-top: 0';
             }
         });
     }
