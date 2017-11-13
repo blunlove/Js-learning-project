@@ -114,3 +114,129 @@
         }
     }
 }
+
+.carousel {
+    position: relative;
+    display: inline-block;
+    width: 440px;
+    height: 220px;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.carousel_back {
+    width: 880px;
+    height: 100%;
+    line-height: 0;
+    div {
+        display: inline-block;
+        width: 440px;
+        height: 100%;
+    }
+    &_0 {
+        background: @carousel0_image_path;
+    }
+    &_1 {
+        background: @carousel1_image_path;
+    }
+    &_2 {
+        background: @carousel2_image_path;
+    }
+    &_3 {
+        background: @carousel3_image_path;
+    }
+    &_4 {
+        background: @carousel4_image_path;
+    }
+    &:hover {
+        cursor: pointer;
+        + .carousel_more {
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+}
+
+.carousel_more {
+    position: absolute;
+    visibility: hidden;
+    opacity: 0;
+    transition: all 0.3s;
+    border-radius: 4px;
+    right: 25px;
+    bottom: 38px;
+    overflow: hidden;
+    &_back {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.6);
+    }
+    &_word {
+        position: relative;
+        background: @icons_image_path -505px -211px;
+        font-size: 12px;
+        color: white;
+        text-shadow: 0px 0px 4px white;
+        padding-left: 8px;
+        padding-right: 16px;
+        padding-top: 4px;
+        padding-bottom: 4px;
+    }
+    &:hover {
+        cursor: pointer;
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+.carousel_title {
+    position: absolute;
+    font-size: 14px;
+    bottom: 10px;
+    left: 20px;
+    color: white;
+    cursor: pointer;
+    &:hover {
+        text-shadow: 0px 0px 1px white;
+    }
+}
+
+.carousel_button {
+    position: absolute;
+    right: 25px;
+    bottom: 10px;
+    line-height: 0;
+    div {
+        display: inline-block;
+        width: 22px;
+        height: 22px;
+        margin-right: 5px;
+        background: @icons_image_path -853px -789px;
+        &:hover {
+            background: @icons_image_path -917px -789px;
+            cursor: pointer;
+        }
+        &.carousel_button_click {
+            background-position: -853px -725px;
+        }
+    }
+}
+
+.leave_enter-enter-active, .leave_enter-leave-active {
+    transition-timing-function: linear;
+    transition: all 0.3s;
+}
+
+.leave_enter-enter-to, .leave_enter-leave-to {
+    transform: translateX(-440px);
+}
+
+.carousel_title-enter-active, .carousel_title-leave-active {
+    transition-timing-function: linear;
+    transition: all 0.3s;
+}
+
+.carousel_title-enter, .carousel_title-leave-to {
+    opacity: 0;
+}

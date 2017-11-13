@@ -1,6 +1,20 @@
 <template>
     <div class="body_index">
-        <div>index</div>
+        <div class="carousel">
+            <transition-group class="carousel_back" tag="div" name="leave_enter">
+                <div v-for="menu in carousel_menu" :class="'carousel_back_' + menu.name" v-show="menu.click" :key="menu.name"></div>
+            </transition-group>
+            <div class="carousel_more">
+                <div class="carousel_more_back"></div>
+                <div class="carousel_more_word">更多</div>
+            </div>
+            <transition-group tag="div" name="carousel_title">
+                <div v-for="menu in carousel_menu" class="carousel_title" v-show="menu.click" :key="menu.name">{{ menu.title }}</div>
+            </transition-group>
+            <div class="carousel_button">
+                <div v-for="menu in carousel_menu" @click="beginCarousel(menu.name)" :class="{ carousel_button_click: menu.click }"></div>
+            </div>
+        </div>
         <div class="suoyin_road">
             <div class="suoyin" :style="style_suoyin">
                 <div class="position_menu">
@@ -27,6 +41,16 @@
 </template>
 
 <script>
+let carousel_menu = [
+    { name: 0, click: true, title: '周五！' },
+    { name: 1, click: false, title: '恰逢诗意少年' },
+    { name: 2, click: false, title: '一起来胡萝卜辣~' },
+    { name: 3, click: false, title: '短片混减回来了！' },
+    { name: 4, click: false, title: '宝石之国' },
+]
+
+let beginCarousel;
+
 let position_menu = [
     { name: '直播' },
     { name: '动画' },
@@ -84,6 +108,7 @@ export default {
         return {
             style: '',
             position_menu: position_menu,
+            carousel_menu: carousel_menu,
             style_suoyin: '',
         }
     },
@@ -121,7 +146,25 @@ export default {
                 mobilePhone.frame = 10;
             }
         },
-        toTop
+        toTop,
+        focusCarousel (name) {
+            for (let i = 0; i < 5; i++){
+                if (this.carousel_menu[i].name == name) {
+                    this.carousel_menu[i].click = true;
+                }else {
+                    this.carousel_menu[i].click = false;
+                }
+            }
+        },
+        beginCarousel (name = 0) {
+            let focus = name;
+            clearInterval(beginCarousel);
+            this.focusCarousel(focus);
+            beginCarousel = setInterval(() => {
+                focus = (focus + 1) % 5;
+                this.focusCarousel(focus);
+            }, 5000);
+        }
     },
     mounted() {
         let position_menu_state = 0;
@@ -138,6 +181,7 @@ export default {
                 this.style_suoyin = 'top: 250px; margin-top: 0';
             }
         });
+        this.beginCarousel();
     }
 }
 </script>
