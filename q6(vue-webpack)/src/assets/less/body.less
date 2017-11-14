@@ -125,12 +125,13 @@
 }
 
 .carousel_back {
-    width: 880px;
+    position: absolute;
+    width: 100%;
     height: 100%;
-    line-height: 0;
     div {
+        position: absolute;
         display: inline-block;
-        width: 440px;
+        width: 100%;
         height: 100%;
     }
     &_0 {
@@ -221,22 +222,4 @@
             background-position: -853px -725px;
         }
     }
-}
-
-.leave_enter-enter-active, .leave_enter-leave-active {
-    transition-timing-function: linear;
-    transition: all 0.3s;
-}
-
-.leave_enter-enter-to, .leave_enter-leave-to {
-    transform: translateX(-440px);
-}
-
-.carousel_title-enter-active, .carousel_title-leave-active {
-    transition-timing-function: linear;
-    transition: all 0.3s;
-}
-
-.carousel_title-enter, .carousel_title-leave-to {
-    opacity: 0;
 }
