@@ -128,27 +128,8 @@
     position: absolute;
     width: 100%;
     height: 100%;
-    div {
-        position: absolute;
-        display: inline-block;
-        width: 100%;
-        height: 100%;
-    }
-    &_0 {
-        background: @carousel0_image_path;
-    }
-    &_1 {
-        background: @carousel1_image_path;
-    }
-    &_2 {
-        background: @carousel2_image_path;
-    }
-    &_3 {
-        background: @carousel3_image_path;
-    }
-    &_4 {
-        background: @carousel4_image_path;
-    }
+    background: @carousel_image_path 0 0 no-repeat;
+    transition: all 0.2s;
     &:hover {
         cursor: pointer;
         + .carousel_more {
@@ -178,11 +159,13 @@
         background: @icons_image_path -505px -211px;
         font-size: 12px;
         color: white;
-        text-shadow: 0px 0px 4px white;
         padding-left: 8px;
         padding-right: 16px;
         padding-top: 4px;
         padding-bottom: 4px;
+        &:hover {
+            text-shadow: 0px 0px 4px white;
+        }
     }
     &:hover {
         cursor: pointer;

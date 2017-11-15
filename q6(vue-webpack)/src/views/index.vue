@@ -1,19 +1,7 @@
 <template>
     <div class="body_index">
         <div class="carousel">
-            <transition-group class="carousel_back" tag="div"
-                @before-enter="beforeEnter"
-                @after-enter="afterEnter"
-                @before-leave="beforeLeave"
-                @leave="leave"
-                >
-                <div v-for="(menu, index) in carousel_data.menu"
-                    :class="'carousel_back_' + index"
-                    v-if="carousel_data.mark == index"
-                    :key="index"
-                    >
-                </div>
-            </transition-group>
+            <div class="carousel_back" :style="carousel_data.style"></div>
             <div class="carousel_more">
                 <div class="carousel_more_back"></div>
                 <div class="carousel_more_word">更多</div>
@@ -53,6 +41,7 @@
 <script>
 let carousel_data = {
     mark: 0,
+    style: '',
     menu: [
         { title: '周五！' },
         { title: '恰逢诗意少年' },
@@ -63,7 +52,6 @@ let carousel_data = {
 }
 
 let beginCarousel;
-let carousel_direction = 1;
 
 let position_menu = [
     { name: '直播' },
@@ -120,7 +108,6 @@ export default {
             position_menu: position_menu,
             carousel_data: carousel_data,
             style_suoyin: '',
-            transitionName: 'carousel',
         }
     },
     methods: {
@@ -158,43 +145,21 @@ export default {
             }
         },
         toTop,
+        restCarousel () {
+            let s = `-${carousel_data.mark * 440}px`;
+            carousel_data.style = { 'background-position-x': s };
+        },
         changeMark (index) {
-            if (index > carousel_data.mark) {
-                carousel_direction = 1;
-            }else {
-                carousel_direction = 0;
-            }
             carousel_data.mark = index;
+            this.restCarousel();
             this.autoCarousel();
         },
         autoCarousel () {
             clearInterval(beginCarousel);
             beginCarousel = setInterval(() => {
-                carousel_direction = 1;
                 carousel_data.mark = (carousel_data.mark + 1) % 5;
+                this.restCarousel();
             }, 5000);
-        },
-        beforeEnter(el) {
-            if (carousel_direction) {
-                el.style.transform = 'translateX(100%)';
-            }else {
-                el.style.transform = 'translateX(-100%)';
-            }
-        },
-        afterEnter(el) {
-            el.style.transition = 'all 0.2s linear';
-            el.style.transform = 'translateX(0)';
-        },
-        beforeLeave(el) {
-            el.style.transform = 'translateX(0)';
-        },
-        leave(el) {
-            el.style.transition = 'all 0.2s linear';
-            if (carousel_direction) {
-                el.style.transform = 'translateX(-100%)';
-            }else {
-                el.style.transform = 'translateX(100%)';
-            }
         },
     },
     mounted() {
