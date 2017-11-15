@@ -23,11 +23,6 @@ import SecondHeaderTab from './components/second_header.vue';
 import FooterTab from './components/footer.vue';
 export default {
     name: 'app',
-    data() {
-        return {
-            msg: 'Welcome to Your Vue.js App'
-        }
-    },
     components: {
         HeaderTab, FooterTab, SecondHeaderTab
     }
