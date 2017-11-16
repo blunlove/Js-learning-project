@@ -1,0 +1,109 @@
+.suoyin_road {
+    display: inline-block;
+    position: absolute;
+    z-index: 1;
+    right: -10px;
+}
+
+.suoyin {
+    position: fixed;
+    top: 250px;
+    bottom: 20px;
+    width: 50px;
+    transition: all 0.5s;
+}
+
+.position_menu {
+    text-align: center;
+    width: 100%;
+    background-color: #F6F9FA;
+    border-radius: 4px;
+    box-shadow: 0 0 0px 1px #E6EAEF;
+    overflow: hidden;
+    li {
+        display: block;
+        height: 38px;
+        line-height: 38px;
+        transition: all 0.25s;
+        &:hover {
+            background-color: #00A1D6;
+            color: white;
+            cursor: pointer;
+        }
+    }
+    .position_18 {
+        border-top: 1px solid #E6EAEF;
+        height: 50px;
+        &_image {
+            line-height: 22px;
+            width: 100%;
+            height: 22px;
+            padding-top: 26px;
+            padding-bottom: 2px;
+            background: @icons_image_path -647px -144px;
+            &:hover {
+                background-position:  -711px -144px;
+            }
+        }
+    }
+}
+
+.baffle {
+    position: relative;
+    z-index: -1;
+    top: -10px;
+    margin: auto;
+    width: 30px;
+    height: 30px;
+    border: 1px solid #E6EAEF;
+}
+
+.back_top {
+    position: relative;
+    top: -20px;
+    width: 100%;
+    height: 46px;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: #F6F9FA;
+    box-shadow: 0 0 0px 1px #E6EAEF;
+    &:hover {
+        background-color: #00A1D6;
+        
+    }
+    &_image {
+        width: 100%;
+        height: 100%;
+        background: @icons_image_path -647px -73px;
+        &:hover {
+            background-position:  -712px -73px;
+        }
+    }
+}
+
+.mobilePhone {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    left: -15px;
+    top: -18px;
+    background: url(../imgs/header/animation.png);
+    &_download_image {
+        position: absolute;
+        visibility: hidden;
+        opacity: 0;
+        width: 106px;
+        height: 44px;
+        top: -20px;
+        left: -106px;
+        background: @mobilePhone_download_image_path;
+        transition: all 0.8s;
+    }
+    &:hover {
+        cursor: pointer;
+        .mobilePhone_download_image {
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+}
