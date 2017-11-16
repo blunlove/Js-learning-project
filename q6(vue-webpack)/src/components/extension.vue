@@ -30,7 +30,7 @@
                 <span>在线人数：{{ online_people.people }}</span
                 ><div></div
                 ><span>最新投稿：{{ online_people.news }}</span>
-                </div>
+            </div>
             <div class="online_people_image" :style="{backgroundImage: `url(${online_people.image})`}"></div>
         </div>
     </div>
