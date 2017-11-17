@@ -1,13 +1,7 @@
 <template>
     <div class="extension">
         <div class="extension_plate">
-            <div class="extension_plate_top">
-                <div class="extension_plate_top_image"></div>
-                <div class="extension_plate_top_word">
-                    推广
-                    <span>我喜欢篮球队的电视君</span>
-                </div>
-            </div>
+            <slot></slot>
             <div class="extension_plate_video">
                 <div v-for="(item, index) in video"
                     class="extension_plate_video_item"
@@ -66,7 +60,6 @@ let online_people = {
     news: 843,
     image: require(`../assets/imgs/icon/online_people_image.jpg`),
 }
-
 export default {
     name: 'extension',
     data() {

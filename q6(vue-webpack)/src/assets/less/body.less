@@ -20,3 +20,31 @@
         background: @watchlater2_image_path;
     }
 }
+
+.title {
+    &_image {
+        display: inline-block;
+        width: 40px;
+        height: 40px;
+        background: @icons_image_path -140px -76px;
+    }
+    &_word {
+        position: relative;
+        top: -12px;
+        left: 10px;
+        display: inline-block;
+        div {
+            display: inline;
+            font-size: 24px;
+        }
+        span {
+            color: #6D757A;
+            padding-left: 30px;
+            font-size: 12px;
+            &:hover {
+                cursor: pointer;
+                color: #00A1D6;
+            }
+        }
+    }
+}
