@@ -3,7 +3,7 @@
         <div class="extension_plate">
             <slot></slot>
             <div class="extension_plate_video">
-                <div v-for="(item, index) in video"
+                <div v-for="item in video"
                     class="extension_plate_video_item"
                     >
                     <div class="extension_plate_video_item_image" :style="{backgroundImage: `url(${item.image})`}">
