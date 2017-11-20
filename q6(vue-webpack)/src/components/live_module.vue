@@ -8,16 +8,19 @@
                     >
                     <div class="child_module_plate_video_image" :style="{backgroundImage: `url(${item.image})`}">
                         <div class="live_video_word">
-                            <div class="live_video_word_up"></div>
-                            <div class="live_video_word_people"></div>
+                            <div class="live_video_word_up">{{ item.up }}</div>
+                            <div class="live_video_word_people"><div></div>{{ item.people }}</div>
                         </div>
-                        <div class="live_video_item_mask"></div>
+                        <div class="live_video_item_mask" :style="{backgroundImage: `url(${item.mask})`}"></div>
                     </div>
                     <div class="live_video_item_title">{{ item.title }}</div>
+                    <div class="live_video_item_area">{{ item.area }}</div>
                 </div>
             </div>
-        </div>
-        <div class="live_menu">
+        </div
+        ><div class="live_menu">
+            <div class="live_menu_title"></div>
+            <div class="live_menu_connent"></div>
         </div>
     </div>
 </template>
@@ -153,7 +156,10 @@ export default {
     name: 'live_module',
     data() {
         return {
-            video: video
+            video: video,
+            live_rank: live_rank,
+            live_fork: live_fork,
+            recommend: recommend,
         }
     },
 }
