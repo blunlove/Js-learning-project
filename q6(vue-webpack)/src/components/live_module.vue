@@ -19,8 +19,22 @@
             </div>
         </div
         ><div class="live_menu">
-            <div class="live_menu_title"></div>
-            <div class="live_menu_connent"></div>
+            <div class="live_menu_title">
+                <div v-for="menu in live_menu" class="live_menu_title_item">{{ menu }}</div>
+            </div>
+            <div class="live_menu_connent">
+                <div class="live_menu_connent_rank">
+                    <div v-for="(item, index) in live_rank" class="live_menu_connent_rank_item">
+                        <div class="live_menu_connent_rank_item_head">{{ index + 1 }}</div>
+                        <div class="live_menu_connent_rank_item_icon" :style="{backgroundImage: `url(${item.image})`}"></div>
+                        <div class="live_menu_connent_rank_item_word">
+                            <div class="live_menu_connent_rank_item_word_up"></div>
+                            <div class="live_menu_connent_rank_item_word_title"></div>
+                        </div>
+                        <div class="live_menu_connent_rank_item_watch"></div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -80,6 +94,11 @@ for (let key in video) {
     video[key].image = require(`../assets/imgs/live/live_video${key}.jpg`);
     video[key].mask = require(`../assets/imgs/live/live_mask${key}.jpg`);
 }
+let live_menu = [
+    '直播排行',
+    '关注的主播',
+    '为你推荐',
+]
 let live_rank = [
     {
         icon: '../assets/imgs/live_rank/live_rank_icon0.jpg',
@@ -160,6 +179,7 @@ export default {
             live_rank: live_rank,
             live_fork: live_fork,
             recommend: recommend,
+            live_menu: live_menu,
         }
     },
 }
