@@ -20,18 +20,70 @@
         </div
         ><div class="live_menu">
             <div class="live_menu_title">
-                <div v-for="menu in live_menu" class="live_menu_title_item">{{ menu }}</div>
+                <div v-for="(menu, index) in live_menu"
+                    :class="['live_menu_title_item', {live_menu_title_item_on: buttonState == index}]"
+                    @click="changeState(index)"
+                    >
+                    {{ menu }}
+                    <div class="child_title_button_arrow">
+                        <div :class="{'child_title_button_arrow_head': buttonState == index}"></div>
+                        <div :class="{'child_title_button_arrow_line': buttonState == index}"></div>
+                    </div>
+                </div>
             </div>
-            <div class="live_menu_connent">
+            <div class="live_menu_connent" :style="{left: connent_position}">
                 <div class="live_menu_connent_rank">
                     <div v-for="(item, index) in live_rank" class="live_menu_connent_rank_item">
                         <div class="live_menu_connent_rank_item_head">{{ index + 1 }}</div>
-                        <div class="live_menu_connent_rank_item_icon" :style="{backgroundImage: `url(${item.image})`}"></div>
-                        <div class="live_menu_connent_rank_item_word">
-                            <div class="live_menu_connent_rank_item_word_up"></div>
-                            <div class="live_menu_connent_rank_item_word_title"></div>
+                        <div class="live_menu_connent_rank_item_icon" :style="{backgroundImage: `url(${item.image})`}"></div
+                        ><div class="live_menu_connent_rank_item_word">
+                            <div class="live_menu_connent_rank_item_word_up">{{ item.up }}</div>
+                            <div class="live_menu_connent_rank_item_word_title">{{ item.title }}</div>
+                            <div class="live_menu_connent_rank_item_watch">{{ item.people }}</div>
                         </div>
-                        <div class="live_menu_connent_rank_item_watch"></div>
+                    </div>
+                </div
+                ><div class="live_menu_connent_fork">
+                    <div v-for="(item, index) in live_fork" class="live_menu_connent_fork_item">
+                        <div class="live_menu_connent_fork_item_icon" :style="{backgroundImage: `url(${item.image})`}"></div
+                        ><div class="live_menu_connent_fork_item_word">
+                            <div class="live_menu_connent_fork_item_word_up">{{ item.up }}</div>
+                            <div class="live_menu_connent_fork_item_word_title">{{ item.title }}</div>
+                            <div class="live_menu_connent_fork_item_watch">{{ item.people }}</div>
+                        </div>
+                    </div>
+                </div
+                ><div class="live_menu_connent_recommend">
+                    <div class="live_menu_connent_recommend_top">
+                        <div class="live_menu_connent_recommend_top_image" :style="{left: recommend_image_position}">
+                            <div v-for="item in recommend"
+                                class="live_menu_connent_recommend_top_image_item"
+                                :style="{backgroundImage: `url(${item.image})`}"
+                                >
+                                <div class="live_menu_connent_recommend_top_image_item_plate">
+                                    <div class="live_menu_connent_recommend_top_image_item_plate_title">{{ item.title }}</div>
+                                    <div class="live_menu_connent_recommend_top_image_item_plate_back"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="live_menu_connent_recommend_top_button">
+                            <div
+                                :class="['live_menu_connent_recommend_top_button_item',{'live_menu_connent_recommend_top_button_on': recommend_buttonState == 0}]"
+                                @mouseover="changeMark(0)">
+                            </div
+                            ><div
+                                :class="['live_menu_connent_recommend_top_button_item',{'live_menu_connent_recommend_top_button_on': recommend_buttonState == 1}]"
+                                @mouseover="changeMark(1)">
+                            </div
+                            ><div
+                                :class="['live_menu_connent_recommend_top_button_item',{'live_menu_connent_recommend_top_button_on': recommend_buttonState == 2}]"
+                                @mouseover="changeMark(2)">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="live_menu_connent_recommend_down">
+                        <div class="live_menu_connent_recommend_down_left"></div>
+                        <div class="live_menu_connent_recommend_down_right"></div>
                     </div>
                 </div>
             </div>
@@ -132,7 +184,7 @@ let live_rank = [
     },
     {
         icon: '../assets/imgs/live_rank/live_rank_icon5.jpg',
-        up: '陈哥1',
+        up: '陈哥',
         title: '以撒的结合',
         people: '5.3万',
     },
@@ -156,7 +208,7 @@ for (let key in live_fork) {
 let recommend = [
     {
         url: '../assets/imgs/recommend/recommend_image0.jpg',
-        title: '',
+        title: '23333333333',
     },
     {
         url: '../assets/imgs/recommend/recommend_image0.jpg',
@@ -170,7 +222,7 @@ let recommend = [
 for (let key in recommend) {
     recommend[key].image = require(`../assets/imgs/recommend/recommend_image${key}.jpg`);
 }
-
+let beginCarousel;
 export default {
     name: 'live_module',
     data() {
@@ -180,7 +232,35 @@ export default {
             live_fork: live_fork,
             recommend: recommend,
             live_menu: live_menu,
+            buttonState: 0,
+            connent_position: '',
+            recommend_buttonState: 0,
+            recommend_image_position: '',
         }
     },
+    methods: {
+        changeState(index) {
+            this.buttonState = index;
+            this.connent_position = `${index * -270}px`;
+        },
+        restCarousel () {
+            this.recommend_image_position = `${this.recommend_buttonState * -260}px`;
+        },
+        changeMark (index) {
+            this.recommend_buttonState = index;
+            this.restCarousel();
+            this.autoCarousel();
+        },
+        autoCarousel () {
+            clearInterval(beginCarousel);
+            beginCarousel = setInterval(() => {
+                this.recommend_buttonState = (this.recommend_buttonState + 1) % 3;
+                this.restCarousel();
+            }, 3000);
+        },
+    },
+    mounted() {
+        this.autoCarousel();
+    }
 }
 </script>

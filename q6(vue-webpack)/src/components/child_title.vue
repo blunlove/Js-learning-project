@@ -11,8 +11,8 @@
                         >
                         有新动态
                         <div class="child_title_button_arrow">
-                            <div :class="{'child_title_button_arrow_head': buttonState == button.buttonState}"></div>
-                            <div :class="{'child_title_button_arrow_line': buttonState == button.buttonState}"></div>
+                            <div :class="{'child_title_button_arrow_head': buttonState == index}"></div>
+                            <div :class="{'child_title_button_arrow_line': buttonState == index}"></div>
                         </div>
                     </div>
                 </div>
@@ -50,11 +50,7 @@ export default {
     },
     methods: {
         changeState(index) {
-            if (index) {
-                this.buttonState = 1;
-            }else {
-                this.buttonState = 0;
-            }
+            this.buttonState = index;
         }
     }
 }
