@@ -1,7 +1,9 @@
 <template>
     <div class="child_module">
         <div class="child_module_plate">
-            <slot></slot>
+            <child-title :titledata="titledata">
+                <span slot="news_button">当前共有<span class="live_online">2073</span>个在线直播</span>
+            </child-title>
             <div class="child_module_plate_video">
                 <div v-for="item in video"
                     class="child_module_plate_video_item"
@@ -67,17 +69,9 @@
                             </div>
                         </div>
                         <div class="live_menu_connent_recommend_top_button">
-                            <div
-                                :class="['live_menu_connent_recommend_top_button_item',{'live_menu_connent_recommend_top_button_on': recommend_buttonState == 0}]"
-                                @mouseover="changeMark(0)">
-                            </div
-                            ><div
-                                :class="['live_menu_connent_recommend_top_button_item',{'live_menu_connent_recommend_top_button_on': recommend_buttonState == 1}]"
-                                @mouseover="changeMark(1)">
-                            </div
-                            ><div
-                                :class="['live_menu_connent_recommend_top_button_item',{'live_menu_connent_recommend_top_button_on': recommend_buttonState == 2}]"
-                                @mouseover="changeMark(2)">
+                            <div v-for="(item, index) in Array(3)"
+                                :class="['live_menu_connent_recommend_top_button_item',{'live_menu_connent_recommend_top_button_on': recommend_buttonState == index}]"
+                                @mouseover="changeMark(index)">
                             </div>
                         </div>
                     </div>
@@ -223,6 +217,14 @@ for (let key in recommend) {
     recommend[key].image = require(`../assets/imgs/recommend/recommend_image${key}.jpg`);
 }
 let beginCarousel;
+let titledata = {
+    image_position: { 'background-position': '-140px -652px' },
+    title: '正在直播',
+    fire: '233秒居然能做这些！',
+    news: '1660',
+}
+
+import ChildTitle from '../components/child_title.vue';
 export default {
     name: 'live_module',
     data() {
@@ -236,6 +238,7 @@ export default {
             connent_position: '',
             recommend_buttonState: 0,
             recommend_image_position: '',
+            titledata: titledata,
         }
     },
     methods: {
@@ -261,6 +264,9 @@ export default {
     },
     mounted() {
         this.autoCarousel();
+    },
+    components: {
+        ChildTitle,
     }
 }
 </script>

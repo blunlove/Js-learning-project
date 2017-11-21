@@ -73,12 +73,24 @@
                 color: #00A1D6;
             }
         }
+        &_title {
+            cursor: pointer;
+            &:hover {
+                color: #00A1D6;
+            }
+        }
         &_fire {
-            display: inline;
-            margin-left: 30px;
+            display: inline-block;
+            position: relative;
+            top: 3px;
+            margin-left: 20px;
             font-size: 12px;
             padding-left: 18px;
+            width: 150px;
             color: #6D758F;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
             background: @icons_image_path -664px -1112px no-repeat;
             cursor: pointer;
             &:hover {
@@ -156,6 +168,16 @@
         display: inline-block;
         height: 16px;
         font-size: 12px;
+        &_item {
+            position: relative;
+            display: inline-block;
+            margin-right: 10px;
+            font-size: 12px;
+            cursor: pointer;
+            &_on {
+                color: #00A1D6;
+            }
+        }
         &_dynamic, &_submission {
             display: inline-block;
             vertical-align: top;

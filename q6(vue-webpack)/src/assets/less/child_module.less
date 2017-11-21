@@ -3,6 +3,7 @@
     margin-top: 50px;
     width: 100%;
     height: 381px;
+    font-size: 12px;
     &_plate {
         position: relative;
         display: inline-block;
@@ -17,6 +18,11 @@
                 height: 100px;
                 border-radius: 4px;
                 overflow: hidden;
+                background-size: 100% 100%;
+                &:hover .watchlater {
+                    opacity: 1;
+                    visibility: visible;
+                }
             }
             &_item {
                 position: relative;
@@ -29,9 +35,50 @@
                 cursor: pointer;
                 overflow: hidden;
                 transition: all 0.3s;
-                &:hover{
-                    color: #00A1D6;
-                    .live_video_item {
+                &_title {
+                    margin-top: 8px;
+                    line-height: 20px;
+                    width: 100%;
+                }
+                &_area {
+                    position: absolute;
+                    bottom: 2px;
+                    width: 100%;
+                    background-color: white;
+                    color: #9BA3AB;
+                    transition: all 0.3s;
+                    &_plays {
+                        display: inline-block;
+                        padding-left: 18px;
+                        background: @icons_image_path -280px -88px no-repeat;
+                    }
+                    &_comment {
+                        display: inline-block;
+                        position: absolute;
+                        left: 50%;
+                        padding-left: 18px;
+                        background: @icons_image_path -280px -216px no-repeat;
+                    }
+                }
+                &_mask {
+                    width: 100%;
+                    height: 100%;
+                    opacity: 0;
+                    overflow: hidden;
+                    transition: all 0.3s;
+                    background-color: rgba(0, 0, 0, 0.4);
+                    &_time {
+                        position: absolute;
+                        bottom: 3px;
+                        left: 6px;
+                        color: white;
+                    }
+                }
+                &:hover {
+                    .child_module_plate_video_item_title {
+                        color: #00A1D6;
+                    }
+                    .live_video_item, .child_module_plate_video_item {
                         &_area {
                             transform-origin: 0 150px;
                             transform: rotateX(30deg);
@@ -43,6 +90,52 @@
                     }
                 }
             }
+        }
+    }
+    &_rank {
+        position: relative;
+        display: inline-block;
+        vertical-align: top;
+        width: 260px;
+        height: 100%;
+        &_top {
+            position: relative;
+            height: 29px;
+            margin-top: 8px;
+            &_title {
+                display: inline-block;
+                font-size: 20px;
+                margin-right: 16px;
+            }
+            &_button {
+                position: relative;
+                display: inline-block;
+                top: -4px;
+                &_left, &_right {
+                    display: inline-block;
+                    margin: 5px;
+                }
+            }
+            &_days {
+                position: absolute;
+                display: inline-block;
+                right: 0;
+                bottom: 3px;
+                width: 40px;
+                height: 20px;
+                padding-right: 10px;
+                border-radius: 4px;
+                border: 1px solid #CCD0D7;
+                text-align: center;
+                line-height: 20px;
+                cursor: default;
+            }
+        }
+        &_connent {
+            position: relative;
+            margin-top: 20px;
+            height: 324px;
+            background-color: red;
         }
     }
 }
