@@ -34,16 +34,15 @@
 
 <script>
 let child_title_button = [
-    {class: 'dynamic', connent: '有新动态', buttonState: 0},
-    {class: 'submission', connent: '最新投稿', buttonState: 1},
+    {class: 'dynamic', connent: '有新动态'},
+    {class: 'submission', connent: '最新投稿'},
 ]
-let buttonState = 0;
 export default {
     name: 'child_module',
     props: ['titledata'],
     data() {
         return {
-            buttonState: buttonState,
+            buttonState: 0,
             child_title_button: child_title_button,
         }
     },

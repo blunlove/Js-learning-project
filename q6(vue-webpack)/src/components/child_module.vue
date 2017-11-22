@@ -31,14 +31,77 @@
             <div class="child_module_rank_top">
                 <div class="child_module_rank_top_title">排行</div>
                 <div class="child_module_rank_top_button">
-                    <div class="child_module_rank_top_button_left">全部</div>
-                    <div class="child_module_rank_top_button_right">原创</div>
+                    <div v-for="(item, index) in buttons"
+                        class="child_module_rank_top_button_item"
+                        @click="changeState(index)"
+                        >
+                        {{ item.connent }}
+                        <div class="child_title_button_arrow">
+                            <div :class="{'child_title_button_arrow_head': buttonState == index}"></div>
+                            <div :class="{'child_title_button_arrow_line': buttonState == index}"></div>
+                        </div>
+                    </div>
                 </div>
                 <div class="child_module_rank_top_days">
-                    三日
+                    <div class="child_module_rank_top_days_item">
+                        {{ days[0] }}
+                    </div>
+                    <div class="child_module_rank_top_days_item"
+                        @click="changeDays()"
+                        >
+                        {{ days[1] }}
+                    </div>
+                    <div class="child_module_rank_top_days_arrow"></div>
                 </div>
             </div>
-            <div class="child_module_rank_connent"></div>
+            <div class="child_module_rank_connent" :style="{left: rank_connent_position}">
+                <div class="child_module_rank_all">
+                    <div v-for="(item, index) in rank_all" class="child_module_rank_all_item" v-if="index == 0">
+                        <div class="child_module_rank_all_item_head">{{ index + 1 }}</div>
+                        <div class="child_module_rank_all_item_title first">
+                            <div class="child_module_rank_all_item_image"
+                                :style="{backgroundImage: `url(${item.image})`}"
+                                >
+                                <div :class="['watchlater', {'add': item.watchlater}, {'delete': !item.watchlater}]"
+                                    @click="item.watchlater = !item.watchlater"
+                                    >
+                                </div>
+                            </div>
+                            <div class="child_module_rank_all_item_first">{{ item.title }}</div>
+                            <div class="child_module_rank_all_item_score">{{ item.score }}</div>
+                        </div>
+                    </div>
+                    <div v-else class="child_module_rank_all_item">
+                        <div class="child_module_rank_all_item_head">{{ index + 1 }}</div>
+                        <div class="child_module_rank_all_item_title second">{{ item.title }}</div>
+                    </div>
+                </div
+                ><div class="child_module_rank_all">
+                    <div v-for="(item, index) in rank_original" class="child_module_rank_all_item" v-if="index == 0">
+                        <div class="child_module_rank_all_item_head">{{ index + 1 }}</div>
+                        <div class="child_module_rank_all_item_title first">
+                            <div class="child_module_rank_all_item_image"
+                                :style="{backgroundImage: `url(${item.image})`}"
+                                >
+                                <div :class="['watchlater', {'add': item.watchlater}, {'delete': !item.watchlater}]"
+                                    @click="item.watchlater = !item.watchlater"
+                                    >
+                                </div>
+                            </div>
+                            <div class="child_module_rank_all_item_first">{{ item.title }}</div>
+                            <div class="child_module_rank_all_item_score">{{ item.score }}</div>
+                        </div>
+                    </div>
+                    <div v-else class="child_module_rank_all_item">
+                        <div class="child_module_rank_all_item_head">{{ index + 1 }}</div>
+                        <div class="child_module_rank_all_item_title second">{{ item.title }}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="child_module_rank_connent_more">
+                查看更多
+                <div class="child_module_rank_connent_more_arrow"></div>
+            </div>
         </div>
     </div>
 </template>
@@ -100,9 +163,10 @@ for (let key in video) {
 }
 let rank_all = [
     {
-        icon: require('../assets/imgs/child_module_rank/first_rank.jpg'),
+        image: require('../assets/imgs/child_module_rank/first_rank.jpg'),
         title: '【滚】开挂成仙明本性，鸡生几何也匆匆。',
         score: '综合评分：65.0万',
+        watchlater: true,
     },
     {
         title: '烂到爆笑？火影至今最智障没有之一的篇章！博人传新忍刀七人众大吐槽',
@@ -125,9 +189,10 @@ let rank_all = [
 ]
 let rank_original = [
     {
-        icon: require('../assets/imgs/child_module_rank/first_rank.jpg'),
+        image: require('../assets/imgs/child_module_rank/first_rank.jpg'),
         title: '【滚】开挂成仙明本性，鸡生几何也匆匆。',
         score: '综合评分：65.0万',
+        watchlater: true,
     },
     {
         title: '烂到爆笑？火影至今最智障没有之一的篇章！博人传新忍刀七人众大吐槽',
@@ -148,6 +213,14 @@ let rank_original = [
         title: '害死本拉登的竟然是柯南？【动漫游看点08】',
     },
 ]
+let days = [
+    '三日',
+    '一周',
+]
+let buttons = [
+    {class: 'all', connent: '全部'},
+    {class: 'original', connent: '原创'},
+]
 
 import ChildTitle from '../components/child_title.vue';
 export default {
@@ -156,10 +229,25 @@ export default {
     data() {
         return {
             video: video,
+            days: days,
+            rank_all: rank_all,
+            rank_original: rank_original,
+            buttons: buttons,
+            buttonState: 0,
+            rank_connent_position: '0px',
         }
     },
     components: {
         ChildTitle,
+    },
+    methods: {
+        changeDays() {
+            this.days.reverse();
+        },
+        changeState(index) {
+            this.buttonState = index;
+            this.rank_connent_position = `${this.buttonState * -270}px`;
+        },
     }
 }
 </script>

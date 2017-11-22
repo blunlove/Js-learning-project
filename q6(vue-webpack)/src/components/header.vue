@@ -81,9 +81,6 @@ export default {
             search_value: search_value,
         }
     },
-    methods: {
-        
-    },
     components: {
         gameMenu,
         liveMenu,
