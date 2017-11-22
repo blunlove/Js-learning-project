@@ -224,7 +224,7 @@ let buttons = [
 
 import ChildTitle from '../components/child_title.vue';
 export default {
-    name: 'live_module',
+    name: 'child_module',
     props: ['moduledata'],
     data() {
         return {
