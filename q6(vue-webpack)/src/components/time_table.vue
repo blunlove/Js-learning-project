@@ -22,24 +22,27 @@
                 <div class="child_title_word_time_table">新番时间表 ></div>
             </div>
             <div class="time_table_plate_comic">
-                <div v-for="item in time_table[buttonState]"
-                    class="time_table_plate_comic_item"
-                    >
-                    <div class="time_table_plate_comic_item_icon"
-                        :style="{backgroundImage: `url(${item.image})`}"
+                <div>
+                    <div v-for="item in time_table[buttonState]"
+                        class="time_table_plate_comic_item"
                         >
-                    </div>
-                    <div class="time_table_plate_comic_item_word">
-                        <div class="time_table_plate_comic_item_word_top">
-                            {{ item.title }}
+                        <div class="time_table_plate_comic_item_icon"
+                            :style="{backgroundImage: `url(${item.image})`}"
+                            >
                         </div>
-                        <div class="time_table_plate_comic_item_word_down">
-                            更新至<span>{{ item.episodes }}</span>
+                        <div class="time_table_plate_comic_item_word">
+                            <div class="time_table_plate_comic_item_word_top">
+                                {{ item.title }}
+                            </div>
+                            <div class="time_table_plate_comic_item_word_down">
+                                更新至<span>{{ item.episodes }}</span>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </div
+        ><child-module-rank2></child-module-rank2>
     </div>
 </template>
 
@@ -338,6 +341,8 @@ let times = [
     '六',
     '日',
 ]
+
+import ChildModuleRank2 from '../components/child_module_rank_2.vue';
 export default {
     name: 'time_table',
     data() {
@@ -364,6 +369,9 @@ export default {
                 this.times[index] = '周' + this.times[index];
             }
         }
-    }
+    },
+    components: {
+        ChildModuleRank2,
+    },
 }
 </script>
