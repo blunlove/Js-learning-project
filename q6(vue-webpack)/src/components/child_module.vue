@@ -32,8 +32,8 @@
                 <div class="child_module_rank_top_title">排行</div>
                 <div class="child_module_rank_top_button">
                     <div v-for="(item, index) in buttons"
-                        class="child_module_rank_top_button_item"
-                        @click="changeState(index)"
+                        :class="['child_module_rank_top_button_item', {child_module_rank_top_button_item_on: buttonState == index}]"
+                        @mouseover="changeState(index)"
                         >
                         {{ item.connent }}
                         <div class="child_title_button_arrow">

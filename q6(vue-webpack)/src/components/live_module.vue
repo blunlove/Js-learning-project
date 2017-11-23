@@ -147,37 +147,31 @@ let live_menu = [
 ]
 let live_rank = [
     {
-        icon: '../assets/imgs/live_rank/live_rank_icon0.jpg',
         up: '两仪滚',
         title: '【滚】开挂成仙明本性，鸡生几何也匆匆。',
         people: '10.0万',
     },
     {
-        icon: '../assets/imgs/live_rank/live_rank_icon1.jpg',
         up: '宫本狗雨',
         title: '老衲今儿便是要吃一把鸡',
         people: '8.7万',
     },
     {
-        icon: '../assets/imgs/live_rank/live_rank_icon2.jpg',
         up: '梦醒三生梦',
         title: '二狗带你看懂王者荣耀',
         people: '8.1万',
     },
     {
-        icon: '../assets/imgs/live_rank/live_rank_icon3.jpg',
         up: 'AnKe-Poi',
         title: '【安可】只杀14个',
         people: '7.5万',
     },
     {
-        icon: '../assets/imgs/live_rank/live_rank_icon4.jpg',
         up: '小天不是受QAQ',
         title: '先吃到再说吧！',
         people: '5.9万',
     },
     {
-        icon: '../assets/imgs/live_rank/live_rank_icon5.jpg',
         up: '陈哥',
         title: '以撒的结合',
         people: '5.3万',
@@ -189,7 +183,6 @@ for (let key in live_rank) {
 
 let live_fork = [
     {
-        icon: '../assets/imgs/live_fork/live_fork_icon0.jpg',
         up: 'CG板绘原画影视UI教程',
         title: '寒假班开始啦。想学寒假班的东西加小姐姐',
         people: '1005',
@@ -201,15 +194,12 @@ for (let key in live_fork) {
 
 let recommend = [
     {
-        url: '../assets/imgs/recommend/recommend_image0.jpg',
         title: '23333333333',
     },
     {
-        url: '../assets/imgs/recommend/recommend_image0.jpg',
         title: '听说哔哩哔哩谷上线啦？',
     },
     {
-        url: '../assets/imgs/recommend/recommend_image0.jpg',
         title: 'bilibili相簿 画友千万奖励扶持来嘞~',
     },
 ]
