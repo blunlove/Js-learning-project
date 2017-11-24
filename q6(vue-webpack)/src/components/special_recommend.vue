@@ -9,14 +9,14 @@
             </div>
             <div class="special_recommend_connent_title">
                 <div v-for="(item, index) in datas"
-                    :class="['special_recommend_connent_title_item',{'special_recommend_connent_title_on': buttonState == index}]"
+                    :class="['special_recommend_connent_title_item',{'on': buttonState == index}]"
                     >
                     {{ item.title }}
                 </div>
             </div>
             <div class="special_recommend_connent_button">
                 <div v-for="(item, index) in Array(2)"
-                    :class="['special_recommend_connent_button_item',{'special_recommend_connent_button_on': buttonState == index}]"
+                    :class="['special_recommend_connent_button_item',{'on': buttonState == index}]"
                     @mouseover="changeMark(index)"
                     >
                 </div>

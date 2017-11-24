@@ -70,7 +70,7 @@
                         </div>
                         <div class="live_menu_connent_recommend_top_button">
                             <div v-for="(item, index) in Array(3)"
-                                :class="['live_menu_connent_recommend_top_button_item',{'live_menu_connent_recommend_top_button_on': recommend_buttonState == index}]"
+                                :class="['live_menu_connent_recommend_top_button_item',{'on': recommend_buttonState == index}]"
                                 @mouseover="changeMark(index)">
                             </div>
                         </div>

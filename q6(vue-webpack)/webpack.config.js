@@ -29,7 +29,7 @@ module.exports = {
                 options: {
                     outputPath: 'img/',
                     publicPath:'./dist/',
-                    name: '[name].[ext]'
+                    name: '[hash].[ext]'
                 },
             },
             {

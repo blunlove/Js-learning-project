@@ -16,6 +16,7 @@
         <div v-else>
             <div is="child-module" :moduledata="item"></div>
         </div>
+        <recommend-module></recommend-module>
         <suoyin></suoyin>
     </div>
 </template>
@@ -160,6 +161,7 @@ import titlemenu from '../components/title_menu.vue';
 import LiveModule from '../components/live_module.vue';
 import ChildModule from '../components/child_module.vue';
 import TimeTable from '../components/time_table.vue';
+import RecommendModule from '../components/recommend_module.vue';
 export default {
     name: 'index',
     data() {
@@ -176,6 +178,7 @@ export default {
         LiveModule,
         ChildModule,
         TimeTable,
+        RecommendModule,
     }
 }
 </script>
