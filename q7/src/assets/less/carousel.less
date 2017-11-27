@@ -1,0 +1,50 @@
+.carousel {
+    position: relative;
+    width: 440px;
+    height: 220px;
+    overflow: hidden;
+    border-radius: 4px;
+    &_image {
+        position: relative;
+        left: 0;
+        width: 2200px;
+        height: 100%;
+        transition: all 0.3s;
+        &_item {
+            display: inline-block;
+            width: 440px;
+            height: 100%;
+        }
+    }
+    &_title {
+        position: absolute;
+        bottom: 8px;
+        left: 15px;
+        font-size: 14px;
+        color: white;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s;
+        &.on {
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+    &_button {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        div {
+            display: inline-block;
+            margin: 6px;
+            width: 40px;
+            height: 6px;
+            box-shadow: 0 0 0px 1px rgba(0, 0, 0, 0.6);
+            background-color: rgb(226, 226, 226);
+            &.on {
+                background-color: rgb(224, 9, 9);
+            }
+        }
+        
+    }
+}

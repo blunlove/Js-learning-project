@@ -66,7 +66,7 @@
         { content: '官方微信', class: '3' },
     ];
     export default {
-        name: 'header',
+        name: 'footer',
         data() {
             return {
                 footer_top_menu: footer_top_menu,
