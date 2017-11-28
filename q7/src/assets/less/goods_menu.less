@@ -1,0 +1,40 @@
+.goods_menu {
+    position: relative;
+    &_header {
+        font-size: 36px;
+        font-family: '楷体';
+        text-align: center;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        cursor: default;
+    }
+    &_connect {
+        position: relative;
+        margin-left: 70px;
+        margin-right: 70px;
+        &_item {
+            display: inline-block;
+            vertical-align: top;
+            width: 120px;
+            margin: 10px;
+            color: black;
+            text-decoration: none;
+            box-shadow: 1px 1px 3px 0.1px rgba(0, 0, 0, 0);
+            cursor: pointer;
+            transition: all 0.3s;
+            &:hover {
+                box-shadow: 1px 1px 3px 0.1px rgba(0, 0, 0, 0.2);
+            }
+            &_image {
+                width: 100%;
+                height: 120px;
+                background-size: 100% 100%;
+            }
+            &_title {
+                height: 32px;
+                font-size: 12px;
+                text-align: center;
+            }
+        }
+    }
+}

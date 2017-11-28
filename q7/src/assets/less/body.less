@@ -2,14 +2,39 @@
     position: relative;
     margin: auto;
     width: @back_width;
+    &_connect {
+        position: relative;
+        box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.2);
+    }
 }
 
-.about_menu_road {
-    position: absolute;
-    left: -255px;
-    top: 232px;
-}
-
-.index, .goods, .about {
+.index, .goods, .about, .detail {
     margin-top: 20px;
+}
+
+.detail {
+    &_connect {
+        position: relative;
+        margin: auto;
+        width: 800px;
+        height: 1093px;
+        background-size: 100% 100%;
+    }
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: @footer_height;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.icon1 {
+    position: absolute;
+    top: 300px;
+    left: -300px;
+    width: 200px;
+    height: 200px;
+    background: @faxin_image_path;
 }
