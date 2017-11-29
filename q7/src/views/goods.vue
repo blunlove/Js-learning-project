@@ -166,8 +166,8 @@ let goods = {
     },
 }
 for (let key in goods) {
-    goods[key].icon = require(`../assets/imgs/goods/icon/${key}.jpg`);
-    goods[key].detail = require(`../assets/imgs/goods/detail/${key}.jpg`);
+    goods[key].name2 = key;
+    goods[key].icon = require(`../assets/imgs/goods/${key}/icon.jpg`);
 }
 let faxinType = [
     {

@@ -11,15 +11,15 @@
 </template>
 <script>
 let data = [
-    { 
+    {
         class: 'phone',
         connect: '0577-86864768',
     },
-    { 
+    {
         class: 'email',
-        connect: '314884680@qq.com',
+        connect: '760824968@qq.com',
     },
-    { 
+    {
         class: 'address',
         connect: '浙江省温州市龙湾区海城街道海工大道金山路33号',
     },

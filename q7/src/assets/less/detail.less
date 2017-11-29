@@ -1,0 +1,40 @@
+.detail {
+    margin-top: 10px;
+    &_title {
+        position: relative;
+        margin-top: 50px;
+        height: 103px;
+        &_name {
+            position: absolute;
+            right: 100px;
+            font-size: 30px;
+            width: 320px;
+            cursor: default;
+            > div {
+                margin-top: 15px;
+                margin-bottom: 15px;
+                > div {
+                    display: inline-block;
+                    vertical-align: middle;
+                }
+            } 
+            &_icon {
+                width: 23px;
+                height: 20px;
+                background: @name_icon_image_path no-repeat;
+                background-size: 100% 100%;
+            }
+        }
+    }
+    &_header {
+        display: block;
+        margin: auto;
+        margin-top: 40px;
+        margin-bottom: 80px;
+    }
+    &_parameter {
+        display: block;
+        margin: auto;
+        margin-bottom: 80px;
+    }
+}

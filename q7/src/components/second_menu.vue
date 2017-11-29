@@ -1,8 +1,8 @@
 <template>
     <div class="second_menu">
-        <div v-for="(item, index) in data"
-            :class="['second_menu_item', {'on': index == buttonState}]"
-            @click="changeMark(index, item.link)"
+        <div v-for="item in data"
+            :class="['second_menu_item', {'on': item.link == buttonState}]"
+            @click="changeMark(item.link)"
             >
             {{ item.connect }}
             <div class="second_menu_item_back"></div>
@@ -21,12 +21,12 @@ export default {
     data() {
         return {
             data: data,
-            buttonState: 0,
+            buttonState: this.$route.path,
         }
     },
     methods: {
-        changeMark(index, link) {
-            this.buttonState = index;
+        changeMark(link) {
+            this.buttonState = link;
             this.$router.push(link);
         }
     }

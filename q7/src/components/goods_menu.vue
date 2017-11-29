@@ -12,7 +12,8 @@
                     :style="{backgroundImage: `url(${goods[item].icon})`}">
                 </div>
                 <div class="goods_menu_connect_item_title">
-                    {{ goods[item].name }}
+                    <div>{{ goods[item].name }}</div>
+                    <div>{{ goods[item].name2 }}</div>
                 </div>
             </div>
         </div>
