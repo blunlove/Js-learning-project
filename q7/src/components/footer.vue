@@ -22,12 +22,12 @@
 
 <script>
 let footer_menu = [
-    { class: 'address', title: '地址 ',title2: ' Address', connect: '浙江省温州市龙湾区海城街道海工大道金山路33号'},
+    { class: 'address', title: '地址 ',title2: ' Address', connect: '浙江省温州市经济技术开发区海城街道金山路33号'},
     { class: 'phone', title: '电话 ',title2: ' Phone', connect: '0577-86864768'},
     { class: 'email', title: '邮箱 ',title2: ' E-mail', connect: '760824968@@qq.com'},
 ]
 let copyright = {
-    chinese: 'Copyright©瑞安市卡诺阀芯有限公司.版权所有.',
+    chinese: 'Copyright©温州耐洁阀芯有限公司.版权所有.',
     english: 'Copyright©WenZhou Naijie Ceramic Valve., LTD.All rights reserved.'
 }
 
