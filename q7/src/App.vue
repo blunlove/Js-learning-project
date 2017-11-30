@@ -4,11 +4,10 @@
         <div class="real_body">
             <div class="icon1"></div>
             <suo-yin></suo-yin>
-            <header-menu></header-menu>
             <second-menu></second-menu>
             <router-view></router-view>
-            <standard></standard>
         </div>
+        <standard></standard>
         <footer-tab></footer-tab>
     </div>
 </template>
@@ -16,7 +15,6 @@
 <script>
 
 import HeaderTab from './components/header.vue';
-import HeaderMenu from './components/header_menu.vue';
 import SecondMenu from './components/second_menu.vue';
 import SuoYin from './components/suoyin.vue';
 import Standard from './components/standard.vue';
@@ -25,7 +23,6 @@ export default {
     name: 'app',
     components: {
         HeaderTab,
-        HeaderMenu,
         SecondMenu,
         SuoYin,
         Standard,

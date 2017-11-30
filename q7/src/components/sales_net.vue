@@ -1,19 +1,18 @@
 <template>
-    <div class="standard">
+    <div class="sales_net">
         <child-title :headerData="title_data"></child-title>
-        <div class="standard_image"></div>
+        <img class="sales_net_image" :src="require(`../assets/imgs/icon/world.png`)">
     </div>
 </template>
-
 <script>
 let title_data = {
-    chinese: '国家标准试验',
-    english: 'EN817 GB18145-2003',
+    chinese: '营销网',
+    english: 'Sales Net',
 }
 
 import ChildTitle from './child/child_title.vue';
 export default {
-    name: 'standard',
+    name: 'sales_net',
     data() {
         return {
             title_data: title_data,

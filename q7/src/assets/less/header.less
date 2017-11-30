@@ -1,6 +1,4 @@
 .header {
-    position: absolute;
-    z-index: -1;
     width: 100%;
     &_line {
         position: relative;
@@ -11,5 +9,60 @@
     &_back {
         height: @header_height;
         background: @header_image_path center;
+    }
+    &_menu {
+        position: absolute;
+        top: 0;
+        width: 100%;
+        height: @header_height + 42px;
+        font-size: 12px;
+        color: white;
+        &_top {
+            display: flex;
+            justify-content: space-between;
+            margin: auto;
+            width: @back_width;
+            height: 42px;
+            line-height: 42px;
+            &_sign {
+                display: inline-block;
+                width: 100px;
+                height: 42px;
+                cursor: pointer;
+                background: @sign_image_path;
+                transition: all 0.3s;
+                &:hover {
+                    background-color: rgba(255, 255, 255, 0.2);
+                }
+            }
+            &_item {
+                display: inline-block;
+                vertical-align: top;
+                padding-left: 20px;
+                padding-right: 20px;
+                cursor: pointer;
+                transition: all 0.3s;
+                &:hover {
+                    color: lightskyblue;
+                    background-color: rgba(255, 255, 255, 0.2);
+                }
+                div {
+                    position: relative;
+                    top: 3px;
+                    display: inline-block;
+                    width: 16px;
+                    height: 16px;
+                }
+                &_phone {
+                    background: @phone_image_path;
+                }
+                &_email {
+                    background: @email_image_path;
+                }
+                &_address {
+                    background: @address_image_path;
+                }
+            }
+        }
     }
 }
