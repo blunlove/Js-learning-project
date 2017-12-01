@@ -2,11 +2,11 @@ let path = require('path')
 let webpack = require('webpack')
 
 module.exports = {
-    entry: './src/main.js',
+    entry: ["babel-polyfill", "./src/main.js"],
     output: {
         path: path.resolve(__dirname, './dist'),
         publicPath: '/dist/',
-        filename: 'build.js'
+        filename: 'build.js',
     },
     module: {
         rules: [
@@ -55,6 +55,7 @@ module.exports = {
         }
     },
     devServer: {
+        host: '0.0.0.0',
         historyApiFallback: true,
         noInfo: true,
         inline: true
@@ -62,7 +63,7 @@ module.exports = {
     performance: {
         hints: false
     },
-    devtool: '#eval-source-map'
+    // devtool: '#eval-source-map'
 }
 
 if (process.env.NODE_ENV === 'production') {

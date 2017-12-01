@@ -21,7 +21,7 @@ let data = [
     },
     {
         class: 'email',
-        connect: '760824968@qq.com',
+        connect: '513864395@qq.com',
     },
     {
         class: 'address',

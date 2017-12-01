@@ -13,25 +13,24 @@
 
 <script>
 let hot_goods = {
-    '40G-2028': {
-        name: '40G高脚红圈调温',
-        english1: '40mm High foot',
-        english2: 'red ring temperature adjustment',
+    '35G-3022': {
+        name: '35G高脚-2连体(螺纹)',
+        english1: '35mm High foot-2',
+        english2: 'joint (thread)',
     },
-    '40P-2027': {
-        name: '40P双密封红圈调温',
-        english1: '40mm Double seal',
-        english2: 'red ring temperature adjustment',
+    '35S-3026': {
+        name: '35S平脚上封水',
+        english1: '35mm Flat foot',
+        english2: 'water sealing',
     },
-    '40G-2026': {
-        name: '40G高脚铜杆',
-        english1: '40mm High foot',
-        english2: 'copper rod',
+    '35G-3032': {
+        name: '35G高脚上封水-1',
+        english1: '35mm High foot',
+        english2: 'sealing water-1',
     },
-    '40P-2025': {
-        name: '40P双密封铜杆',
-        english1: '40mm Double sealed',
-        english2: 'copper rod',
+    '40P-2016': {
+        name: '40P-180°太阳能',
+        english1: '40mm-180° Solar energy',
     },
 }
 for (let key in hot_goods) {

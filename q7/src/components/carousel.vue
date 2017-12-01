@@ -55,7 +55,7 @@ export default {
     },
     methods: {
         restCarousel () {
-            let s = `-${this.mark * 980}px`;
+            let s = `-${this.mark * 1160}px`;
             this.style = { 'left': s };
         },
         changeMark (index) {

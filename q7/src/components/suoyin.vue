@@ -1,9 +1,5 @@
 <template>
     <div class="suoyin">
-        <div class="weixin">
-            <div class="weixin_image"></div>
-            <div class="weixin_erweima"></div>
-        </div>
         <div class="back"
             :style="style"
             >
