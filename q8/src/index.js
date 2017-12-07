@@ -17,7 +17,7 @@ const Cube = (x, y, z) => {
 const Camera = () => {
     let camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 1, 1000);
     camera.position.set(20, 40, 16);
-    camera.lookAt(new THREE.Vector3(0, 0, 0));
+    // camera.lookAt(new THREE.Vector3(0, 0, 0));
     return camera;
 }
 
@@ -58,15 +58,15 @@ let cube = [
 for (let key in cube) {
     scene.add(cube[key]);
 }
-// let light = new THREE.HemisphereLight(0xffffff, 0x444444, 1.2);
-// light.position.set(100, 100, 100);
-// scene.add(light);
-scene.add(DirectionalLight('red', 0, 0, 1));
-scene.add(DirectionalLight('green', 1, 0, 0));
-scene.add(DirectionalLight('blue', 0, 1, 0));
-scene.add(DirectionalLight('yellow', 0, 0, -1));
-scene.add(DirectionalLight('#00e4ff', -1, 0, 0));
-scene.add(DirectionalLight('#b400ff', 0, -1, 0));
+let light = new THREE.HemisphereLight(0xffffff, 0x444444, 1.2);
+light.position.set(100, 100, 100);
+scene.add(light);
+// scene.add(DirectionalLight('red', 0, 0, 1));
+// scene.add(DirectionalLight('green', 1, 0, 0));
+// scene.add(DirectionalLight('blue', 0, 1, 0));
+// scene.add(DirectionalLight('yellow', 0, 0, -1));
+// scene.add(DirectionalLight('#00e4ff', -1, 0, 0));
+// scene.add(DirectionalLight('#b400ff', 0, -1, 0));
 
 let helper = new THREE.GridHelper(800, 100);
 scene.add(helper);
@@ -120,6 +120,7 @@ setInterval(() => {
             mixers[i].update(clock.getDelta());
         }
     }
+    renderer.clear();
     renderer.render(scene, camera);
     stats.update();
 }, 1000 / 60);
