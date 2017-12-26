@@ -7,6 +7,11 @@
             <second-menu></second-menu>
             <router-view></router-view>
         </div>
+        <div class="alunimage">
+            <div class="alunimage_mask">
+                <div></div>
+            </div>
+        </div>
         <standard></standard>
         <footer-tab></footer-tab>
     </div>
