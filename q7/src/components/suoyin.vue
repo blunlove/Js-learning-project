@@ -26,7 +26,7 @@ const changeScroll = (x) => {
     if (!scrolling) {
         scrolling = true;
         disable_mousewheel(true);
-        $("body").animate({
+        $("html").animate({
             scrollTop: x
         }, 300, () => {
             scrolling = false;
