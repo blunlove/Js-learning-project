@@ -1,9 +1,10 @@
 const path = require("path");
+const basePath = require("./base_path.js");
 
 module.exports = {
     entry: ["babel-polyfill", "./src/main.js"],
     output: {
-        path: path.resolve(__dirname, "./dist"),
+        path: path.resolve(__dirname, basePath.APP_PATH),
         filename: "build.js"
     },
     module: {
@@ -25,7 +26,7 @@ module.exports = {
                 loader: "file-loader",
                 options: {
                     outputPath: "img/",
-                    publicPath: "./dist/",
+                    // publicPath: "./dist/",
                     name: "[hash].[ext]"
                 }
             },

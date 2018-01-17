@@ -1,7 +1,8 @@
 const config = require("./webpack.base.conf.js");
+const basePath = require("./base_path.js");
 const webpack = require("webpack");
 
-config.output.publicPath = "/dist";
+config.output.publicPath = basePath.PUBLIC_PATH;
 config.devServer = {
     historyApiFallback: true,
     noInfo: true,
@@ -9,7 +10,7 @@ config.devServer = {
     hot: true,              //热更新
     proxy: {
         "/api": {
-            target: "http://localhost:8080",
+            target: "http://172.16.8.214:8080",
             secure: false,
             changeOrigin: true,
             pathRewrite: {

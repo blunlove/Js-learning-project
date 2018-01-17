@@ -1,11 +1,7 @@
 const config = require("./webpack.base.conf.js");
 const webpack = require("webpack");
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 config.plugins = [
-    new HtmlWebpackPlugin({
-        template: __dirname + "/src/index.html"
-    }),
     new webpack.optimize.UglifyJsPlugin({
         compress: {
             warnings: false
