@@ -14,11 +14,10 @@
 </script>
 
 <style lang="less">
-@import './value.less';
 .logo {
     width: 200px;
     height: 200px;
-    background: @logo_image;
+    background: url(./assets/imgs/logo.png);
 }
 </style>
 
