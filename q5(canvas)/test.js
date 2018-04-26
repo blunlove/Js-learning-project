@@ -110,18 +110,10 @@ const _main = () => {
     let fps = 60;
     let game = new Game();
     //注册按键
-    game.regiserAction('ArrowUp', () => {
-        man.turnUp();
-    });
-    game.regiserAction('ArrowDown', () => {
-        man.turnDown();
-    });
-    game.regiserAction('ArrowLeft', () => {
-        man.turnLeft();
-    });
-    game.regiserAction('ArrowRight', () => {
-        man.turnRight();
-    });
+    game.regiserAction('ArrowUp', () => man.turnUp());
+    game.regiserAction('ArrowDown', () => man.turnDown());
+    game.regiserAction('ArrowLeft', () => man.turnLeft());
+    game.regiserAction('ArrowRight', () => man.turnRight());
     //监听键盘哪个键被按下
     window.addEventListener('keydown', event => {
         game.keydowns[event.key] = true;
