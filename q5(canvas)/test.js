@@ -12,6 +12,9 @@ class Man {
         this.worldX = worldX;
         this.worldY = worldY;
         //初始化配置
+        this.restState();
+    }
+    restState() {
         this.animation_k = 0;
         this.animation_direction = 0;
         this.animation_time = 1000;
@@ -93,6 +96,13 @@ class Game {
     constructor() {
         this.actions = {};
         this.keydowns = {};
+        //监听键盘哪个键被按下
+        window.addEventListener('keydown', event => {
+            this.keydowns[event.key] = true;
+        });
+        window.addEventListener('keyup', event => {
+            delete this.keydowns[event.key];
+        });
     }
     regiserAction(key, callback) {
         this.actions[key] = callback;
@@ -104,37 +114,30 @@ const imageFromPath = path => {
     img.src = path;
     return img;
 }
+
+const draw = (context, object) => {
+    context.drawImage(object.image,
+        object.width * object.animation_k,
+        object.height * object.animation_direction,
+        object.width, object.height, object.x, object.y,
+        object.width, object.height);
+}
+
+const random = max => Math.floor(Math.random() * (max));
+
 const _main = () => {
     let canvas = document.getElementById("world");
     let context = canvas.getContext("2d");
+    let image = imageFromPath('man.png');
     let fps = 60;
     let game = new Game();
+    let man = new Man(image, 32, 48, 4, random(canvas.width - 32), random(canvas.height - 48), canvas.width, canvas.height);
     //注册按键
     game.regiserAction('ArrowUp', () => man.turnUp());
     game.regiserAction('ArrowDown', () => man.turnDown());
     game.regiserAction('ArrowLeft', () => man.turnLeft());
     game.regiserAction('ArrowRight', () => man.turnRight());
-    //监听键盘哪个键被按下
-    window.addEventListener('keydown', event => {
-        game.keydowns[event.key] = true;
-    });
-    window.addEventListener('keyup', event => {
-        delete game.keydowns[event.key];
-    });
-    let beginPoint = {
-        x: Math.floor(Math.random() * (canvas.width - 32)) + 1,
-        y: Math.floor(Math.random() * (canvas.height - 48)) + 1
-    }
-
-    const draw = (object) => {
-        context.drawImage(object.image,
-            object.width * object.animation_k,
-            object.height * object.animation_direction,
-            object.width, object.height, object.x, object.y,
-            object.width, object.height);
-    }
-    let man = new Man(image, 32, 48, 4, beginPoint.x, beginPoint.y, canvas.width, canvas.height);
-    draw(man);
+    draw(context, man);
     setInterval(() => {
         let keydowns = Object.keys(game.keydowns);
         let lastKey = keydowns[keydowns.length - 1];
@@ -146,9 +149,7 @@ const _main = () => {
         }
         man.update();
         context.clearRect(0, 0, canvas.width, canvas.height);
-        draw(man);
+        draw(context, man);
     }, 1000 / fps);
 }
-
-let image = imageFromPath('man.png');
 _main();
