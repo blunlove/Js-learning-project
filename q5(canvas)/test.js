@@ -133,10 +133,10 @@ const _main = () => {
     let game = new Game();
     let man = new Man(image, 32, 48, 4, random(canvas.width - 32), random(canvas.height - 48), canvas.width, canvas.height);
     //注册按键
-    game.regiserAction('ArrowUp', () => man.turnUp());
-    game.regiserAction('ArrowDown', () => man.turnDown());
-    game.regiserAction('ArrowLeft', () => man.turnLeft());
-    game.regiserAction('ArrowRight', () => man.turnRight());
+    game.regiserAction('ArrowUp',  man.turnUp.bind(man));
+    game.regiserAction('ArrowDown', man.turnDown.bind(man));
+    game.regiserAction('ArrowLeft', man.turnLeft.bind(man));
+    game.regiserAction('ArrowRight', man.turnRight.bind(man));
     draw(context, man);
     setInterval(() => {
         let keydowns = Object.keys(game.keydowns);
